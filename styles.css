@@ -1,0 +1,324 @@
+/* ================================
+   Configuración General
+   ================================ */
+
+   body {
+	font-size: 2vw; /* Tamaño de fuente general */
+  }
+  
+  .container {
+	width: 100vw; /* Ancho total de la ventana */
+	height: 100vh; /* Altura total de la ventana */
+  }
+  
+  /* ================================
+	 Sección Principal
+	 ================================ */
+  
+  .desktop___1_27_5 { 
+	background-color: #ffffff; /* Color de fondo */
+	width: 1920px; /* Ancho total del contenedor principal */
+	height: 3671px; /* Altura total del contenedor principal */
+	position: absolute; /* Posición absoluta para el posicionamiento en la página */
+  }
+  
+  /* ================================
+	 Sección de Inicio de Página
+	 ================================ */
+  
+  .inicio_de_pagina_33_452 { 
+	width: 1920px; /* Ancho de la sección de inicio */
+	height: 849px; /* Altura de la sección de inicio */
+	position: absolute; /* Posición absoluta para el posicionamiento en la página */
+	left: 0px; /* Posición desde el borde izquierdo */
+	top: 103px; /* Posición desde el borde superior */
+  }
+  
+  .rectangle_2_3_5 { 
+	background-color: rgba(248, 192, 200, 1); /* Color de fondo */
+	width: 1920px; /* Ancho del rectángulo */
+	height: 849px; /* Altura del rectángulo */
+	position: absolute; /* Posición absoluta */
+  }
+  
+  .gato_hd_1_2_23 { 
+	width: 1920px; /* Ancho de la imagen de fondo */
+	height: 849px; /* Altura de la imagen de fondo */
+	position: relative; /* Posición relativa para el contenido superpuesto */
+	background-image: url(images/gato_hd_1.png); /* Imagen de fondo */
+	background-repeat: no-repeat; /* No repetir la imagen */
+	background-size: cover; /* Cubrir el área del contenedor */
+  }
+  
+  .lo_mejor_para_tu_mascota_2_28 { 
+	color: rgba(255, 255, 255, 1); /* Color del texto */
+	width: 562px; /* Ancho del contenedor de texto */
+	height: 453px; /* Altura del contenedor de texto */
+	position: absolute; /* Posición absoluta */
+	left: 106px; /* Posición desde el borde izquierdo */
+	top: 180px; /* Posición desde el borde superior */
+	font-family: Yeseva One; /* Fuente del texto */
+	text-align: left; /* Alineación del texto a la izquierda */
+	font-size: 96px; /* Tamaño de la fuente */
+	letter-spacing: 0; /* Espaciado entre letras */
+  }
+  
+  /* ================================
+	 Menú de Navegación
+	 ================================ */
+  
+  .menu_33_451 { 
+	width: 1948px; /* Ancho del menú */
+	height: 144px; /* Altura del menú */
+	position: absolute; /* Posición absoluta */
+	left: -28px; /* Posición desde el borde izquierdo */
+	top: -8px; /* Posición desde el borde superior */
+  }
+  
+  .rectangle_10_38_467 { 
+	background-color: rgba(128, 196, 249, 1); /* Color de fondo del menú */
+	width: 1920px; /* Ancho del rectángulo de menú */
+	height: 98px; /* Altura del rectángulo de menú */
+	position: absolute; /* Posición absoluta */
+	left: 28px; /* Posición desde el borde izquierdo */
+	top: 8px; /* Posición desde el borde superior */
+  }
+  
+  .inicio_1_4 { 
+	color: rgba(0, 0, 0, 1); /* Color del texto */
+	width: 87px; /* Ancho del elemento */
+	height: 25px; /* Altura del elemento */
+	position: absolute; /* Posición absoluta */
+	left: 1163px; /* Posición desde el borde izquierdo */
+	top: 50px; /* Posición desde el borde superior */
+	font-family: Work Sans; /* Fuente del texto */
+	text-align: left; /* Alineación del texto a la izquierda */
+	font-size: 24px; /* Tamaño de la fuente */
+	letter-spacing: 0; /* Espaciado entre letras */
+  }
+  
+  .fellinlove_3_7 { 
+	color: rgba(255, 255, 255, 1); /* Color del texto */
+	width: 221px; /* Ancho del elemento */
+	height: 70px; /* Altura del elemento */
+	position: absolute; /* Posición absoluta */
+	left: 178px; /* Posición desde el borde izquierdo */
+	top: 31px; /* Posición desde el borde superior */
+	font-family: Kavoon; /* Fuente del texto */
+	text-align: left; /* Alineación del texto a la izquierda */
+	font-size: 40px; /* Tamaño de la fuente */
+	letter-spacing: 5px; /* Espaciado entre letras */
+  }
+  
+  .nosotros_1_5 { 
+	color: rgba(0, 0, 0, 1); /* Color del texto */
+	width: 142px; /* Ancho del elemento */
+	height: 25px; /* Altura del elemento */
+	position: absolute; /* Posición absoluta */
+	left: 1276px; /* Posición desde el borde izquierdo */
+	top: 51px; /* Posición desde el borde superior */
+	font-family: Work Sans; /* Fuente del texto */
+	text-align: left; /* Alineación del texto a la izquierda */
+	font-size: 24px; /* Tamaño de la fuente */
+	letter-spacing: 0; /* Espaciado entre letras */
+  }
+  
+  .servicios_1_6 { 
+	color: rgba(0, 0, 0, 1); /* Color del texto */
+	width: 131px; /* Ancho del elemento */
+	height: 26px; /* Altura del elemento */
+	position: absolute; /* Posición absoluta */
+	left: 1444px; /* Posición desde el borde izquierdo */
+	top: 50px; /* Posición desde el borde superior */
+	font-family: Work Sans; /* Fuente del texto */
+	text-align: left; /* Alineación del texto a la izquierda */
+	font-size: 24px; /* Tamaño de la fuente */
+	letter-spacing: 0; /* Espaciado entre letras */
+  }
+  
+  .iniciar_1_12 { 
+	width: 270px; /* Ancho del botón de inicio de sesión */
+	height: 38px; /* Altura del botón de inicio de sesión */
+	position: absolute; /* Posición absoluta */
+	left: 1601px; /* Posición desde el borde izquierdo */
+	top: 44px; /* Posición desde el borde superior */
+  }
+  
+  .rec_iniciar_1_9 { 
+	background-color: rgba(124, 153, 180, 1); /* Color de fondo del botón */
+	width: 270px; /* Ancho del botón */
+	height: 38px; /* Altura del botón */
+	position: absolute; /* Posición absoluta */
+	border-radius: 20px; /* Bordes redondeados */
+  }
+  
+  .iniciar_sesion_1_7 { 
+	color: rgba(0, 0, 0, 1); /* Color del texto en el botón */
+	width: 232px; /* Ancho del texto */
+	height: 19px; /* Altura del texto */
+	position: absolute; /* Posición absoluta */
+	left: 38px; /* Posición desde el borde izquierdo */
+	top: 7px; /* Posición desde el borde superior */
+	font-family: Work Sans; /* Fuente del texto */
+	text-align: left; /* Alineación del texto a la izquierda */
+	font-size: 24px; /* Tamaño de la fuente */
+	letter-spacing: 0; /* Espaciado entre letras */
+  }
+  
+  .logo_definitivo_1_3_6 { 
+	width: 200px; /* Ancho del logo */
+	height: 145px; /* Altura del logo */
+	position: absolute; /* Posición absoluta */
+	background-image: url(images/logo_definitivo_1.png); /* Imagen de fondo del logo */
+	background-size: cover; /* Cubrir el área del contenedor */
+  }
+  
+  /* ================================
+	 Sección de Servicios
+	 ================================ */
+  
+  .servicios_38_465 { 
+	width: 1920px; /* Ancho de la sección de servicios */
+	height: 1626px; /* Altura de la sección de servicios */
+	position: absolute; /* Posición absoluta */
+	top: 2045px; /* Posición desde el borde superior */
+  }
+  
+  /* ================================
+	 Footer
+	 ================================ */
+  
+  .footer_38_466 { 
+	width: 1920px; /* Ancho del footer */
+	height: 286px; /* Altura del footer */
+	position: absolute; /* Posición absoluta */
+	left: 0px; /* Posición desde el borde izquierdo */
+	top: 1339px; /* Posición desde el borde superior */
+  }
+  
+  .rectangle_7_1_28 { 
+	background-color: rgba(102, 138, 166, 1); /* Color de fondo del footer */
+	width: 1920px; /* Ancho del rectángulo del footer */
+	height: 286px; /* Altura del rectángulo del footer */
+	position: absolute; /* Posición absoluta */
+	left: 0px; /* Posición desde el borde izquierdo */
+	top: 0px; /* Posición desde el borde superior */
+  }
+  
+  .rectangle_9_23_17 { 
+	background-color: rgba(217, 217, 217, 0.29); /* Color de fondo del footer con transparencia */
+	width: 1920px; /* Ancho del rectángulo de fondo */
+	height: 1339px; /* Altura del rectángulo de fondo */
+	position: absolute; /* Posición absoluta */
+  }
+  
+  .servicios_23_15 { 
+	color: rgba(0, 0, 0, 1); /* Color del texto */
+	width: 481px; /* Ancho del contenedor de texto */
+	height: 108px; /* Altura del contenedor de texto */
+	position: absolute; /* Posición absoluta */
+	left: 716px; /* Posición desde el borde izquierdo */
+	top: 48px; /* Posición desde el borde superior */
+	font-family: Yeseva One; /* Fuente del texto */
+	text-align: left; /* Alineación del texto a la izquierda */
+	font-size: 96px; /* Tamaño de la fuente */
+	letter-spacing: 0; /* Espaciado entre letras */
+  }
+  
+  .ellipse_5_23_11 { 
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); /* Sombra del contenedor */
+	border-radius: 500px; /* Bordes redondeados */
+	background-color: rgba(128, 196, 249, 1); /* Color de fondo */
+	width: 1591px; /* Ancho del contenedor */
+	height: 1014px; /* Altura del contenedor */
+	position: absolute; /* Posición absoluta */
+	left: 145px; /* Posición desde el borde izquierdo */
+	top: 230px; /* Posición desde el borde superior */
+  }
+  
+  /* ================================
+	 Sección de Nosotros
+	 ================================ */
+  
+  .nosotros_33_457 { 
+	width: 1822px; /* Ancho de la sección de nosotros */
+	height: 981px; /* Altura de la sección de nosotros */
+	position: absolute; /* Posición absoluta */
+	left: 46px; /* Posición desde el borde izquierdo */
+	top: 1044px; /* Posición desde el borde superior */
+  }
+  
+  .image_2_2_56 { 
+	transform: rotate(-63.74deg); /* Rotación de la imagen */
+	width: 535px; /* Ancho de la imagen */
+	height: 941px; /* Altura de la imagen */
+	position: absolute; /* Posición absoluta */
+	left: 758px; /* Posición desde el borde izquierdo */
+	top: 10px; /* Posición desde el borde superior */
+	background-image: url(images/image_2.png); /* Imagen de fondo */
+	background-repeat: no-repeat; /* No repetir la imagen */
+	background-size: cover; /* Cubrir el área del contenedor */
+  }
+  
+  .rectangle_8_2_46 { 
+	background-color: rgba(217, 217, 217, 1); /* Color de fondo del rectángulo */
+	width: 901px; /* Ancho del rectángulo */
+	height: 881px; /* Altura del rectángulo */
+	position: absolute; /* Posición absoluta */
+	border-radius: 31px; /* Bordes redondeados */
+  }
+  
+  .frame_1_13_2 { 
+	width: 126px; /* Ancho del marco */
+	height: 132px; /* Altura del marco */
+	position: absolute; /* Posición absoluta */
+	top: 43px; /* Posición desde el borde superior */
+  }
+  
+  .rectangle_6_13_3 { 
+	background-color: rgba(253, 213, 162, 0.6); /* Color de fondo del rectángulo */
+	width: 1806px; /* Ancho del rectángulo */
+	height: 881px; /* Altura del rectángulo */
+	position: absolute; /* Posición absoluta */
+	left: 0px; /* Posición desde el borde izquierdo */
+	top: 0px; /* Posición desde el borde superior */
+	border-radius: 32px; /* Bordes redondeados */
+  }
+  
+  .ellipse_2_2_42 { 
+	width: 736px; /* Ancho de la elipse */
+	height: 745px; /* Altura de la elipse */
+	position: absolute; /* Posición absoluta */
+	left: 1032px; /* Posición desde el borde izquierdo */
+	top: 43px; /* Posición desde el borde superior */
+	background-image: url(images/ellipse_2.png); /* Imagen de fondo */
+	background-repeat: no-repeat; /* No repetir la imagen */
+	background-size: cover; /* Cubrir el área del contenedor */
+  }
+  
+  .bienvenidos_a_fellinlove_veterinaria__el_lugar_donde_la_salud_y_el_bienestar_de_los_gatos_son_nuestra_prioridad__desde_nuestra_fundaci_n_en_1998__nos_hemos_dedicado_exclusivamente_a_ofrecer_atenci_n_m_dica_y_cuidado_especializado_para_felinos__con_el_prop_sito_de_proporcionarles_un_ambiente_sereno_y_amoroso__13_5 { 
+	color: rgba(255, 255, 255, 1); /* Color del texto */
+	width: 730px; /* Ancho del contenedor de texto */
+	height: 493px; /* Altura del contenedor de texto */
+	position: absolute; /* Posición absoluta */
+	left: 75px; /* Posición desde el borde izquierdo */
+	top: 148px; /* Posición desde el borde superior */
+	font-family: Yeseva One; /* Fuente del texto */
+	text-align: left; /* Alineación del texto a la izquierda */
+	font-size: 34px; /* Tamaño de la fuente */
+	letter-spacing: 0; /* Espaciado entre letras */
+  }
+  
+  .cl_nica_veterinaria_13_6 { 
+	color: rgba(255, 255, 255, 1); /* Color del texto */
+	width: 595px; /* Ancho del contenedor de texto */
+	height: 76px; /* Altura del contenedor de texto */
+	position: absolute; /* Posición absoluta */
+	left: 75px; /* Posición desde el borde izquierdo */
+	top: 46px; /* Posición desde el borde superior */
+	font-family: Yeseva One; /* Fuente del texto */
+	text-align: left; /* Alineación del texto a la izquierda */
+	font-size: 46px; /* Tamaño de la fuente */
+	letter-spacing: 0; /* Espaciado entre letras */
+  }
+  
