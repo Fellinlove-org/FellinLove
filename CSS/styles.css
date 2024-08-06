@@ -1,0 +1,324 @@
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden; /* Evita el desplazamiento horizontal */
+}
+
+.menu {
+	background-color: rgba(128, 196, 249, 1);
+	height: 98px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 20px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 999;
+}
+  .logo-container {
+	display: flex;
+	align-items: center;
+  }
+  
+  .logo {
+	width: 110px;
+	height: 140px;
+	background-image: url('../images/logo_definitivo_1.png');
+	background-size: cover;
+  }
+  
+  .logo-text {
+	font-family: 'Yeseva One', sans-serif;
+	font-size: 24px;
+	color: white;
+	margin-left: 10px;
+  }
+  
+  .menu ul {
+	display: flex;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+  }
+  
+  .menu-item {
+	font-size: 18px;
+	color: white;
+	text-decoration: none;
+	margin: 0 15px;
+  }
+  
+  .iniciar-sesion {
+	background-color: rgba(124, 153, 180, 1);
+	padding: 5px 20px;
+	border-radius: 20px;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.521);
+  }
+  
+  /* Home Styles */
+  .home {
+	position: relative;
+	width: 100%;
+	height: 900px;
+	background-image: url('../images/gato_hd_1.png');
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	align-items: center;
+  }
+  
+  .overlay {
+	position: absolute;
+	top: 29;
+	left: 29px;
+	width: 30%;
+	height: 60%;
+	background-color: rgba(179, 179, 179, 0.24);
+	z-index: 1;
+  }
+  
+  .home-title {
+	font-family: 'Yeseva One', sans-serif;
+	font-size: 60px;
+	color: white;
+	z-index: 2;
+	text-align: left;
+	margin: 90px;
+	padding: 0 20px; /* Asegurar que el texto esté dentro de los márgenes */
+	box-sizing: border-box;
+	max-width: 400px;
+  }
+  
+  /* -------------------------------- Sección Nosotros ------------*/
+  
+  /* Contenedor principal de la sección "Nosotros" */
+  .nosotros_33_457 {
+	width: 95vw; /* Ajuste para el ancho relativo de la ventana */
+	height: 95vh; /* Ajuste para el alto relativo de la ventana */
+	position: relative;
+	top: 80px;
+	margin: 0 auto; /* Centra horizontalmente */
+	transform: scale(1); /* Escalado inicial, puedes ajustar si es necesario */
+	transform-origin: top left; /* Escala desde la esquina superior izquierda */
+  }
+  
+  /* Imagen de huellas */
+  .image_2_2_56 {
+	transform: rotate(-63.5deg);
+	width: 29vw; /* Mantener el ancho relativo */
+	height: 100vh; /* Ajustado para el alto relativo */
+	position: absolute;
+	left: 52vw; /* Ajustado para el posicionamiento relativo */
+	top: 0vh; /* Ajustado para el posicionamiento relativo */
+	background-image: url('../images/image_2.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+  }
+  
+  /* Rectángulo de fondo */
+  .rectangle_6_13_3 {
+	background-color: rgba(253, 213, 162, 0.6);
+	width: 99vw; /* Ajustado para el ancho relativo de la ventana */
+	height: 95vh; /* Ajustado para el alto relativo de la ventana */
+	position: absolute;
+	left: 0;
+	top: 0;
+	border-radius: 3vw; /* Ajustado para el radio relativo */
+	overflow: hidden; /* Oculta cualquier contenido que sobresalga */
+  }
+  
+  /* Imagen elipse */
+  .ellipse_2_2_42 {
+	width: 40vw; /* Ajustado para el ancho relativo de la ventana */
+	height: 40vw; /* Ajustado para el alto relativo de la ventana */
+	position: absolute;
+	left: 55vw; /* Ajustado para el posicionamiento relativo */
+	top: 2.5vh; /* Ajustado para el posicionamiento relativo */
+	background-image: url('../images/ellipse_2.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 50%;
+  }
+  
+  /* Texto de bienvenida */
+  .bienvenidos_a_fellinlove_veterinaria__el_lugar_donde_la_salud_y_el_bienestar_de_los_gatos_son_nuestra_prioridad__desde_nuestra_fundaci_n_en_1998__nos_hemos_dedicado_exclusivamente_a_ofrecer_atenci_n_m_dica_y_cuidado_especializado_para_felinos__con_el_prop_sito_de_proporcionarles_un_ambiente_sereno_y_amoroso__13_5 {
+	color: rgba(151, 127, 99, 1);
+	width: 40vw; /* Ajustado para el ancho relativo de la ventana */
+	position: absolute;
+	left: 3.5vw; /* Ajustado para el posicionamiento relativo */
+	top: 20vh; /* Ajustado para el posicionamiento relativo */
+	font-family: 'Yeseva One', sans-serif;
+	text-align: left;
+	font-size: 2vw; /* Ajustado para el tamaño de fuente relativo */
+	line-height: 1.5; /* Ajuste de altura de línea para mejorar la legibilidad */
+  }
+  
+  /* Título de la clínica */
+  .cl_nica_veterinaria_13_6 {
+	color: rgba(151, 127, 99, 1);
+	width: auto;
+	position: absolute;
+	left: 3.5vw; /* Ajustado para el posicionamiento relativo */
+	top: 7.5vh; /* Ajustado para el posicionamiento relativo */
+	font-family: 'Yeseva One', sans-serif;
+	text-align: left;
+	font-size: 3vw; /* Ajustado para el tamaño de fuente relativo */
+  }
+  
+  /* Contenedor del botón de contacto */
+  .contactanos_44_3 {
+	width: 24vw; /* Ajuste relativo para el ancho */
+	height: 4vh; /* Ajuste relativo para el alto */
+	position: absolute;
+	left: 3.5vw; /* Posición relativa desde el lado izquierdo */
+	top: 82vh; /* Posición relativa desde la parte superior */
+	border-radius: 2vw; /* Borde redondeado relativo */
+	box-shadow: 0px 0.2vw 0.2vw rgba(0, 0, 0, 0.52);
+  }
+  
+  /* Fondo del botón de contacto */
+  .rec_iniciar_44_4 {
+	background-color: rgba(152, 128, 97, 1);
+	width: 100%;
+	height: 100%;
+	border-radius: 2vw; /* Borde redondeado relativo */
+	position: absolute; /* Posición absoluta para superposición */
+	top: 0;
+	left: 0;
+	z-index: 1; /* Asegura que esté debajo del texto */
+  }
+  
+  /* Texto del botón de contacto */
+  .contactanos_44_5 {
+	color: #ffffff;
+	font-family: 'Work Sans', sans-serif;
+	font-size: 2vw; /* Tamaño de fuente relativo */
+	text-align: center; /* Asegura que el texto esté centrado */
+	text-decoration: none; /* Quitar subrayado del enlace */
+	position: absolute; /* Posición absoluta para superposición */
+	top: 50%; /* Centrando verticalmente el texto */
+	left: 50%; /* Centrando horizontalmente el texto */
+	transform: translate(-50%, -50%); /* Alineación centrada */
+	z-index: 2; /* Asegura que el texto esté encima del fondo */
+  }
+  
+  /* -------------------------------- Sección Servicios ------------*/
+  
+/* -------------------------------- Sección Servicios ------------*/
+
+/* Contenedor principal de la sección "Servicios" */
+.servicios {
+	width: 100%;
+	top: 100px;
+	position: relative;
+	margin: 0 auto; /* Centra horizontalmente */
+  }
+  
+  /* Rectángulo de fondo */
+  .rectangle-9 {
+	background-color: rgba(255, 255, 255, 0.29);
+	width: 100%;
+	height: 1989.73px;
+	position: absolute;
+	top: 0;
+	left: 0;
+  }
+  
+  /* Título de la sección "Servicios" */
+  .title {
+	color: rgb(255, 255, 255);
+	width: 100%;
+	text-align: center;
+	font-family: 'Yeseva One', sans-serif;
+	font-size: 80px;
+	position: absolute;
+	top: 63.52px;
+	left: 0;
+  }
+  
+  .rectangle-13 {
+	width: 100%; /* Ajusta el tamaño según tu diseño */
+	height: 300px; /* Ajusta la altura según tu diseño */
+	background-size: cover; /* O usa contain según lo que prefieras */
+	top: auto;
+	background-position: center; /* Centra la imagen en el contenedor */
+	background-repeat: no-repeat; /* Evita que la imagen se repita */
+  }
+  
+  /* Fondo de la sección "Servicios" */
+  .rectangle-14 {
+	background-color: rgba(226, 226, 226, 1);
+	width: 100%;
+	height: 1035.25px;
+	position: absolute;
+	top: 300px;
+	left: 0;
+  }
+  
+  /* Texto de la descripción de servicios */
+  .description {
+	color: rgba(151, 127, 99, 1);
+	width: 719px;
+	margin: 0 auto;
+	text-align: center;
+	font-family: 'Yeseva One', sans-serif;
+	font-size: 40px;
+	position: absolute;
+	top: 568px;
+	left: 0;
+  }
+  
+  /* Botón "Nuestros Servicios" */
+  .cta-button {
+	background-color: rgba(128, 196, 249, 1);
+	width: 556px;
+	height: 186px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 60px;
+	margin: 0 auto;
+	position: absolute;
+	top: 328px;
+	left: 75px;
+	text-decoration: none;
+  }
+  
+  .cta-text {
+	color: rgba(255, 255, 255, 1);
+	font-family: 'Yeseva One', sans-serif;
+	font-size: 80px;
+	text-align: center;
+  }
+  
+  /* Imagen destacada en la sección de servicios */
+  .highlight-image {
+	width: 1132px;
+	height: 725px;
+	background-image: url("../images/image_3.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: absolute;
+	top: 436px;
+	left: 70%;
+	transform: translateX(-50%);
+  }
+  
+
+  /*_____________________________________Arreglos*/
+  .servicios, .nosotros_33_457, .home {
+	width: 100%;
+	box-sizing: border-box; /* Incluye padding y border en el width y height */
+  }
+  .rectangle-9, .rectangle-13, .rectangle-14 {
+	width: 100%;
+  }
+
+  footer {
+	background-color: red;
+	height: 50px;
+  }
