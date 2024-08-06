@@ -1,324 +1,266 @@
-/* ================================
-   Configuración General
-   ================================ */
+ /* Base Styles */
+ html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden; /* Evita el desplazamiento horizontal */
+}
 
-   body {
-	font-size: 2vw; /* Tamaño de fuente general */
-  }
-  
-  .container {
-	width: 100vw; /* Ancho total de la ventana */
-	height: 100vh; /* Altura total de la ventana */
-  }
-  
-  /* ================================
-	 Sección Principal
-	 ================================ */
-  
-  .desktop___1_27_5 { 
-	background-color: #ffffff; /* Color de fondo */
-	width: 1920px; /* Ancho total del contenedor principal */
-	height: 3671px; /* Altura total del contenedor principal */
-	position: absolute; /* Posición absoluta para el posicionamiento en la página */
-  }
-  
-  /* ================================
-	 Sección de Inicio de Página
-	 ================================ */
-  
-  .inicio_de_pagina_33_452 { 
-	width: 1920px; /* Ancho de la sección de inicio */
-	height: 849px; /* Altura de la sección de inicio */
-	position: absolute; /* Posición absoluta para el posicionamiento en la página */
-	left: 0px; /* Posición desde el borde izquierdo */
-	top: 103px; /* Posición desde el borde superior */
-  }
-  
-  .rectangle_2_3_5 { 
-	background-color: rgba(248, 192, 200, 1); /* Color de fondo */
-	width: 1920px; /* Ancho del rectángulo */
-	height: 849px; /* Altura del rectángulo */
-	position: absolute; /* Posición absoluta */
-  }
-  
-  .gato_hd_1_2_23 { 
-	width: 1920px; /* Ancho de la imagen de fondo */
-	height: 849px; /* Altura de la imagen de fondo */
-	position: relative; /* Posición relativa para el contenido superpuesto */
-	background-image: url(images/gato_hd_1.png); /* Imagen de fondo */
-	background-repeat: no-repeat; /* No repetir la imagen */
-	background-size: cover; /* Cubrir el área del contenedor */
-  }
-  
-  .lo_mejor_para_tu_mascota_2_28 { 
-	color: rgba(255, 255, 255, 1); /* Color del texto */
-	width: 562px; /* Ancho del contenedor de texto */
-	height: 453px; /* Altura del contenedor de texto */
-	position: absolute; /* Posición absoluta */
-	left: 106px; /* Posición desde el borde izquierdo */
-	top: 180px; /* Posición desde el borde superior */
-	font-family: Yeseva One; /* Fuente del texto */
-	text-align: left; /* Alineación del texto a la izquierda */
-	font-size: 96px; /* Tamaño de la fuente */
-	letter-spacing: 0; /* Espaciado entre letras */
-  }
-  
-  /* ================================
-	 Menú de Navegación
-	 ================================ */
-  
-  .menu_33_451 { 
-	width: 1948px; /* Ancho del menú */
-	height: 144px; /* Altura del menú */
-	position: absolute; /* Posición absoluta */
-	left: -28px; /* Posición desde el borde izquierdo */
-	top: -8px; /* Posición desde el borde superior */
-  }
-  
-  .rectangle_10_38_467 { 
-	background-color: rgba(128, 196, 249, 1); /* Color de fondo del menú */
-	width: 1920px; /* Ancho del rectángulo de menú */
-	height: 98px; /* Altura del rectángulo de menú */
-	position: absolute; /* Posición absoluta */
-	left: 28px; /* Posición desde el borde izquierdo */
-	top: 8px; /* Posición desde el borde superior */
-  }
-  
-  .inicio_1_4 { 
-	color: rgba(0, 0, 0, 1); /* Color del texto */
-	width: 87px; /* Ancho del elemento */
-	height: 25px; /* Altura del elemento */
-	position: absolute; /* Posición absoluta */
-	left: 1163px; /* Posición desde el borde izquierdo */
-	top: 50px; /* Posición desde el borde superior */
-	font-family: Work Sans; /* Fuente del texto */
-	text-align: left; /* Alineación del texto a la izquierda */
-	font-size: 24px; /* Tamaño de la fuente */
-	letter-spacing: 0; /* Espaciado entre letras */
-  }
-  
-  .fellinlove_3_7 { 
-	color: rgba(255, 255, 255, 1); /* Color del texto */
-	width: 221px; /* Ancho del elemento */
-	height: 70px; /* Altura del elemento */
-	position: absolute; /* Posición absoluta */
-	left: 178px; /* Posición desde el borde izquierdo */
-	top: 31px; /* Posición desde el borde superior */
-	font-family: Kavoon; /* Fuente del texto */
-	text-align: left; /* Alineación del texto a la izquierda */
-	font-size: 40px; /* Tamaño de la fuente */
-	letter-spacing: 5px; /* Espaciado entre letras */
-  }
-  
-  .nosotros_1_5 { 
-	color: rgba(0, 0, 0, 1); /* Color del texto */
-	width: 142px; /* Ancho del elemento */
-	height: 25px; /* Altura del elemento */
-	position: absolute; /* Posición absoluta */
-	left: 1276px; /* Posición desde el borde izquierdo */
-	top: 51px; /* Posición desde el borde superior */
-	font-family: Work Sans; /* Fuente del texto */
-	text-align: left; /* Alineación del texto a la izquierda */
-	font-size: 24px; /* Tamaño de la fuente */
-	letter-spacing: 0; /* Espaciado entre letras */
-  }
-  
-  .servicios_1_6 { 
-	color: rgba(0, 0, 0, 1); /* Color del texto */
-	width: 131px; /* Ancho del elemento */
-	height: 26px; /* Altura del elemento */
-	position: absolute; /* Posición absoluta */
-	left: 1444px; /* Posición desde el borde izquierdo */
-	top: 50px; /* Posición desde el borde superior */
-	font-family: Work Sans; /* Fuente del texto */
-	text-align: left; /* Alineación del texto a la izquierda */
-	font-size: 24px; /* Tamaño de la fuente */
-	letter-spacing: 0; /* Espaciado entre letras */
-  }
-  
-  .iniciar_1_12 { 
-	width: 270px; /* Ancho del botón de inicio de sesión */
-	height: 38px; /* Altura del botón de inicio de sesión */
-	position: absolute; /* Posición absoluta */
-	left: 1601px; /* Posición desde el borde izquierdo */
-	top: 44px; /* Posición desde el borde superior */
-  }
-  
-  .rec_iniciar_1_9 { 
-	background-color: rgba(124, 153, 180, 1); /* Color de fondo del botón */
-	width: 270px; /* Ancho del botón */
-	height: 38px; /* Altura del botón */
-	position: absolute; /* Posición absoluta */
-	border-radius: 20px; /* Bordes redondeados */
-  }
-  
-  .iniciar_sesion_1_7 { 
-	color: rgba(0, 0, 0, 1); /* Color del texto en el botón */
-	width: 232px; /* Ancho del texto */
-	height: 19px; /* Altura del texto */
-	position: absolute; /* Posición absoluta */
-	left: 38px; /* Posición desde el borde izquierdo */
-	top: 7px; /* Posición desde el borde superior */
-	font-family: Work Sans; /* Fuente del texto */
-	text-align: left; /* Alineación del texto a la izquierda */
-	font-size: 24px; /* Tamaño de la fuente */
-	letter-spacing: 0; /* Espaciado entre letras */
-  }
-  
-  .logo_definitivo_1_3_6 { 
-	width: 200px; /* Ancho del logo */
-	height: 145px; /* Altura del logo */
-	position: absolute; /* Posición absoluta */
-	background-image: url(images/logo_definitivo_1.png); /* Imagen de fondo del logo */
-	background-size: cover; /* Cubrir el área del contenedor */
-  }
-  
-  /* ================================
-	 Sección de Servicios
-	 ================================ */
-  
-  .servicios_38_465 { 
-	width: 1920px; /* Ancho de la sección de servicios */
-	height: 1626px; /* Altura de la sección de servicios */
-	position: absolute; /* Posición absoluta */
-	top: 2045px; /* Posición desde el borde superior */
-  }
-  
-  /* ================================
-	 Footer
-	 ================================ */
-  
-  .footer_38_466 { 
-	width: 1920px; /* Ancho del footer */
-	height: 286px; /* Altura del footer */
-	position: absolute; /* Posición absoluta */
-	left: 0px; /* Posición desde el borde izquierdo */
-	top: 1339px; /* Posición desde el borde superior */
-  }
-  
-  .rectangle_7_1_28 { 
-	background-color: rgba(102, 138, 166, 1); /* Color de fondo del footer */
-	width: 1920px; /* Ancho del rectángulo del footer */
-	height: 286px; /* Altura del rectángulo del footer */
-	position: absolute; /* Posición absoluta */
-	left: 0px; /* Posición desde el borde izquierdo */
-	top: 0px; /* Posición desde el borde superior */
-  }
-  
-  .rectangle_9_23_17 { 
-	background-color: rgba(217, 217, 217, 0.29); /* Color de fondo del footer con transparencia */
-	width: 1920px; /* Ancho del rectángulo de fondo */
-	height: 1339px; /* Altura del rectángulo de fondo */
-	position: absolute; /* Posición absoluta */
-  }
-  
-  .servicios_23_15 { 
-	color: rgba(0, 0, 0, 1); /* Color del texto */
-	width: 481px; /* Ancho del contenedor de texto */
-	height: 108px; /* Altura del contenedor de texto */
-	position: absolute; /* Posición absoluta */
-	left: 716px; /* Posición desde el borde izquierdo */
-	top: 48px; /* Posición desde el borde superior */
-	font-family: Yeseva One; /* Fuente del texto */
-	text-align: left; /* Alineación del texto a la izquierda */
-	font-size: 96px; /* Tamaño de la fuente */
-	letter-spacing: 0; /* Espaciado entre letras */
-  }
-  
-  .ellipse_5_23_11 { 
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); /* Sombra del contenedor */
-	border-radius: 500px; /* Bordes redondeados */
-	background-color: rgba(128, 196, 249, 1); /* Color de fondo */
-	width: 1591px; /* Ancho del contenedor */
-	height: 1014px; /* Altura del contenedor */
-	position: absolute; /* Posición absoluta */
-	left: 145px; /* Posición desde el borde izquierdo */
-	top: 230px; /* Posición desde el borde superior */
-  }
-  
-  /* ================================
-	 Sección de Nosotros
-	 ================================ */
-  
-  .nosotros_33_457 { 
-	width: 1822px; /* Ancho de la sección de nosotros */
-	height: 981px; /* Altura de la sección de nosotros */
-	position: absolute; /* Posición absoluta */
-	left: 46px; /* Posición desde el borde izquierdo */
-	top: 1044px; /* Posición desde el borde superior */
-  }
-  
-  .image_2_2_56 { 
-	transform: rotate(-63.74deg); /* Rotación de la imagen */
-	width: 535px; /* Ancho de la imagen */
-	height: 941px; /* Altura de la imagen */
-	position: absolute; /* Posición absoluta */
-	left: 758px; /* Posición desde el borde izquierdo */
-	top: 10px; /* Posición desde el borde superior */
-	background-image: url(images/image_2.png); /* Imagen de fondo */
-	background-repeat: no-repeat; /* No repetir la imagen */
-	background-size: cover; /* Cubrir el área del contenedor */
-  }
-  
-  .rectangle_8_2_46 { 
-	background-color: rgba(217, 217, 217, 1); /* Color de fondo del rectángulo */
-	width: 901px; /* Ancho del rectángulo */
-	height: 881px; /* Altura del rectángulo */
-	position: absolute; /* Posición absoluta */
-	border-radius: 31px; /* Bordes redondeados */
-  }
-  
-  .frame_1_13_2 { 
-	width: 126px; /* Ancho del marco */
-	height: 132px; /* Altura del marco */
-	position: absolute; /* Posición absoluta */
-	top: 43px; /* Posición desde el borde superior */
-  }
-  
-  .rectangle_6_13_3 { 
-	background-color: rgba(253, 213, 162, 0.6); /* Color de fondo del rectángulo */
-	width: 1806px; /* Ancho del rectángulo */
-	height: 881px; /* Altura del rectángulo */
-	position: absolute; /* Posición absoluta */
-	left: 0px; /* Posición desde el borde izquierdo */
-	top: 0px; /* Posición desde el borde superior */
-	border-radius: 32px; /* Bordes redondeados */
-  }
-  
-  .ellipse_2_2_42 { 
-	width: 736px; /* Ancho de la elipse */
-	height: 745px; /* Altura de la elipse */
-	position: absolute; /* Posición absoluta */
-	left: 1032px; /* Posición desde el borde izquierdo */
-	top: 43px; /* Posición desde el borde superior */
-	background-image: url(images/ellipse_2.png); /* Imagen de fondo */
-	background-repeat: no-repeat; /* No repetir la imagen */
-	background-size: cover; /* Cubrir el área del contenedor */
-  }
-  
-  .bienvenidos_a_fellinlove_veterinaria__el_lugar_donde_la_salud_y_el_bienestar_de_los_gatos_son_nuestra_prioridad__desde_nuestra_fundaci_n_en_1998__nos_hemos_dedicado_exclusivamente_a_ofrecer_atenci_n_m_dica_y_cuidado_especializado_para_felinos__con_el_prop_sito_de_proporcionarles_un_ambiente_sereno_y_amoroso__13_5 { 
-	color: rgba(255, 255, 255, 1); /* Color del texto */
-	width: 730px; /* Ancho del contenedor de texto */
-	height: 493px; /* Altura del contenedor de texto */
-	position: absolute; /* Posición absoluta */
-	left: 75px; /* Posición desde el borde izquierdo */
-	top: 148px; /* Posición desde el borde superior */
-	font-family: Yeseva One; /* Fuente del texto */
-	text-align: left; /* Alineación del texto a la izquierda */
-	font-size: 34px; /* Tamaño de la fuente */
-	letter-spacing: 0; /* Espaciado entre letras */
-  }
-  
-  .cl_nica_veterinaria_13_6 { 
-	color: rgba(255, 255, 255, 1); /* Color del texto */
-	width: 595px; /* Ancho del contenedor de texto */
-	height: 76px; /* Altura del contenedor de texto */
-	position: absolute; /* Posición absoluta */
-	left: 75px; /* Posición desde el borde izquierdo */
-	top: 46px; /* Posición desde el borde superior */
-	font-family: Yeseva One; /* Fuente del texto */
-	text-align: left; /* Alineación del texto a la izquierda */
-	font-size: 46px; /* Tamaño de la fuente */
-	letter-spacing: 0; /* Espaciado entre letras */
-  }
-  
+.menu {
+	background-color: rgba(128, 196, 249, 1);
+	height: 98px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 20px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 999;
+}
+
+/* Estilo específico para el botón "SERVICIOS" */
+.menu-item.servicios {
+    position: relative;
+    top: 0px; /* Ajusta este valor para alinear verticalmente el botón */
+}
+.logo-container {
+	display: flex;
+	align-items: center;
+}
+
+.logo {
+	width: 110px;
+	height: 140px;
+	background-image: url('images/logo_definitivo_1.png');
+	background-size: cover;
+}
+
+.logo-text {
+	font-family: 'Yeseva One', sans-serif;
+	font-size: 24px;
+	color: white;
+	margin-left: 10px;
+}
+
+.menu ul {
+	display: flex;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	height: 100%; /* Asegura que la altura de los elementos se ajuste */
+	align-items: center; /* Alinea verticalmente los elementos del menú */
+}
+
+.menu-item {
+	font-size: 18px;
+	color: white;
+	text-decoration: none;
+	margin: 0 15px;
+	display: flex;
+	align-items: center; /* Alinea verticalmente */
+}
+
+.menu-item:hover {
+	text-decoration: underline; /* Opcional: agrega un subrayado al pasar el mouse */
+}
+
+.iniciar-sesion {
+	background-color: rgba(124, 153, 180, 1);
+	padding: 5px 20px;
+	border-radius: 20px;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.521);
+	font-size: 18px; /* Asegura que el texto se alinee correctamente */
+	display: flex;
+	align-items: center;
+}
+
+/* Home Styles */
+.home {
+	position: relative;
+	width: 100%;
+	height: 900px;
+	background-image: url('images/gato_hd_1.png');
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	align-items: center;
+}
+
+.overlay {
+	position: absolute;
+	top: 29px;
+	left: 29px;
+	width: 30%;
+	height: 60%;
+	background-color: rgba(179, 179, 179, 0.24);
+	z-index: 1;
+}
+
+.home-title {
+	font-family: 'Yeseva One', sans-serif;
+	font-size: 60px;
+	color: white;
+	z-index: 2;
+	text-align: left;
+	margin: 90px;
+	padding: 0 20px; /* Asegura que el texto esté dentro de los márgenes */
+	box-sizing: border-box;
+	max-width: 400px;
+}
+
+/* -------------------------------- Sección Nosotros ---------------------------------*/
+.nosotros_33_457 {
+	width: 95vw;
+	height: 95vh;
+	position: relative;
+	top: 80px;
+	margin: 0 auto;
+	transform: scale(1);
+	transform-origin: top left;
+}
+
+.image_2_2_56 {
+	transform: rotate(-63.5deg);
+	width: 29vw;
+	height: 100vh;
+	position: absolute;
+	left: 52vw;
+	top: 0vh;
+	background-image: url('images/image_2.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.rectangle_6_13_3 {
+	background-color: rgba(253, 213, 162, 0.6);
+	width: 99vw;
+	height: 95vh;
+	position: absolute;
+	left: 0;
+	top: 0;
+	border-radius: 3vw;
+	overflow: hidden;
+}
+
+.ellipse_2_2_42 {
+	width: 40vw;
+	height: 40vw;
+	position: absolute;
+	left: 55vw;
+	top: 2.5vh;
+	background-image: url('images/ellipse_2.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 50%;
+}
+
+.bienvenidos_a_fellinlove_veterinaria {
+	color: rgba(151, 127, 99, 1);
+	width: 40vw;
+	position: absolute;
+	left: 3.5vw;
+	top: 20vh;
+	font-family: 'Yeseva One', sans-serif;
+	text-align: left;
+	font-size: 2vw;
+	line-height: 1.5;
+}
+
+.clinica_veterinaria {
+	color: rgba(151, 127, 99, 1);
+	width: auto;
+	position: absolute;
+	left: 3.5vw;
+	top: 7.5vh;
+	font-family: 'Yeseva One', sans-serif;
+	text-align: left;
+	font-size: 3vw;
+}
+
+.contactanos_btn {
+	display: block;
+	width: 24vw;
+	height: 4vh;
+	position: absolute;
+	left: 3.5vw;
+	top: 82vh;
+	border-radius: 2vw;
+	box-shadow: 0px 0.2vw 0.2vw rgba(0, 0, 0, 0.52);
+	background-color: rgba(152, 128, 97, 1);
+	color: #ffffff;
+	font-family: 'Work Sans', sans-serif;
+	font-size: 2vw;
+	text-align: center;
+	text-decoration: none;
+	line-height: 4vh;
+}
+
+/* -------------------------------- Sección Servicios ---------------------------------*/
+.servicios {
+    width: 100%;
+    position: relative;
+    margin: 0 auto; /* Centra horizontalmente */
+    top: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Asegura que ocupe toda la altura de la ventana */
+}
+
+.rectangle-13 {
+    width: 100%; /* Ajusta el tamaño según tu diseño */
+    height: 300px; /* Ajusta la altura según tu diseño */
+    background-size: cover; /* O usa contain según lo que prefieras */
+    background-position: center; /* Centra la imagen en el contenedor */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+}
+
+.title {
+    color: rgb(255, 255, 255);
+    width: 100%;
+    text-align: center;
+    font-family: 'Yeseva One', sans-serif;
+    font-size: 80px;
+    position: absolute;
+    top: 60px;
+    left: 0;
+}
+
+.rectangle-14 {
+    background-color: rgba(226, 226, 226, 1);
+    width: 100%;
+    height: 1035.25px;
+    position: absolute;
+    top: 300px;
+    left: 0;
+}
+
+.description {
+    color: rgba(151, 127, 99, 1);
+    text-align: center;
+    font-family: 'Yeseva One', sans-serif;
+    font-size: 40px;
+    margin: 0;
+    padding: 0 20px; /* Agrega un poco de padding si es necesario */
+    max-width: 90%; /* Limita el ancho máximo para pantallas grandes */
+}
+
+.cta-button {
+    background-color: rgba(128, 196, 249, 1);
+    width: 556px;
+    height: 186px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 60px;
+    margin: 20px auto; /* Agrega espacio alrededor del botón */
+    text-decoration: none;
+    font-family: 'Yeseva One', sans-serif;
+    font-size: 80px;
+    color: white;
+    text-align: center;
+}
