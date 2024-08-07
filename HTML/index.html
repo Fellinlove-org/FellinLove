@@ -1,73 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <title>Fellinlove Veterinaria</title>
   <meta name="description" content="Fellinlove Veterinaria - El mejor cuidado para tu mascota">
   <meta name="author" content="Fellinlove Veterinaria">
   
+  <!-- Meta viewport para el diseño responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Kavoon&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Yeseva+One&display=swap" rel="stylesheet">
 
   <!-- Enlace a la hoja de estilos externa -->
-  <link rel="stylesheet" href="../CSS/styles2.css">
+  <link rel="stylesheet" href="../CSS/styles.css">
 </head>
 <body>
   <!-- Contenedor del menú -->
   <nav class="menu">
     <div class="logo-container">
-      <img class="logo" src="../images/logo_definitivo_1.png" alt="Logo Fellinlove">
+      <div class="logo"></div>
       <div class="logo-text">Fellinlove</div>
     </div>
-    <div class="link-container">
-      <a href="#home" class="menu-item inicio">INICIO</a>
-      <a href="#nosotros" class="menu-item nosotros">NOSOTROS</a>
-      <a href="#servicios" class="menu-item servicios">SERVICIOS</a>
-      <a href="#" class="menu-item iniciar-sesion">INICIAR SESIÓN</a>
-    </div>
+    <ul>
+      <li><a href="#home" class="menu-item inicio">INICIO</a></li>
+      <li><a href="#nosotros" class="menu-item nosotros">NOSOTROS</a></li>
+      <li><a href="#servicios" class="menu-item servicios">SERVICIOS</a></li>
+      <li><a href="#" class="menu-item iniciar-sesion">INICIAR SESIÓN</a></li>
+    </ul>
   </nav>
 
   <!-- Home -->
   <div id="home" class="home">
     <div class="overlay"></div>
-    <h2 class="home-title">LO MEJOR PARA TU MASCOTA</h2>
+    <h2 class="home-titulo">LO MEJOR PARA TU MASCOTA</h2>
   </div>
 
   <!-- Sección "Nosotros" -->
-  <div id="nosotros" class="nosotros_33_457">
-    <div class="image_2_2_56"></div>
-    <div class="rectangle_6_13_3">
-      <div class="ellipse_2_2_42"></div>
-      <p class="bienvenidos_a_fellinlove_veterinaria__el_lugar_donde_la_salud_y_el_bienestar_de_los_gatos_son_nuestra_prioridad__desde_nuestra_fundaci_n_en_1998__nos_hemos_dedicado_exclusivamente_a_ofrecer_atenci_n_m_dica_y_cuidado_especializado_para_felinos__con_el_prop_sito_de_proporcionarles_un_ambiente_sereno_y_amoroso__13_5">
+  <div id="nosotros" class="nosotros-overlay">
+    <div class="imagen-huellas"></div>
+    <div class="rectangulo-nosotros">
+      <div class="elipse-imagen-nosotros"></div>
+      <p class="bienvenidos-a-fellinlove-veterinaria">
         Bienvenidos a Fellinlove Veterinaria, el lugar donde la salud y el bienestar de los gatos son nuestra prioridad. Desde nuestra fundación en 1998, nos hemos dedicado exclusivamente a ofrecer atención médica y cuidado especializado para felinos, con el propósito de proporcionarles un ambiente sereno y amoroso.
       </p>
-      <h1 class="cl_nica_veterinaria_13_6">Clínica Veterinaria</h1>
-      <!-- Sección "Contáctanos" -->
-      <div class="contactanos_44_3">
-        <div class="rec_iniciar_44_4"></div>
-        <a href="#" class="contactanos_44_5">Contáctanos</a>
-      </div>
+      <h1 class="clinica-veterinaria">Clínica Veterinaria</h1>
+      <a href="#" class="contactanos-btn">Contáctanos</a>
     </div>
   </div>
 
   <!-- Sección "Servicios" -->
+   <br><br><br>
   <section id="servicios" class="servicios">
-    <div class="rectangle-14"></div> <!-- Movido hacia arriba -->
-    <h2 class="title">Servicios</h2>
-    <div class="rectangle-13"></div>
-    <p class="description">
+    
+    <a href="#" class="titulo-servicios">Nuestros Servicios</a>
+    <br>
+    <div id="carouselExampleDark" class="carousel carousel-dark slide">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+          <img src="https://images.stockcake.com/public/9/b/5/9b527ce6-0f62-48a0-ae00-5ae21be452c7_large/veterinarians-administering-care-stockcake.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="Carrusel-p">Vacunacion</h5>
+            <p class="Carrusel-p">Vacunamos a tu felino con toda la calma y felicidad que merece tu mascota.</p>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+          <img src="https://images.stockcake.com/public/d/8/c/d8cee1e4-0f3b-42aa-af3c-8d36fc686718_large/hiding-cat-eyes-stockcake.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="Carrusel-p">Cirugias</h5>
+            <p class="Carrusel-p">Operamos a tu felino con toda la calma y felicidad que merece tu mascota.</p>
+          </div>
+        </div> 
+        <div class="carousel-item">
+          <img src="https://images.stockcake.com/public/2/e/2/2e2d5f03-b66c-4cb8-96f5-b0f3dd09f2db_large/glowing-cat-art-stockcake.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="Carrusel-p">Ecografias</h5>
+            <p class="Carrusel-p">Las ecografias seran faciles y entendibles para la salud de tu felino.</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <br>
+    <p class="descripcion-servicios">
       En Fellinlove, ofrecemos un innovador enfoque en servicios veterinarios para mejorar la calidad de vida de tus mascotas. Contamos con los más altos estándares en medicina veterinaria, con un equipo de profesionales altamente capacitados y tecnología de vanguardia en nuestras instalaciones.
     </p>
-    <a href="#" class="cta-button">
-      <span class="cta-text">Nuestros Servicios</span>
-    </a>
-    <div class="highlight-image"></div>
   </section>
-
+  <br>
+  <br>
   <footer>
-    <h1>contactanos</h1>
+      <section class="importante">
+        <h2>Importante</h2>
+        <a href="">Términos y condiciones</a>
+        <a href="">Pregutas frecuentes</a>
+        <a href="">Politica de privacidad y <br> manejo de datos personales</a>
+      </section>
+      <section class="contactanos">
+        <h2>Contáctanos</h2>
+        <span>Ventas +57 321 456 7890</span> <br>
+        <span>Atencíon al cliente <br> +57 321 456 7890 <br> (601) 123 4567</span>
+        <a href ="">PQR'S</a>
+      </section>
+      <section class="siguenos">
+        <h2>Síguenos</h2>
+        <a href=""><img src="images/facebook-logo.png" alt="Logo facebook" width="30px"></a>
+        <a href=""><img src="images/x logo.png" alt="logo x" width="30px" style="border-radius:5px "></a>
+        <a href=""><img src="images/insta-logo.png" alt="logo instagram" width="30px"></a>
+      </section>
   </footer>
 
   <!-- Script JavaScript para cambiar la imagen de fondo -->
@@ -76,7 +131,6 @@
       // Array con las URLs de las imágenes
       const images = [
         'https://images.stockcake.com/public/4/d/1/4d140bdc-a4c1-4729-9e77-a0e4793a7ea3_large/veterinarian-holding-cat-stockcake.jpg',
-        'https://images.stockcake.com/public/6/1/f/61fb54c5-0de2-42e0-85f2-a20c9a589684_large/veterinarian-examines-cat-stockcake.jpg',
         'https://images.stockcake.com/public/6/6/6/6662c973-1046-461d-a256-9068b5335e22_large/veterinarian-examining-cat-stockcake.jpg'
       ];
 
