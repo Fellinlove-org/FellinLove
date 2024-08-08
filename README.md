@@ -2,6 +2,8 @@
 
 Bienvenido al repositorio del proyecto **FellinLove**, una página web diseñada para la veterinaria *FellinLove*. Este sitio web está diseñado para proporcionar información sobre nuestros servicios, veterinarios, horarios. De igual
 
+![Gatito Adorable](images/logo_definitvo_1.png)
+
 ## Características
 
 - **Página de inicio**: Presentación de la veterinaria, misión, visión y valores.
