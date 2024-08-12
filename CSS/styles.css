@@ -81,7 +81,7 @@
 .home {
 	position: relative;
 	width: 100%;
-	height: 900px;
+	height: 640px;
 	background-image: url('../images/gato_hd_1.png');
 	background-size: cover;
 	background-position: center;
@@ -91,7 +91,7 @@
 
 .overlay {
 	position: absolute;
-	top: 230px;
+	top: 130px;
 	left: 29px;
 	width: 50%;
 	height: 60%;
@@ -258,6 +258,8 @@
 }
 
 
+/* footer */
+
 footer {
 	background-color: rgba(128, 196, 249, 1);
 	display: flex;
@@ -268,6 +270,7 @@ footer {
 footer > section {
 	padding: 20px;
 }
+/* otra cosaa */
 .importante {
 	display: flex;
 	flex-direction: column;
@@ -281,7 +284,7 @@ footer > section {
 /* -------------------------------- Sección Mision ---------------------------------*/
 .nuestra-mision{
 	font-size: 4em; /* Tamaño grande */
-	color: #5a5ceeef; /* Color oscuro para contraste */
+	color: rgba(128, 196, 249, 1); /* Color oscuro para contraste */
 	text-align: center; /* Alineación centrada */
 	margin: 0;
 	padding: 20px;
@@ -292,7 +295,7 @@ footer > section {
 .mision-text {
 	text-align: center; /* Alineación centrada */
 	font-size: 1.9em; /* Tamaño medio */
-	color: #5a5ceeef; /* Color gris oscuro para contraste suave */
+	color: rgba(128, 196, 249, 1); /* Color gris oscuro para contraste suave */
 	margin: 10px 0; /* Espaciado superior e inferior */
 	padding: 0 10px; /* Espaciado horizontal */
 	line-height: 1.4; /* Espaciado entre líneas */
@@ -304,13 +307,6 @@ footer > section {
     width: 91%;
     margin: auto;
     overflow: hidden;
-	background: 
-        radial-gradient(circle at top left, #FEE6C7, transparent 20%) 0 0,
-        radial-gradient(circle at top right, #80C4F9, transparent 20%) 100% 0,
-        radial-gradient(circle at bottom right, #FEE6C7, transparent 20%) 100% 100%,
-        radial-gradient(circle at bottom left, #80C4F9, transparent 20%) 0 100%,
-        radial-gradient(circle at center, #ee8e62, transparent 40%) 50% 50%;
-    
     padding: 50px 0;
 }
 
@@ -325,9 +321,10 @@ footer > section {
     min-width: 100%;
     box-sizing: border-box;
     padding: 5px;
-    background: #acbff3;
+    background: rgb(167, 178, 186);
     border: 1px solid #ddd;
     position: relative;
+	border-radius: 3vw;
 }
 
 .slide-image {
@@ -462,3 +459,136 @@ button {
     }
 }
 /* |||||||||||||||||||||||||||||||||||||||||||||||Sección hasta aqui|||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+.sedes{
+	background-color:rgba(253, 213, 162, 0.6);
+	text-align: center;
+	font-size: 25px;
+	
+  }
+  
+  .accordion {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	gap: 40px; /* Espacio entre los elementos */
+	height: 400px;
+	transition: 0.3s;
+  }
+  
+  .accordion li {
+	position: relative;
+	overflow: hidden;
+	flex: 0 0 350px; /* Ancho del acordeón en el estado normal */
+	border-radius: 50px;
+	opacity: 0.75;
+	cursor: pointer;
+	transition: transform 0.3s, opacity 0.3s; /* Agrega transición para el hover */
+  }
+  
+  .accordion li:hover {
+	transform: scale(1.2); /* Escalar el elemento en lugar de cambiar el tamaño flex */
+	z-index: 10;
+	opacity: 1;
+  }
+  
+  .accordion li img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	filter: grayscale(0.5);
+  }
+  
+  .accordion h2 {
+	font-weight: 400;
+	font-size: 30px; /* Tamaño de fuente ajustado */
+	line-height: 55px;
+	border-bottom: 2px solid #fff;
+	margin-bottom: 15px;
+	white-space: nowrap;
+	color: #fff; /* Color del texto en el título del acordeón */
+  }
+  
+  .accordion li .content {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1;
+	color: #fff; /* Color del texto en el contenido del acordeón */
+	padding: 20px; /* Ajusta el relleno */
+	background: #02022e;
+	background: linear-gradient(
+	  0deg,
+	  rgb(0 0 0 / 70%) 10%,
+	  rgb(255 255 255 / 0%) 100%
+	);
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s, visibility 0.3s; /* Asegura una transición suave */
+  }
+  
+  .accordion li .content span {
+	position: absolute;
+	z-index: 3;
+	left: 50%;
+	bottom: 60px;
+	transform: translate(-50%, 0);
+	visibility: hidden;
+	opacity: 0;
+	color: #fff; /* Color del texto en el span dentro del contenido del acordeón */
+	transition: opacity 0.3s, visibility 0.3s; /* Asegura una transición suave */
+  }
+  
+  .accordion li:hover .content {
+	opacity: 1;
+	visibility: visible;
+  }
+  
+  .accordion li:hover span {
+	transform: translate(-50%, 0);
+	opacity: 1;
+	visibility: visible;
+  }
+  
+  
+  .botones {
+	margin-left: 10px;
+  }
+  
+  
+  .accordion-container {
+	width: 100%;
+  }
+  
+  .accordion-item {
+	margin-bottom: 10px;
+  }
+  
+  .accordion-button {
+	background-color: #133840;
+	color: #ccc;
+	cursor: pointer;
+	padding: 18px;
+	width: 100%;
+	text-align: left;
+	border: none;
+	outline: none;
+	transition: background-color 0.4s;
+  }
+  
+  .accordion-button.active, .accordion-button:hover {
+	background-color: #5F735A;
+  }
+  
+  .accordion-panel {
+	font-size: 20px;
+	padding: 0 18px;
+	background-color: white;
+	display: none;
+	overflow: hidden;
+  }
