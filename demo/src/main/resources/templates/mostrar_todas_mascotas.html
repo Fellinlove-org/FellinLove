@@ -45,6 +45,7 @@
                 <td th:text="${mascota.peso}"></td>
                 <td th:text="${mascota.enfermedad}"></td>
                 <td><img th:src="${mascota.foto}" alt="foto de mascota" width="50px"></td>
+                <td><a th:href="@{/mascotas/find/{id}(id=${mascota.id})}" th:text="ver"></a></td>
             </tr>
         </tbody>
     </table>
