@@ -592,3 +592,83 @@ button {
 	display: none;
 	overflow: hidden;
   }
+  /* options de las imagenes*/
+  .options-link .option-icon {
+    border: 3px solid transparent; /* Borde inicial transparente */
+    border-radius: 6px; /* Bordes redondeados */
+    transition: border-color 0.3s ease, filter 0.3s ease; /* Transiciones suaves */
+}
+
+.options-link .option-icon:hover {
+    border-color: #007bff; /* Color del borde al pasar el ratón */
+    filter: brightness(100%); /* Cambio de color al pasar el ratón (opcional) */
+}
+/*Poner lo dde la carta aca lo de todo lo de las mascotas de cada una*/
+.card {
+    background-color: #f9d4a0;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    padding: 20px;
+    width: 600px;
+    max-width: 100%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container img {
+    border-radius: 10px;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.info-container {
+    flex: 2;
+    margin-left: 20px;
+    color: #703b09;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.info-container p {
+    margin: 5px 0;
+}
+
+.owner-info {
+    float: right;
+}
+
+.card::before {
+    content: '';
+    background-image: url('ruta/de/patitas.png'); /* Añade la ruta de las imágenes de patitas */
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 10px;
+    left: 10px;
+    opacity: 0.5;
+}
+
+.card::after {
+    content: '';
+    background-image: url('ruta/de/patitas.png'); /* Añade la ruta de las imágenes de patitas */
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    bottom: 10px;
+    right: 10px;
+    opacity: 0.5;
+}
