@@ -16,7 +16,7 @@
           <div class="logo-text">Fellinlove</div>
         </div>
         <ul>
-          <li><a th:href="@{/mascotas/all}" class="menu-item inicio">MASCOTAS</a></li>
+          <li><a th:href="@{/clientes/all}" class="menu-item inicio">CLIENTES</a></li>
           <li><a href="#home" class="menu-item inicio">INICIO</a></li>
           <li><a href="#nosotros" class="menu-item nosotros">NOSOTROS</a></li>
           <li><a href="#servicios" class="menu-item servicio">SERVICIOS</a></li>
@@ -24,20 +24,29 @@
         </ul>
       </nav>
       <br><br><br><br><br>
-      <div class="card">
-        <div class="image-container">
-            <img src="https://e7.pngegg.com/pngimages/273/154/png-clipart-cats-cats-thumbnail.png" alt="Imagen de la mascota">
-        </div>
-        <div class="info-container">
-            <p>Nombre: Hoshi <span class="owner-info">Dueño: Falcao</span></p>
-            <p>Id: 89291484 <span class="owner-info">Cédula: 338298328</span></p>
-            <p>Raza: Criollo</p>
-            <p>Peso: 4 kg</p>
-            <p>Edad: 8 meses</p>
-            <p>Enfermedad: (vacío)</p>
-        </div>
-    </div>
-    
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Cedula</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Celular</th>
+                <th>foto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td th:text="${cliente.id}"></td>
+                <td th:text="${cliente.Cedula}"></td>
+                <td th:text="${cliente.Nombre}"></td>
+                <td th:text="${cliente.Correo}"></td>
+                <td th:text="${cliente.Celular}"></td>
+                <td><img th:src="${cliente.foto}" alt="foto de mascota" width="50px"></td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/clientes/all}" th:text="Volver"></a>
     <footer>
         <section class="importante">
           <h2>Importante</h2>

@@ -6,7 +6,7 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     
-    <link rel="stylesheet" href="/css/homePage.css">
+    <link rel="stylesheet" href="/css/CrearCliente.css">
 </head>
 </head>
 <body>
@@ -16,29 +16,41 @@
           <div class="logo-text">Fellinlove</div>
         </div>
         <ul>
-          <li><a th:href="@{/mascotas/all}" class="menu-item inicio">MASCOTAS</a></li>
+          <li><a th:href="@{/clientes/all}" class="menu-item inicio">CLIENTES</a></li>
           <li><a href="#home" class="menu-item inicio">INICIO</a></li>
           <li><a href="#nosotros" class="menu-item nosotros">NOSOTROS</a></li>
           <li><a href="#servicios" class="menu-item servicio">SERVICIOS</a></li>
           <li><a href="#" class="menu-item iniciar-sesion">INICIAR SESIÓN</a></li>
         </ul>
       </nav>
-      <br><br><br><br><br>
-      <div class="card">
-        <div class="image-container">
-            <img src="https://e7.pngegg.com/pngimages/273/154/png-clipart-cats-cats-thumbnail.png" alt="Imagen de la mascota">
-        </div>
-        <div class="info-container">
-            <p>Nombre: Hoshi <span class="owner-info">Dueño: Falcao</span></p>
-            <p>Id: 89291484 <span class="owner-info">Cédula: 338298328</span></p>
-            <p>Raza: Criollo</p>
-            <p>Peso: 4 kg</p>
-            <p>Edad: 8 meses</p>
-            <p>Enfermedad: (vacío)</p>
+
+      <div class="container">
+        <img src="https://images.stockcake.com/public/d/e/e/dee48d8c-b4ec-47c4-94ae-3062ea34afa1_large/curious-black-cat-stockcake.jpg" alt="Gato" class="gato-imagen">
+        <div class="form-container">
+            <h2 class="form-title">Modificar Mascota</h2>
+            <form th:object="${cliente}" th:action="@{/clientes/agregar}" method="post">
+                <label for="Cedula">Nombre</label>
+                <input th:field="*{Cedula}" type="text" id="Cedula" class="form-control" placeholder="Escriba su cedula">
+
+                <label for="Nombre">Nombre</label>
+                <input th:field="*{Nombre}" type="text" id="Nombre" class="form-control" placeholder="Escriba su nombre">
+
+                <label for="correo">Correo</label>
+                <input th:field="*{correo}" type="text" id="correo" class="form-control" placeholder="Escriba su Correo">
+
+                <label for="celular">Celular</label>
+                <input th:field="*{celular}" type="text" id="celular" class="form-control" placeholder="Escriba su celular">
+
+                <label for="foto">Foto</label>
+                <input th:field="*{foto}" type="text" id="foto" class="form-control" placeholder="Escriba su foto">
+
+                <button type="submit" class="btn btn-submit">Crear</button>
+            </form>
         </div>
     </div>
-    
-    <footer>
+
+
+      <footer>
         <section class="importante">
           <h2>Importante</h2>
           <a href="">Términos y condiciones</a>
@@ -58,5 +70,5 @@
           <a href=""><img src="/images/insta-logo.png" alt="logo instagram" width="30px"></a>
         </section>
     </footer>
-</body>
-</html>
+    </body>
+  </html>
