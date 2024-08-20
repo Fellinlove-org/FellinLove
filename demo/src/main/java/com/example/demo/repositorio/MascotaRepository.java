@@ -32,5 +32,22 @@ public class MascotaRepository {
     }
 
 
+    public void add(Mascota mascota) {
+        int tam = mascotas.size();
+        int lastId = mascotas.get(tam).getId();
+        mascota.setId(lastId + 1);
+        mascotas.put(mascota.getId(), mascota);
+    }
+
+
+    public void update(Mascota mascota) {
+        mascotas.put(mascota.getId(), mascota);
+    }
+
+
+    public void delete(int id) {
+        mascotas.remove(id);
+    }
+
 
 }
