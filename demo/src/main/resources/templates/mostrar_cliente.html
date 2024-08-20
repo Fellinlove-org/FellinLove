@@ -16,7 +16,7 @@
           <div class="logo-text">Fellinlove</div>
         </div>
         <ul>
-          <li><a th:href="@{/mascotas/all}" class="menu-item inicio">MASCOTAS</a></li>
+          <li><a th:href="@{/clientes/all}" class="menu-item inicio">CLIENTES</a></li>
           <li><a href="#home" class="menu-item inicio">INICIO</a></li>
           <li><a href="#nosotros" class="menu-item nosotros">NOSOTROS</a></li>
           <li><a href="#servicios" class="menu-item servicio">SERVICIOS</a></li>
@@ -28,27 +28,25 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Cedula</th>
                 <th>Nombre</th>
-                <th>Raza</th>
-                <th>Edad</th>
-                <th>Peso</th>
-                <th>Enfermedad</th>
+                <th>Correo</th>
+                <th>Celular</th>
                 <th>foto</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td th:text="${mascota.id}"></td>
-                <td th:text="${mascota.nombre}"></td>
-                <td th:text="${mascota.raza}"></td>
-                <td th:text="${mascota.edad}"></td>
-                <td th:text="${mascota.peso}"></td>
-                <td th:text="${mascota.enfermedad}"></td>
-                <td><img th:src="${mascota.foto}" alt="foto de mascota" width="50px"></td>
+                <td th:text="${cliente.id}"></td>
+                <td th:text="${cliente.Cedula}"></td>
+                <td th:text="${cliente.Nombre}"></td>
+                <td th:text="${cliente.Correo}"></td>
+                <td th:text="${cliente.Celular}"></td>
+                <td><img th:src="${cliente.foto}" alt="foto de mascota" width="50px"></td>
             </tr>
         </tbody>
     </table>
-    <a th:href="@{/}" th:text="Volver"></a>
+    <a th:href="@{/clientes/all}" th:text="Volver"></a>
     <footer>
         <section class="importante">
           <h2>Importante</h2>
