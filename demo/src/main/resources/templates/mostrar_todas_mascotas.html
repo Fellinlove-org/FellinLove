@@ -25,7 +25,9 @@
       </nav>
 
       <br><br><br><br><br>
-      <table class="table table-striped table-bordered border-primaryx" style="width: 80%; margin: 0 auto; text-align: center;">
+
+    <table class="table table-striped table-bordered border-primaryx" style="width: 80%; margin: 0 auto; text-align: center;">
+
         <thead class="table-dark">
             <tr>
                 <th>foto</th>
@@ -49,15 +51,24 @@
                 <td th:text="${mascota.enfermedad}"></td>
                 <td><a th:href="@{/mascotas/find/{id}(id=${mascota.id})}" class="options-link">
                   <img src="https://static.vecteezy.com/system/resources/previews/009/356/887/non_2x/eye-icon-sign-symbol-design-free-png.png" width="40px" class="option-icon">
-                  <img src="https://cdn-icons-png.flaticon.com/512/1017/1017479.png" width="40px" class="option-icon">
+
                   </a>
+                  <a th:href="@{/mascotas/delete/{id}(id=${mascota.id})}" class="options-link">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1017/1017479.png" width="40px" class="option-icon">
+                   </a>
+                   <a th:href="@{/mascotas/update/{id}(id=${mascota.id})}" class="options-link">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1017/1017479.png" width="40px" class="option-icon">
+                  </a>
+                  
                 </td>
             </tr>
         </tbody>
     </table>
-    <a th:href="@{/}" th:text="Volver"></a>
 
-    
+    <br><br>
+    <a class="link_mascota" th:href="@{/mascotas/add}" th:text="Agregar"></a><br><br>
+    <a class="link_mascota" th:href="@{/}" th:text="Volver"></a><br><br>
+
     <footer>
         <section class="importante">
           <h2>Importante</h2>

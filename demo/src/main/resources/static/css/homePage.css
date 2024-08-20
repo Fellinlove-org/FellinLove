@@ -592,6 +592,39 @@ button {
 	display: none;
 	overflow: hidden;
   }
+
+
+  .link_mascota {
+	background-color: gray;
+	color: white;
+	padding: 10px;
+	margin-left:20px;
+	border-radius: 5px;
+	font-size: x-large;
+	text-decoration: none;
+	text-align: center;
+  }
+
+  .boton_enviar {
+	position: relative;
+	background-color: #FABB5C;
+	color: white;
+	padding: 10px;
+	border-radius: 5px;
+	font-size: large;
+	text-decoration: none;
+	text-align: center;
+  }
+
+  .forma_mascotas {
+	justify-content: center;
+	padding: 20px;
+	border: purple 2px dotted;
+	margin-top: 150px;
+	margin-left: 300px;
+	margin-right: 300px;
+  }
+
   /* options de las imagenes*/
   .options-link .option-icon {
     border: 3px solid transparent; /* Borde inicial transparente */
@@ -672,3 +705,4 @@ button {
     right: 10px;
     opacity: 0.5;
 }
+

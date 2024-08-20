@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/homePage.css">
+</head>
+<body>
+    <nav class="menu">
+        <div class="logo-container">
+          <div class="logo"></div>
+          <div class="logo-text">Fellinlove</div>
+        </div>
+        <ul>
+          <li><a th:href="@{/mascotas/all}" class="menu-item inicio">MASCOTAS</a></li>
+          <li><a href="#home" class="menu-item inicio">INICIO</a></li>
+          <li><a href="#nosotros" class="menu-item nosotros">NOSOTROS</a></li>
+          <li><a href="#servicios" class="menu-item servicios">SERVICIOS</a></li>
+          <li><a href="#" class="menu-item iniciar-sesion">INICIAR SESIÓN</a></li>
+        </ul>
+    </nav>
+    <form class="forma_mascotas" th:object="${mascota}" method="post" th:action="@{/mascotas/agregar}">
+        <div class="form-group">
+            <label for="nombre">✜ Nombre</label>
+            <input class="form-control" th:field="*{nombre}" type="text" id="nombre" placeholder="Nombre de la mascota">
+        </div>
+
+        <div class="form-group">
+            <label for="raza">✜ Raza</label>
+            <input class="form-control" th:field="*{raza}" type="text" id="raza" placeholder="Raza de la mascota">
+        </div> 
+        
+        <div class="form-group">
+            <label for="edad">✜ Edad</label>
+            <input class="form-control" th:field="*{edad}" type="number" id="edad" placeholder="Edad">
+        </div>
+
+        <div class="form-group">
+            <label for="peso">✜ Peso</label>
+            <input class="form-control" th:field="*{peso}" type="number" id="peso" placeholder="Peso">
+        </div>
+
+        <div class="form-group">
+            <label for="enfermedad">✜ Enfermedad</label>
+            <input class="form-control" th:field="*{enfermedad}" type="text" id="enfermedad" placeholder="Enfermedad de la mascota">
+        </div>
+
+        <div class="form-group">
+            <label for="foto">✜ Foto</label>
+            <input class="form-control" th:field="*{foto}" type="text" id="foto" placeholder="URL de la foto de la mascota">
+        </div>
+        <br><br>
+        <button type="submit" class="boton_enviar">Enviar</button>
+    </form>
+    <br><br>
+    <footer>
+        <section class="importante">
+          <h2>Importante</h2>
+          <a href="">Términos y condiciones</a>
+          <a href="">Pregutas frecuentes</a>
+          <a href="">Politica de privacidad y <br> manejo de datos personales</a>
+        </section>
+        <section class="contactanos">
+          <h2>Contáctanos</h2>
+          <span>Ventas +57 321 456 7890</span> <br>
+          <span>Atencíon al cliente <br> +57 321 456 7890 <br> (601) 123 4567</span>
+          <a href ="">PQR'S</a>
+        </section>
+        <section class="siguenos">
+          <h2>Síguenos</h2>
+          <a href=""><img src="/images/facebook-logo.png" alt="Logo facebook" width="30px"></a>
+          <a href=""><img src="/images/x logo.png" alt="logo x" width="30px" style="border-radius:5px "></a>
+          <a href=""><img src="/images/insta-logo.png" alt="logo instagram" width="30px"></a>
+        </section>
+    </footer>
+</body>
+</html>
