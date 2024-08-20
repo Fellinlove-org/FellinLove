@@ -19,7 +19,7 @@
           <li><a th:href="@{/mascotas/all}" class="menu-item inicio">MASCOTAS</a></li>
           <li><a href="#home" class="menu-item inicio">INICIO</a></li>
           <li><a href="#nosotros" class="menu-item nosotros">NOSOTROS</a></li>
-          <li><a href="#servicios" class="menu-item servicios">SERVICIOS</a></li>
+          <li><a href="#servicios" class="menu-item servicio">SERVICIOS</a></li>
           <li><a href="#" class="menu-item iniciar-sesion">INICIAR SESIÓN</a></li>
         </ul>
       </nav>
@@ -46,13 +46,19 @@
                 <td th:text="${cliente.Celular}"></td>
                 <td><a th:href="@{/clientes/find/{id}(id=${cliente.id})}"  class="options-link">
                     <img src="https://static.vecteezy.com/system/resources/previews/009/356/887/non_2x/eye-icon-sign-symbol-design-free-png.png" width="40px" class="option-icon">
+                  </a>
+                  <a th:href="@{/clientes/update/{id}(id=${cliente.id})}"  class="options-link">
+                    <img src="https://cdn-icons-png.flaticon.com/128/45/45406.png" width="40px" class="option-icon">
+                  </a>
+                  <a th:href="@{/clientes/delete/{id}(id=${cliente.id})}"  class="options-link">
                     <img src="https://cdn-icons-png.flaticon.com/512/1017/1017479.png" width="40px" class="option-icon">
-                </a></td>
+                  </a>
+                </td>
             </tr>
         </tbody>
     </table>
     <a th:href="@{/}" th:text="Volver"></a>
-    <a th:href="@{/clientes/add}" th:text="Volver"></a>
+    <a th:href="@{/clientes/add}" th:text="Añadir"></a>
     <footer>
         <section class="importante">
           <h2>Importante</h2>

@@ -11,9 +11,11 @@ import com.example.demo.servicio.ClienteService;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 
@@ -46,11 +48,31 @@ public class ClienteControler {
 
         return "crear_cliente";
     }
+
     @PostMapping("/agregar")
-    public String agregarCliente(Model model, Cliente cliente) {
+    public String agregarCliente(@ModelAttribute("cliente") Cliente cliente) {
         ClienteService.add(cliente);
         return "redirect:/clientes/all";
     }
+
+    @GetMapping("delete/{id}")
+    public String BorrarCliente(@PathVariable("id") int id){
+        ClienteService.deleteById(id);
+        return "redirect:/clientes/all";
+        
+    }
+
+    @GetMapping("update/{id}")
+    public String mostarFormularioUpdate(@PathVariable("id") int id, Model model) {
+        model.addAttribute("cliente", ClienteService.SearchById(id));
+        return "modificar_cliente";
+    }
+    @PostMapping("update/{id}")
+    public String updateCliente(@PathVariable("id") int id, @ModelAttribute("cliente") Cliente cliente) {
+        ClienteService.update(cliente);
+        return "redirect:/clientes/all";
+    }
+    
     
     
 }
