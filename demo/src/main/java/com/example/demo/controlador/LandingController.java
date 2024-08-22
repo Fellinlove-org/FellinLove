@@ -13,5 +13,10 @@ public class LandingController {
     public String mostarHomePage() {
         return "homePage";
     }
+
+    @GetMapping("/login")
+    public String mostarLoginPage() {
+        return "Login";
+    }
     
 }

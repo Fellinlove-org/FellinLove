@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import com.example.demo.entidad.Cliente;
 import com.example.demo.entidad.Mascota;
+import com.example.demo.servicio.ClienteService;
 import com.example.demo.servicio.MascotaService;
 
 
@@ -52,7 +55,13 @@ public class MascotaController {
     @GetMapping("/update/{id}")
     public String mostrarFormularioActualizarMascota(Model model, @PathVariable("id") int id) {
         model.addAttribute("mascota", mascotaService.SearchById(id));
-        return "actualizar_mascota";
+        return "modificar_mascota";
+    }
+
+    @PostMapping("update/{id}")
+    public String updateCliente(@PathVariable("id") int id, @ModelAttribute("mascota") Mascota mascota) {
+        mascotaService.update(mascota);
+        return "redirect:/mascotas/all";
     }
 
     @GetMapping("/delete/{id}")

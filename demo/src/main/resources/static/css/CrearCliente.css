@@ -83,8 +83,8 @@ html, body {
 	background-color: #5383c1; /* Color de fondo */
 	padding: 20px;
 	border-radius: 10px;
-	width: 600px; /* Ancho del formulario */
-	margin-left: 50%;
+	width: 75%; /* Ancho del formulario */
+	margin-left: 25%;
 	transform: translateX(-20%);
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 	border: 2px solid #ffffff; /* Borde blanco */
@@ -164,4 +164,20 @@ footer > section {
 }
 .Carrusel-p{
 	color: #fff;
+}
+
+.datos-mascota {
+	display: flex;
+	justify-content: space-around;
+}
+
+
+.imagen-mascota {
+	width: 300px;
+	height: 300px;
+	padding: 40px;
+}
+
+.forma-mascota {
+	width: 100%;
 }
