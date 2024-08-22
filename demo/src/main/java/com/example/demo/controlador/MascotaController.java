@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.demo.entidad.Cliente;
-import com.example.demo.entidad.Mascota;
-import com.example.demo.servicio.ClienteService;
-import com.example.demo.servicio.MascotaService;
+import com.example.demo.model.Mascota;
+import com.example.demo.service.MascotaService;
 
 
 
@@ -30,7 +28,7 @@ public class MascotaController {
     }
 
     @GetMapping("/find/{id}")
-    public String mostrarMascota(Model model, @PathVariable("id") int id) {
+    public String mostrarMascota(Model model, @PathVariable("id") Long id) {
         model.addAttribute("mascota", mascotaService.SearchById(id));
         return "mostrar_mascota";
     }
@@ -38,7 +36,7 @@ public class MascotaController {
     @GetMapping("/add")
     public String mostrarFormularioCrearMascota(Model model){
         
-        Mascota mascota = new Mascota(0, "", "", 0, 0, "", "");
+        Mascota mascota = new Mascota("", "", 0, 0, "", "");
 
         model.addAttribute("mascota", mascota);
         
@@ -53,19 +51,19 @@ public class MascotaController {
     }
 
     @GetMapping("/update/{id}")
-    public String mostrarFormularioActualizarMascota(Model model, @PathVariable("id") int id) {
+    public String mostrarFormularioActualizarMascota(Model model, @PathVariable("id") Long id) {
         model.addAttribute("mascota", mascotaService.SearchById(id));
         return "modificar_mascota";
     }
 
     @PostMapping("update/{id}")
-    public String updateCliente(@PathVariable("id") int id, @ModelAttribute("mascota") Mascota mascota) {
+    public String updateCliente(@PathVariable("id") Long id, @ModelAttribute("mascota") Mascota mascota) {
         mascotaService.update(mascota);
         return "redirect:/mascotas/all";
     }
 
     @GetMapping("/delete/{id}")
-    public String borrarMascota(@PathVariable("id") int id) {
+    public String borrarMascota(@PathVariable("id") Long id) {
         mascotaService.delete(id);
         return "redirect:/mascotas/all";
     }

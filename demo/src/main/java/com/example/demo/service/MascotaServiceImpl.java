@@ -1,12 +1,12 @@
-package com.example.demo.servicio;
+package com.example.demo.service;
 
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entidad.Mascota;
-import com.example.demo.repositorio.MascotaRepository;
+import com.example.demo.model.Mascota;
+import com.example.demo.repository.MascotaRepository;
 
 @Service
 public class MascotaServiceImpl implements MascotaService{
@@ -15,9 +15,9 @@ public class MascotaServiceImpl implements MascotaService{
     MascotaRepository mascotaRepository;
 
     @Override
-    public Mascota SearchById(int id) {
+    public Mascota SearchById(Long id) {
         
-        return mascotaRepository.findById(id);
+        return mascotaRepository.findById(id).get();
     }
 
     @Override
@@ -29,19 +29,19 @@ public class MascotaServiceImpl implements MascotaService{
     @Override
     public void add(Mascota mascota) {
     
-        mascotaRepository.add(mascota);
+        mascotaRepository.save(mascota);
     }
 
     @Override
     public void update(Mascota mascota) {
         
-        mascotaRepository.update(mascota);
+        mascotaRepository.save(mascota);
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Long id) {
         
-        mascotaRepository.delete(id);
+        mascotaRepository.deleteById(id);
     }
     
 }

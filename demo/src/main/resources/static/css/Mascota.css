@@ -181,3 +181,20 @@ footer > section {
 .forma-mascota {
 	width: 100%;
 }
+
+.tabla-mascota {
+	width: 100%;
+}
+
+.titulo-atributo {
+    color: white;
+    font-weight: bold;
+}
+
+.atributo {
+    background-color: white;
+    padding: 10px;
+    display: inline-block; /* Para respetar el ancho y alto fijo */
+    width: 100%;
+    border-radius: 10px;
+}

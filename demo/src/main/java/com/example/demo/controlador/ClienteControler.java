@@ -5,16 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.example.demo.entidad.Cliente;
-import com.example.demo.servicio.ClienteService;
+import com.example.demo.model.Cliente;
+import com.example.demo.service.ClienteService;
 
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 
@@ -34,7 +32,7 @@ public class ClienteControler {
     }
 
     @GetMapping("/find/{id}")
-    public String mostrarCliente(Model model, @PathVariable("id") int id) {
+    public String mostrarCliente(Model model, @PathVariable("id") Long id) {
         model.addAttribute("cliente", ClienteService.SearchById(id));
         return "mostrar_cliente";
     }
@@ -42,7 +40,7 @@ public class ClienteControler {
     @GetMapping("/add")
     public String mostrarFormularioCrear(Model model) {
 
-        Cliente cliente= new Cliente(0, 0, "", "", "", "");
+        Cliente cliente= new Cliente(null, "", "", "", "");
 
         model.addAttribute("cliente", cliente);
 
@@ -56,19 +54,19 @@ public class ClienteControler {
     }
 
     @GetMapping("delete/{id}")
-    public String BorrarCliente(@PathVariable("id") int id){
+    public String BorrarCliente(@PathVariable("id") Long id){
         ClienteService.deleteById(id);
         return "redirect:/clientes/all";
         
     }
 
     @GetMapping("update/{id}")
-    public String mostarFormularioUpdate(@PathVariable("id") int id, Model model) {
+    public String mostarFormularioUpdate(@PathVariable("id") Long id, Model model) {
         model.addAttribute("cliente", ClienteService.SearchById(id));
         return "modificar_cliente";
     }
     @PostMapping("update/{id}")
-    public String updateCliente(@PathVariable("id") int id, @ModelAttribute("cliente") Cliente cliente) {
+    public String updateCliente(@PathVariable("id") Long id, @ModelAttribute("cliente") Cliente cliente) {
         ClienteService.update(cliente);
         return "redirect:/clientes/all";
     }

@@ -1,0 +1,200 @@
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden; /* Evita el desplazamiento horizontal */
+    background: linear-gradient(to bottom, #ffffff, #eec263);
+}
+
+.menu {
+	background-color: rgba(128, 196, 249, 1);
+	height: 98px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 20px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 999;
+}
+
+/* Estilo específico para el botón "SERVICIOS" */
+.menu-item.servicios {
+    position: relative;
+    top: 0px; /* Ajusta este valor para alinear verticalmente el botón */
+}
+.logo-container {
+	display: flex;
+	align-items: center;
+}
+
+.logo {
+	width: 110px;
+	height: 140px;
+	background-image: url('../images/logo_definitivo_1.png');
+	background-size: cover;
+}
+
+.logo-text {
+	font-family: 'Yeseva One', sans-serif;
+	font-size: 24px;
+	color: white;
+	margin-left: 10px;
+}
+
+.menu ul {
+	display: flex;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	height: 100%; /* Asegura que la altura de los elementos se ajuste */
+	align-items: center; /* Alinea verticalmente los elementos del menú */
+}
+
+.menu-item {
+	font-size: 18px;
+	color: white;
+	text-decoration: none;
+	margin: 0 15px;
+	display: flex;
+	align-items: center; /* Alinea verticalmente */
+}
+
+.menu-item:hover {
+	text-decoration: underline; /* Opcional: agrega un subrayado al pasar el mouse */
+}
+.iniciar-sesion {
+	background-color: rgba(124, 153, 180, 1);
+	padding: 5px 20px;
+	border-radius: 20px;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.521);
+	font-size: 18px; /* Asegura que el texto se alinee correctamente */
+	display: flex;
+	align-items: center;
+}
+
+/* Estilo para el icono de cliente */
+
+
+.form-container {
+	background-color: #5383c1; /* Color de fondo */
+	padding: 20px;
+	border-radius: 10px;
+	width: 75%; /* Ancho del formulario */
+	margin-left: 25%;
+	transform: translateX(-20%);
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+	border: 2px solid #ffffff; /* Borde blanco */
+	margin-top: -10%;
+	margin-bottom: 7%;
+}
+
+.form-title {
+	text-align: center;
+	color: white;
+	margin-bottom: 20px;
+	font-size: 28px; /* Tamaño de fuente más grande */
+	font-weight: bold; /* Hacerlo en negrita */
+}
+
+label {
+	color: white;
+	margin-top: 10px;
+	font-weight: bold; /* Etiquetas en negrita */
+}
+
+.form-control {
+	margin-bottom: 15px; /* Espaciado entre campos aumentado */
+	border-radius: 8px; /* Bordes redondeados */
+	border: 2px solid #ffffff; /* Bordes blancos */
+}
+
+.form-group {
+	display: flex;
+	justify-content: space-between;
+}
+
+.form-group .form-control {
+	width: 48%;
+}
+
+.btn-submit {
+	width: 100%;
+	background-color: #1c7430; /* Verde más oscuro */
+	color: white;
+	font-weight: bold; /* Botón en negrita */
+	border-radius: 8px; /* Bordes redondeados */
+	border: none;
+}
+
+.btn-submit:hover {
+	background-color: #145822; /* Color del botón en hover */
+}
+
+.gato-imagen {
+	left: 10%;
+	top: 0%;
+	transform: translateY(100%);
+	max-height: 300px;
+}
+
+
+/* footer */
+
+footer {
+	background-color: rgba(128, 196, 249, 1);
+	display: flex;
+	justify-content: center;
+	height: 200px;
+}
+
+footer > section {
+	padding: 20px;
+}
+/* otra cosaa */
+.importante {
+	display: flex;
+	flex-direction: column;
+}
+.siguenos > a  {
+	padding: 10px;
+}
+.Carrusel-p{
+	color: #fff;
+}
+
+.datos-cliente {
+	display: flex;
+	justify-content: space-around;
+}
+
+
+.imagen-cliente {
+	width: 300px;
+	height: 300px;
+	padding: 40px;
+}
+
+.forma-cliente {
+	width: 100%;
+}
+
+.tabla-cliente {
+	width: 100%;
+}
+
+.titulo-atributo {
+    color: white;
+    font-weight: bold;
+}
+
+.atributo {
+    background-color: white;
+    padding: 10px;
+    display: inline-block; /* Para respetar el ancho y alto fijo */
+    width: 100%;
+    border-radius: 10px;
+}

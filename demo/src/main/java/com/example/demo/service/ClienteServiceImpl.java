@@ -1,12 +1,12 @@
-package com.example.demo.servicio;
+package com.example.demo.service;
 
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entidad.Cliente;
-import com.example.demo.repositorio.ClienteRepository;
+import com.example.demo.model.Cliente;
+import com.example.demo.repository.ClienteRepository;
 
 @Service
 public class ClienteServiceImpl implements ClienteService{
@@ -15,9 +15,8 @@ public class ClienteServiceImpl implements ClienteService{
     private ClienteRepository clienteRepository;
 
     @Override
-    public Cliente SearchById(int id) {
-
-        return clienteRepository.findById(id);
+    public Cliente SearchById(Long id) {
+        return clienteRepository.findById(id).get();
 
     }
     @Override
@@ -27,18 +26,18 @@ public class ClienteServiceImpl implements ClienteService{
         
     }
     @Override
-    public void deleteById(int id) {
+    public void deleteById(Long id) {
         clienteRepository.deleteById(id);
         
     }
     @Override
     public void update(Cliente cliente) {
-        clienteRepository.update(cliente);
+        clienteRepository.save(cliente);
         
     }
     @Override
     public void add(Cliente cliente) {
-        clienteRepository.add(cliente);
+        clienteRepository.save(cliente);
     }
     
 

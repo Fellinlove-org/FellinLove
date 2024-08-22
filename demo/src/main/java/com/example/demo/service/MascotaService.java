@@ -1,13 +1,13 @@
-package com.example.demo.servicio;
+package com.example.demo.service;
 
 import java.util.Collection;
 
-import com.example.demo.entidad.Mascota;
+import com.example.demo.model.Mascota;
 
 
 public interface MascotaService {
 
-    public Mascota SearchById(int id);
+    public Mascota SearchById(Long id);
 
     public Collection<Mascota> SearchAll();
 
@@ -15,6 +15,6 @@ public interface MascotaService {
 
     public void update(Mascota mascota);
 
-    public void delete(int id);
+    public void delete(Long id);
     
 }

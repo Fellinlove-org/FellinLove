@@ -1,7 +1,17 @@
-package com.example.demo.entidad;
+package com.example.demo.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class Mascota {
-    private Integer id;
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
     private String nombre;
     private String raza;
     private int edad;
@@ -9,7 +19,10 @@ public class Mascota {
     private String enfermedad;
     private String foto;
 
-    public Mascota(Integer id, String nombre, String raza, int edad, float peso, String enfermedad, String foto) {
+    @ManyToOne
+    private Cliente cliente;
+
+    public Mascota(Long id, String nombre, String raza, int edad, float peso, String enfermedad, String foto) {
         this.id = id;
         this.nombre = nombre;
         this.raza = raza;
@@ -18,6 +31,21 @@ public class Mascota {
         this.enfermedad = enfermedad;
         this.foto = foto;
     }
+
+    public Mascota(String nombre, String raza, int edad, float peso, String enfermedad, String foto) {
+        this.nombre = nombre;
+        this.raza = raza;
+        this.edad = edad;
+        this.peso = peso;
+        this.enfermedad = enfermedad;
+        this.foto = foto;
+    }
+
+    public Mascota() {
+
+    }
+
+
 
     
 
@@ -71,14 +99,22 @@ public class Mascota {
 
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
 
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     
