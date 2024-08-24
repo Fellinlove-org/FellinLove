@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.model.Cliente;
+import com.example.demo.repository.MascotaRepository;
 import com.example.demo.service.ClienteService;
+import com.example.demo.service.MascotaService;
 
 import org.springframework.ui.Model;
 
@@ -24,6 +26,9 @@ public class ClienteControler {
 
     @Autowired
     ClienteService ClienteService;
+
+    @Autowired
+    MascotaRepository mascotaRepository;
     
     @GetMapping("/all")
     public String mostrarTodosClientes(Model model) {
@@ -34,13 +39,14 @@ public class ClienteControler {
     @GetMapping("/find/{id}")
     public String mostrarCliente(Model model, @PathVariable("id") Long id) {
         model.addAttribute("cliente", ClienteService.SearchById(id));
+        model.addAttribute("mascotas", mascotaRepository.findByClienteId(id));
         return "mostrar_cliente";
     }
 
     @GetMapping("/add")
     public String mostrarFormularioCrear(Model model) {
 
-        Cliente cliente= new Cliente(null, "", "", "", "");
+        Cliente cliente= new Cliente("", "", "", "", "");
 
         model.addAttribute("cliente", cliente);
 

@@ -40,10 +40,10 @@
             <tr th:each="cliente : ${clientes}">
                 <td th:text="${cliente.id}"></td>
                 <td><img th:src="${cliente.foto}" alt=" Foto del cliente" width="50px"></td>
-                <td th:text="${cliente.Cedula}"></td>
-                <td th:text="${cliente.Nombre}"></td>
-                <td th:text="${cliente.Correo}"></td>
-                <td th:text="${cliente.Celular}"></td>
+                <td th:text="${cliente.cedula}"></td>                
+                <td th:text="${cliente.nombre}"></td>
+                <td th:text="${cliente.correo}"></td>
+                <td th:text="${cliente.celular}"></td>
                 <td><a th:href="@{/clientes/find/{id}(id=${cliente.id})}"  class="options-link">
                     <img src="https://static.vecteezy.com/system/resources/previews/009/356/887/non_2x/eye-icon-sign-symbol-design-free-png.png" width="40px" class="option-icon">
                   </a>

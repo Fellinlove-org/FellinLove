@@ -14,8 +14,8 @@ public class Cliente {
     @GeneratedValue
     private Long id;
 
-    private Integer Cedula;
-    private String Nombre;
+    private String cedula;
+    private String nombre;
     private String correo;
     private String celular;
     private String foto;
@@ -23,18 +23,18 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente")
     private List<Mascota> mascotas = new ArrayList<>();
     
-    public Cliente(Long id,Integer Cedula, String Nombre, String correo, String celular, String foto) {
+    public Cliente(Long id,String cedula, String nombre, String correo, String celular, String foto) {
         this.id = id;
-        this.Cedula = Cedula;
-        this.Nombre = Nombre;
+        this.cedula = cedula;
+        this.nombre = nombre;
         this.correo = correo;
         this.celular = celular;
         this.foto = foto;
     }
 
-    public Cliente(Integer Cedula, String Nombre, String correo, String celular, String foto) {
-        this.Cedula = Cedula;
-        this.Nombre = Nombre;
+    public Cliente(String cedula, String nombre, String correo, String celular, String foto) {
+        this.cedula = cedula;
+        this.nombre = nombre;
         this.correo = correo;
         this.celular = celular;
         this.foto = foto;
@@ -52,20 +52,20 @@ public class Cliente {
         this.id = id;
     }
 
-    public Integer getCedula() {
-        return Cedula;
+    public String getcedula() {
+        return cedula;
     }
 
-    public void setCedula(Integer cedula) {
-        Cedula = cedula;
+    public void setcedula(String cedula) {
+        this.cedula = cedula;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-        Nombre = nombre;
+        this.nombre = nombre;
     }
 
     public String getCorreo() {

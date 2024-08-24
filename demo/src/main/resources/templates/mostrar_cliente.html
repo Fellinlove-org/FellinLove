@@ -32,8 +32,6 @@
 
                 <div class="tabla-cliente">
 
-                    <span class="titulo-atributo">✜ Cedula</span><br>
-                    <span class="atributo" th:text="${cliente.cedula}"></span><br><br>
 
                     <span class="titulo-atributo">✜ Nombre</span><br>
                     <span class="atributo" th:text="${cliente.nombre}"></span><br><br>
@@ -48,6 +46,37 @@
             </div>
         </div>
     </div>
+
+    <br><br><br>
+    <div class="container" th:each="mascota : ${mascotas}">
+      <div class="form-container">
+          <h2 class="form-title">Información de la mascota</h2>
+          <div class="datos-cliente">
+              <img th:src="${mascota.foto}" alt="foto de la cliente" class="imagen-cliente">
+
+              <div class="tabla-cliente">
+
+
+                <span class="titulo-atributo">✜ Nombre</span><br>
+                <span class="atributo" th:text="${mascota.nombre}"></span><br><br>
+                
+                <span class="titulo-atributo">✜ Raza</span><br>
+                <span class="atributo" th:text="${mascota.raza}"></span><br><br>
+                
+                <span class="titulo-atributo">✜ Edad</span><br>
+                <span class="atributo" th:text="${mascota.edad}"></span><br><br>
+                
+                <span class="titulo-atributo">✜ Peso</span><br>
+                <span class="atributo" th:text="${mascota.peso}"></span><br><br>
+                
+                <span class="titulo-atributo">✜ Enfermedad</span><br>
+                <span class="atributo" th:text="${mascota.enfermedad}"></span><br><br>
+                
+                  
+              </div>
+          </div>
+      </div>
+  </div>
 
     <a class="link_cliente" th:href="@{/clientes/all}" th:text="Volver"></a><br><br>
     <footer>

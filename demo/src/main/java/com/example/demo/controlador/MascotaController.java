@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.model.Cliente;
 import com.example.demo.model.Mascota;
+import com.example.demo.repository.ClienteRepository;
 import com.example.demo.service.MascotaService;
 
 
@@ -20,6 +22,9 @@ public class MascotaController {
     
     @Autowired
     MascotaService mascotaService;
+
+    @Autowired
+    ClienteRepository clienteRepositoy;
 
     @GetMapping("/all")
     public String mostrarTodasMascotas(Model model) {
@@ -37,15 +42,18 @@ public class MascotaController {
     public String mostrarFormularioCrearMascota(Model model){
         
         Mascota mascota = new Mascota("", "", 0, 0, "", "");
-
+        String cedula = "";
         model.addAttribute("mascota", mascota);
-        
+        model.addAttribute("cedula", cedula);
         return "agregar_mascota";
     }
     
     @PostMapping("/agregar")
-    public String agregarMascota(@ModelAttribute("mascota") Mascota mascota){
+    public String agregarMascota(@ModelAttribute("mascota") Mascota mascota, @ModelAttribute("cedula") String cedula) {
         
+        //buscar cliente
+        Cliente c = clienteRepositoy.findByCedula(cedula);
+        mascota.setCliente(c);
         mascotaService.add(mascota);
         return "redirect:/mascotas/all";
     }
