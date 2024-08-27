@@ -1,5 +1,8 @@
 package com.example.demo.controlador;
 
+import java.util.Collection;
+
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +27,7 @@ public class MascotaController {
     MascotaService mascotaService;
 
     @Autowired
-    ClienteRepository clienteRepositoy;
+    ClienteRepository clienteRepository;
 
     @GetMapping("/all")
     public String mostrarTodasMascotas(Model model) {
@@ -52,10 +55,18 @@ public class MascotaController {
     public String agregarMascota(@ModelAttribute("mascota") Mascota mascota, @ModelAttribute("cedula") String cedula) {
         
         //buscar cliente
-        Cliente c = clienteRepositoy.findByCedula(cedula);
-        mascota.setCliente(c);
-        mascotaService.add(mascota);
-        return "redirect:/mascotas/all";
+        Optional<Cliente> cliente = clienteRepository.findByCedula("123456");
+
+        if (cliente.isPresent()) {
+            // Haz algo con el cliente
+            Cliente c = cliente.get();
+            mascota.setCliente(c);
+            mascotaService.add(mascota);
+            return "redirect:/mascotas/all";
+        } else {
+            return "homePage";
+        }
+        
     }
 
     @GetMapping("/update/{id}")

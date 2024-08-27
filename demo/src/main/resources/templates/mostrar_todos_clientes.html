@@ -40,7 +40,7 @@
             <tr th:each="cliente : ${clientes}">
                 <td th:text="${cliente.id}"></td>
                 <td><img th:src="${cliente.foto}" alt=" Foto del cliente" width="50px"></td>
-                <td th:text="${cliente.cedula}"></td>                
+                <td th:text="${cliente.getcedula()}"></td>                
                 <td th:text="${cliente.nombre}"></td>
                 <td th:text="${cliente.correo}"></td>
                 <td th:text="${cliente.celular}"></td>

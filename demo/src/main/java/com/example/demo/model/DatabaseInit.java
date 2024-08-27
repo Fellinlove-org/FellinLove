@@ -52,7 +52,7 @@ public class DatabaseInit implements ApplicationRunner{
 
        
         //asociar mascotas con cliente
-        Long i = 0L;
+        Long i = 1L;
         for(Mascota m : mascotaRepository.findAll()){
             Optional<Cliente> optionalCliente = clienteRepository.findById(i);
             if (optionalCliente.isPresent()) {
