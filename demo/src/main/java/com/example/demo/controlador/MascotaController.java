@@ -55,15 +55,17 @@ public class MascotaController {
     public String agregarMascota(@ModelAttribute("mascota") Mascota mascota, @ModelAttribute("cedula") String cedula) {
         
         //buscar cliente
-        Optional<Cliente> cliente = clienteRepository.findByCedula("123456");
+        Optional<Cliente> cliente = clienteRepository.findByCedula(cedula);
+        System.out.println("cedula: " + cedula);
 
         if (cliente.isPresent()) {
-            // Haz algo con el cliente
+            // Asiganar cliente
             Cliente c = cliente.get();
             mascota.setCliente(c);
             mascotaService.add(mascota);
             return "redirect:/mascotas/all";
         } else {
+            //TODO: manejo de error
             return "homePage";
         }
         
