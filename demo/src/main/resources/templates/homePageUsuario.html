@@ -29,10 +29,11 @@
       <div class="logo-text">Fellinlove</div>
     </div>
     <ul>
+      <li><a th:href="@{/clientes/find/{id}(id=${cliente.id})}" class="menu-item inicio">MASCOTAS</a></li>
       <li><a href="#home" class="menu-item inicio">INICIO</a></li>
       <li><a href="#nosotros" class="menu-item nosotros">NOSOTROS</a></li>
       <li><a href="#servicios" class="menu-item servicio">SERVICIOS</a></li>
-      <li><a th:href="@{/login}" class="menu-item iniciar-sesion">INICIAR SESIÓN</a></li>
+      <li><a class="menu-item iniciar-sesion" th:text = "${cliente.nombre}"></a></li>
     </ul>
   </nav>
 

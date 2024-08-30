@@ -74,14 +74,17 @@ public class MascotaController {
     @GetMapping("/update/{id}")
     public String mostrarFormularioActualizarMascota(Model model, @PathVariable("id") Long id) {
         model.addAttribute("mascota", mascotaService.SearchById(id));
+        model.addAttribute("cedula", mascotaService.SearchById(id).getCliente().getcedula());
         return "modificar_mascota";
     }
 
     @PostMapping("update/{id}")
-    public String updateCliente(@PathVariable("id") Long id, @ModelAttribute("mascota") Mascota mascota) {
+    public String updateCliente(@PathVariable("id") Long id, @ModelAttribute("mascota") Mascota mascota, @ModelAttribute("cedula") String cedula) {
+        mascota.setCliente(clienteRepository.findByCedula(cedula).get());
         mascotaService.update(mascota);
         return "redirect:/mascotas/all";
     }
+
 
     @GetMapping("/delete/{id}")
     public String borrarMascota(@PathVariable("id") Long id) {
