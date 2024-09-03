@@ -28,6 +28,10 @@ public class LandingController {
     public String mostarHomePage(Model model) {
         return "homePage";
     }
+    @GetMapping("/Role")
+    public String ElegirRole(Model model) {
+        return "SeleccionarRole";
+    }
 
     @GetMapping("/login")
     public String mostarLoginPage(Model model) {

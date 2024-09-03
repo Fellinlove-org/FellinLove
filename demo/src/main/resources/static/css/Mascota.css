@@ -151,21 +151,94 @@ footer {
 	height: 200px;
 }
 
-footer > section {
-	padding: 20px;
+/* footer */
+
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
+.footer #button{
+	width:35px;
+	height:35px;
+	border: rgba(128, 196, 249, 1) 12px solid;
+	border-radius:35px;
+	margin:0 auto;
+	position:relative;
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
 }
-/* otra cosaa */
-.importante {
-	display: flex;
-	flex-direction: column;
+.footer #button:hover{
+	width:35px;
+	height:35px;
+	border: rgba(128, 196, 249, 1) 12px solid;
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+	position:relative;
 }
-.siguenos > a  {
-	padding: 10px;
+.footer {
+	bottom:0;
+	left:0;
+	position:fixed;
+    width: 100%;
+    height: 2em;
+    overflow:hidden;
+    margin:0 auto;
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+	z-index:999;
 }
-.Carrusel-p{
-	color: #fff;
+.footer:hover {
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+	height: 10em;
+}
+.footer #container{
+	margin-top:5px;
+	width:100%;
+  height:100%;
+  position:relative;
+  top:0;
+  left:0;
+	background: rgba(128, 196, 249, 1);;
+}
+.footer #cont{
+  position:relative;
+  top:-45px;
+  right:190px;
+	width:150px;
+	height:auto;
+	margin:0 auto;
+}
+.footer_center{
+	width:500px;
+	float:left;
+  text-align:center;
+}
+.footer h3{
+	font-family: 'Helvetica';
+	font-size: 30px;
+	font-weight: 100;
+	margin-top:70px;
+	margin-left:40px;
+}
+.footer p{
+	font-family: 'Helvetica';
+	font-size: 20px;
+	font-weight: 100;
+	margin-top:70px;
+	margin-left:40px;
 }
 
+/* Mascota */
 .datos-mascota {
 	display: flex;
 	justify-content: space-around;
@@ -197,4 +270,39 @@ footer > section {
     display: inline-block; /* Para respetar el ancho y alto fijo */
     width: 100%;
     border-radius: 10px;
+}
+
+/* Estilos para los botones */
+.button-container {
+    display: flex; /* Alinea los botones a la derecha; usa 'center' o 'flex-start' para centrar o alinear a la izquierda */
+	margin-left: 80%;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+/* Estilos para los botones */
+.ButtonVA {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #80C4F9;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ButtonVA:hover {
+    background-color: #68B0E9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.ButtonVA:active {
+    background-color: #5DA8E0;
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

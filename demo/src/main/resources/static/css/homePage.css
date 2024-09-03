@@ -81,8 +81,8 @@
 .home {
 	position: relative;
 	width: 100%;
-	height: 640px;
-	background-image: url('../images/gato_hd_1.png');
+	height: 100%;
+	background-image: url('../images/Home.png');
 	background-size: cover;
 	background-position: center;
 	display: flex;
@@ -91,10 +91,10 @@
 
 .overlay {
 	position: absolute;
-	top: 130px;
+	top: 25%;
 	left: 29px;
-	width: 50%;
-	height: 60%;
+	width: 40%;
+	height: 50%;
 	background-color: rgba(179, 179, 179, 0.24);
 	z-index: 1;
 }
@@ -129,7 +129,7 @@
 	position: absolute;
 	left: 52vw;
 	top: 0vh;
-	background-image: url('../images/image_2.png');
+	background-image: url('../images/Huellas.png');
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -151,7 +151,7 @@
 	position: absolute;
 	left: 55vw;
 	top: 2.5vh;
-	background-image: url('../images/ellipse_2.png');
+	background-image: url('../images/Nosotros.png');
 	background-repeat: no-repeat;
 	background-size: cover;
 	border-radius: 50%;
@@ -170,7 +170,7 @@
 }
 
 .clinica-veterinaria {
-	color: rgba(151, 127, 99, 1);
+	color: rgb(112, 98, 82);
 	width: auto;
 	position: absolute;
 	left: 3.5vw;
@@ -260,112 +260,186 @@
 
 /* footer */
 
-footer {
-	background-color: rgba(128, 196, 249, 1);
-	display: flex;
-	justify-content: center;
-	height: 200px;
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
+.footer #button{
+	width:35px;
+	height:35px;
+	border: rgba(128, 196, 249, 1) 12px solid;
+	border-radius:35px;
+	margin:0 auto;
+	position:relative;
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+}
+.footer #button:hover{
+	width:35px;
+	height:35px;
+	border: rgba(128, 196, 249, 1) 12px solid;
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+	position:relative;
+}
+.footer {
+	bottom:0;
+	left:0;
+	position:fixed;
+    width: 100%;
+    height: 2em;
+    overflow:hidden;
+    margin:0 auto;
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+	z-index:999;
+}
+.footer:hover {
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+	height: 10em;
+}
+.footer #container{
+	margin-top:5px;
+	width:100%;
+  height:100%;
+  position:relative;
+  top:0;
+  left:0;
+	background: rgba(128, 196, 249, 1);;
+}
+.footer #cont{
+  position:relative;
+  top:-45px;
+  right:190px;
+	width:150px;
+	height:auto;
+	margin:0 auto;
+}
+.footer_center{
+	width:500px;
+	float:left;
+  text-align:center;
+}
+.footer h3{
+	font-family: 'Helvetica';
+	font-size: 30px;
+	font-weight: 100;
+	margin-top:70px;
+	margin-left:40px;
+}
+.footer p{
+	font-family: 'Helvetica';
+	font-size: 20px;
+	font-weight: 100;
+	margin-top:70px;
+	margin-left:40px;
 }
 
-footer > section {
-	padding: 20px;
-}
-/* otra cosaa */
-.importante {
-	display: flex;
-	flex-direction: column;
-}
-.siguenos > a  {
-	padding: 10px;
-}
-.Carrusel-p{
-	color: #fff;
-}
 /* -------------------------------- Sección Mision ---------------------------------*/
-.nuestra-mision{
-	font-size: 4em; /* Tamaño grande */
-	color: rgba(128, 196, 249, 1); /* Color oscuro para contraste */
-	text-align: center; /* Alineación centrada */
-	margin: 0;
-	padding: 20px;
-	text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3); /* Sombra de texto */
-	text-transform: uppercase; /* Mayúsculas */
-	font-weight: bold; /* Negrita */
-}
-.mision-text {
-	text-align: center; /* Alineación centrada */
-	font-size: 1.9em; /* Tamaño medio */
-	color: rgba(128, 196, 249, 1); /* Color gris oscuro para contraste suave */
-	margin: 10px 0; /* Espaciado superior e inferior */
-	padding: 0 10px; /* Espaciado horizontal */
-	line-height: 1.4; /* Espaciado entre líneas */
-	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Sombra de texto suave */
-	max-width: 100%; /* Ancho máximo del texto para mejor lectura */
-}
-.slider-container {
-    position: relative;
-    width: 91%;
-    margin: auto;
-    overflow: hidden;
+/* Sección "Nuestra misión" */
+.nuestra-mision {
+    text-align: center;
+    font-size: 1.5em;
+    color: #2c2c2c;
     padding: 50px 0;
+}
+
+.mision-titulo {
+    font-size: 2em;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+}
+
+.mision-subtitulo {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 60px;
+}
+
+/* Estilo del slider */
+.slider-container {
+    width: 80%;
+    max-width: 1250px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    background: #FDE5C9;
 }
 
 .slider {
     display: flex;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease-in-out;
 }
 
 .slide {
-    display: flex;
-    align-items: center;
     min-width: 100%;
-    box-sizing: border-box;
-    padding: 5px;
-    background: rgb(167, 178, 186);
-    border: 1px solid #ddd;
-    position: relative;
-	border-radius: 3vw;
-}
-
-.slide-image {
-    width: 400px;
-    height: auto;
-    margin-right: 20px;
-    border: 5px solid #ccc; /* Marco alrededor de la imagen */
-    border-radius: 8px; /* Esquinas redondeadas del marco */
-}
-
-.slide-text{
-    flex: 1;
-    font-size: 28px;
-    color: #333;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100%;
     text-align: center;
 }
 
-button {
+.slide-image {
+    width: 80%;
+    height: auto;
+    border-radius: 15px 15px 0 0;
+    object-fit: cover;
+	margin-top: 5%;
+}
+
+.slide-content {
+    padding: 20px;
+}
+
+.slide-title {
+    font-size: 1.8em;
+    color: #4a4a4a;
+    margin-bottom: 10px;
+}
+
+.slide-text {
+    font-size: 1em;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Botones de navegación */
+.prev, .next {
     position: absolute;
     top: 50%;
-    background: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
     padding: 10px;
-    cursor: pointer;
-    z-index: 100;
     transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.5em;
+    border-radius: 50%;
 }
 
 .prev {
-    left: 0;
+    left: 20px;
 }
 
 .next {
-    right: 0;
+    right: 20px;
 }
 
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
 /* -------------------------------- Sección Servicios ---------------------------------*/
 .services {
     background: 
@@ -704,5 +778,41 @@ button {
     bottom: 10px;
     right: 10px;
     opacity: 0.5;
+}
+
+/*Cambio en los botones de las mascotas */
+
+.button-container {
+    display: flex; /* Alinea los botones a la derecha; usa 'center' o 'flex-start' para centrar o alinear a la izquierda */
+	margin-left: 80%;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+/* Estilos para los botones */
+.ButtonVA {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #80C4F9;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ButtonVA:hover {
+    background-color: #68B0E9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.ButtonVA:active {
+    background-color: #5DA8E0;
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 

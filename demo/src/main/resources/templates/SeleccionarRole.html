@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -11,10 +12,10 @@
   <link href="https://fonts.googleapis.com/css?family=Kavoon&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Yeseva+One&display=swap" rel="stylesheet">
   
-    <link rel="stylesheet" href="/css/Mascota.css">
-</head>
+    <link rel="stylesheet" href="/css/Roles.css">
 </head>
 <body>
+    <!-- Navegación -->
     <nav class="menu">
         <div class="logo-container">
           <div class="logo"></div>
@@ -25,40 +26,33 @@
           <li><a href="#home" class="menu-item inicio">INICIO</a></li>
           <li><a href="#nosotros" class="menu-item nosotros">NOSOTROS</a></li>
           <li><a href="#servicios" class="menu-item servicio">SERVICIOS</a></li>
-          <li><a href="#" class="menu-item iniciar-sesion">INICIAR SESIÓN</a></li>
+          <li><a th:href="@{/login}" class="menu-item iniciar-sesion">INICIAR SESIÓN</a></li>
         </ul>
-      </nav>
-      <br><br><br><br><br><br><br><br><br><br><br>
-      
-      <div class="container">
-        <div class="form-container">
-            <h2 class="form-title">Información de la mascota</h2>
-            <div class="datos-mascota">
-                <img th:src="${mascota.foto}" alt="foto de la mascota" class="imagen-mascota">
+    </nav>
 
-                <div class="tabla-mascota">
-
-                    <span class="titulo-atributo">✜ Nombre</span><br>
-                    <span class="atributo" th:text="${mascota.nombre}"></span><br><br>
-            
-                    <span class="titulo-atributo">✜ Raza</span><br>
-                    <span class="atributo" th:text="${mascota.raza}"></span><br><br>
-
-                    <span class="titulo-atributo">✜ Edad</span><br>
-                    <span class="atributo" th:text="${mascota.edad}"></span><br><br>
-
-                    <span class="titulo-atributo">✜ Peso</span><br>
-                    <span class="atributo" th:text="${mascota.peso}"></span><br><br>
-
-                    <span class="titulo-atributo">✜ Enfermedad</span><br>
-                    <span class="atributo" th:text="${mascota.enfermedad}"></span><br><br>
-                    
-                </div>
-            </div>
+    <!-- Nueva Sección -->
+    <section class="roles-section">
+        <div class="role-card">
+            <a href="#administrador" class="role-link">
+                <img src="https://images.stockcake.com/public/f/5/8/f5886c7c-7bde-49eb-9d7d-66abfe5e1941_large/intense-cat-gaze-stockcake.jpg" alt="Administrador" class="role-image">
+                <div class="role-text">ADMINISTRADOR</div>
+            </a>
         </div>
-    </div>
+        <div class="role-card">
+            <a th:href="@{/login}" class="role-link">
+                <img src="https://images.stockcake.com/public/3/a/f/3af1e356-868f-4545-bc8a-f9627617cf42_large/cat-high-five-stockcake.jpg" alt="Cliente" class="role-image">
+                <div class="role-text">CLIENTE</div>
+            </a>
+        </div>
+        <div class="role-card">
+            <a href="#veterinario" class="role-link">
+                <img src="https://images.stockcake.com/public/6/1/f/61fb54c5-0de2-42e0-85f2-a20c9a589684_large/veterinarian-examines-cat-stockcake.jpg" alt="Veterinario" class="role-image">
+                <div class="role-text">VETERINARIO</div>
+            </a>
+        </div>
+    </section>
 
-    <a class="ButtonVA" th:href="@{/mascotas/all}" th:text="Volver"></a><br><br>
+    <!-- Footer -->
     <br>
     <br>
     <footer>
@@ -77,3 +71,4 @@
     </footer>
 </body>
 </html>
+
