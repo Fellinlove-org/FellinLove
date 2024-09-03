@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.demo.model.Cliente;
 import com.example.demo.repository.ClienteRepository;
+import com.example.demo.service.ClienteService;
 
 
 
@@ -21,7 +22,7 @@ public class LandingController {
     
 
     @Autowired
-    ClienteRepository clienteRepository;
+    ClienteService clienteService;
 
     //http://localhost:8090/
     @GetMapping("/")
@@ -46,7 +47,7 @@ public class LandingController {
     @PostMapping("/loginUser")
     public String loginUsuario(@ModelAttribute("cedula") String cedula, Model model) {
         
-        Optional<Cliente> cliente = clienteRepository.findByCedula(cedula);
+        Optional<Cliente> cliente = clienteService.findByCedula(cedula);
 
         if (cliente.isPresent()) {
             // Asiganar cliente
@@ -62,7 +63,7 @@ public class LandingController {
     @GetMapping("/inicio/{id}")
     public String inicioUser(Model model, @PathVariable("id") Long id) {
 
-        Optional<Cliente> cliente = clienteRepository.findById(id);
+        Optional<Cliente> cliente = clienteService.SearchById(id);
 
         if (cliente.isPresent()) {
             Cliente c = cliente.get();

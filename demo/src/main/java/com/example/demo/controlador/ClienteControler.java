@@ -28,7 +28,7 @@ public class ClienteControler {
     ClienteService ClienteService;
 
     @Autowired
-    MascotaRepository mascotaRepository;
+    MascotaService mascotaService;
     
     @GetMapping("/all")
     public String mostrarTodosClientes(Model model) {
@@ -39,7 +39,7 @@ public class ClienteControler {
     @GetMapping("/find/{id}")
     public String mostrarCliente(Model model, @PathVariable("id") Long id) {
         model.addAttribute("cliente", ClienteService.SearchById(id));
-        model.addAttribute("mascotas", mascotaRepository.findByClienteId(id));
+        model.addAttribute("mascotas", mascotaService.findByClienteId(id));
         return "mostrar_cliente";
     }
 

@@ -101,19 +101,20 @@ html, body {
 }
 
 .logo-login {
-    margin-bottom: -50px;
+    margin-bottom: -60px;
+	margin-top: 10%;
 }
 
 .logo-login img {
     display: flex;
     position: relative;
-    margin-top: -90px;
+    margin-top: 20px;
     width: 500px;
     margin-bottom: -150px;
 }
 
 .form-group {
-    margin-bottom: 200px;
+    margin-bottom: 180px;
     text-align: left;
 }
 

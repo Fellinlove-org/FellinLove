@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.demo.model.Cliente;
 import com.example.demo.model.Mascota;
 import com.example.demo.repository.ClienteRepository;
+import com.example.demo.service.ClienteService;
 import com.example.demo.service.MascotaService;
 
 
@@ -27,7 +28,7 @@ public class MascotaController {
     MascotaService mascotaService;
 
     @Autowired
-    ClienteRepository clienteRepository;
+    ClienteService clienteService;
 
     @GetMapping("/all")
     public String mostrarTodasMascotas(Model model) {
@@ -55,7 +56,7 @@ public class MascotaController {
     public String agregarMascota(@ModelAttribute("mascota") Mascota mascota, @ModelAttribute("cedula") String cedula) {
         
         //buscar cliente
-        Optional<Cliente> cliente = clienteRepository.findByCedula(cedula);
+        Optional<Cliente> cliente = clienteService.findByCedula(cedula);
         System.out.println("cedula: " + cedula);
 
         if (cliente.isPresent()) {
@@ -80,7 +81,7 @@ public class MascotaController {
 
     @PostMapping("update/{id}")
     public String updateCliente(@PathVariable("id") Long id, @ModelAttribute("mascota") Mascota mascota, @ModelAttribute("cedula") String cedula) {
-        mascota.setCliente(clienteRepository.findByCedula(cedula).get());
+        mascota.setCliente(clienteService.findByCedula(cedula).get());
         mascotaService.update(mascota);
         return "redirect:/mascotas/all";
     }
