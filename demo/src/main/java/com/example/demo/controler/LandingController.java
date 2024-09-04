@@ -1,4 +1,4 @@
-package com.example.demo.controlador;
+package com.example.demo.controler;
 
 import java.util.Optional;
 
@@ -72,11 +72,20 @@ public class LandingController {
             return "homePageUsuario";
         }else {
             //TODO: mandar a pagina de error que no se inicio sesion
-            return "redirect:/";
+            return "redirect:/error/" + id;
         }
 
     }
 
+    @GetMapping("error/{cedula}")
+    public String errorCedula(@PathVariable("cedula") String cedula, Model model) {
+        model.addAttribute("cedula", cedula);
+        return "error_cedula";
+    }
     
-    
+    @GetMapping("errorUpdate/{cedula}")
+    public String errorCedulaExistente(@PathVariable("cedula") String cedula, Model model) {
+        model.addAttribute("cedula", cedula);
+        return "error_cedula_existente";
+    }
 }

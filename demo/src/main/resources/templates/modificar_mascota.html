@@ -54,6 +54,9 @@
                     
                     <label for="foto">✜ Foto</label>
                     <input  th:field="*{foto}" type="text" id="foto" class="form-control" placeholder="URL de la foto de la mascota">
+
+                    <label for="cedula">✜ Cedula</label>
+                    <input  th:value="${cedula}" type="text" id="cedula" name="cedula" class="form-control" placeholder="Cedula del cliente">
     
                     <button type="submit" class="btn btn-submit">Enviar</button>
                 </form>

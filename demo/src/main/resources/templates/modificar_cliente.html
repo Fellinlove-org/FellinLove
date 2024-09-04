@@ -36,6 +36,8 @@
               <img th:src="${cliente.foto}" alt="Foto del cliente" class="imagen-cliente">
               <form class="forma-cliente" th:object="${cliente}" th:action="@{/clientes/update/{id}(id=${cliente.id})}" method="post">
               
+                <label for="Cedula">Cedula</label>
+                <input th:field="*{Cedula}" type="text" id="Cedula" class="form-control" placeholder="Escriba su cedula">
 
                 <label for="nombre">Nombre</label>
                 <input th:field="*{nombre}" type="text" id="nombre" class="form-control" placeholder="Escriba su nombre">

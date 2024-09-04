@@ -1,4 +1,4 @@
-package com.example.demo.controlador;
+package com.example.demo.controler;
 
 import java.util.Collection;
 
@@ -81,9 +81,14 @@ public class MascotaController {
 
     @PostMapping("update/{id}")
     public String updateCliente(@PathVariable("id") Long id, @ModelAttribute("mascota") Mascota mascota, @ModelAttribute("cedula") String cedula) {
-        mascota.setCliente(clienteService.findByCedula(cedula).get());
-        mascotaService.update(mascota);
-        return "redirect:/mascotas/all";
+        Cliente c = clienteService.findByCedula(cedula).get();
+        if(c == null){
+            return "redirect:/error/" + cedula;
+        }else{
+            mascota.setCliente(c);
+            mascotaService.update(mascota);
+            return "redirect:/mascotas/all";
+        }
     }
 
 
