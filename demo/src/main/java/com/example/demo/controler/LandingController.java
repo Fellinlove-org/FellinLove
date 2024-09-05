@@ -11,9 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.example.demo.model.Administrador;
 import com.example.demo.model.Cliente;
 import com.example.demo.repository.ClienteRepository;
+import com.example.demo.service.AdministradorService;
 import com.example.demo.service.ClienteService;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -24,6 +28,9 @@ public class LandingController {
     @Autowired
     ClienteService clienteService;
 
+    @Autowired
+    AdministradorService administradorService;
+
     //http://localhost:8090/
     @GetMapping("/")
     public String mostarHomePage(Model model) {
@@ -33,6 +40,35 @@ public class LandingController {
     public String ElegirRole(Model model) {
         return "SeleccionarRole";
     }
+
+    @GetMapping("/loginAdmin")
+    public String mostrarLoginAdmin(Model model) {
+
+        String cedula = "";
+        String password = "";
+        model.addAttribute("cedula", cedula);
+        model.addAttribute("password", password);
+
+        return "login_admin";
+    }
+
+    @PostMapping("/loginAdmin")
+    public String loginAdministrador(@ModelAttribute("cedula") String cedula, @ModelAttribute("password") String password, Model model) {
+        
+        Optional<Administrador> admin = administradorService.findByCedula(cedula);
+
+        if (admin.isPresent() && admin.get().getPassword().equals(password)) {
+            // Asiganar cliente
+            Administrador a = admin.get();
+            model.addAttribute("admin", a);
+            return "redirect:/inicioAdmin/" + a.getId();
+        } else {
+            //TODO: mostrar error inicio de sesion
+            model.addAttribute("cliente", "");
+            return "redirect:/";
+        }
+    }
+    
 
     @GetMapping("/login")
     public String mostarLoginPage(Model model) {
@@ -76,6 +112,24 @@ public class LandingController {
         }
 
     }
+
+    @GetMapping("/inicioAdmin/{id}")
+    public String inicioAdmin(Model model, @PathVariable("id") Long id) {
+
+        Optional<Administrador> admin = administradorService.SearchById(id);
+
+        if (admin.isPresent()) {
+            Administrador a = admin.get();
+            model.addAttribute("admin", a);
+            System.out.println("Administrador " + a.getNombre());
+            return "homePageAdmin";
+        }else {
+            //TODO: mandar a pagina de error que no se inicio sesion
+            return "redirect:/error/" + id;
+        }
+
+    }
+
 
     @GetMapping("error/{cedula}")
     public String errorCedula(@PathVariable("cedula") String cedula, Model model) {
