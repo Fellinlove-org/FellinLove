@@ -1,9 +1,12 @@
 package com.example.demo.model;
 
+import java.util.*;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Mascota {
@@ -18,6 +21,9 @@ public class Mascota {
     private float peso;
     private String enfermedad;
     private String foto;
+
+     @OneToMany(mappedBy = "mascota")
+    private List<Tratamiento> tratamientos = new ArrayList<>();
 
     @ManyToOne
     private Cliente cliente;

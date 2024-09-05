@@ -4,10 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Controller;
+
+import java.time.LocalDate;
 import java.util.Optional;
 
 import com.example.demo.repository.ClienteRepository;
 import com.example.demo.repository.MascotaRepository;
+import com.example.demo.repository.TratamientoRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -20,6 +23,9 @@ public class DatabaseInit implements ApplicationRunner{
 
     @Autowired
     MascotaRepository mascotaRepository;
+
+    @Autowired
+    TratamientoRepository tratamientoRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -184,6 +190,11 @@ public class DatabaseInit implements ApplicationRunner{
         mascotaRepository.save(new Mascota("Jasper", "Siamés", 4, 4.4f, "Parásitos", "https://cdn2.thecatapi.com/images/HJX5X5p5.jpg"));
         mascotaRepository.save(new Mascota("Bella", "Burmese", 5, 4.1f, "Problemas respiratorios", "https://cdn2.thecatapi.com/images/S1X5X5p5.jpg"));
 
+
+          // Agregar tratamientos a la base de datos
+        tratamientoRepository.save(new Tratamiento("Paracetamol", LocalDate.of(2023, 7, 24)));
+        tratamientoRepository.save(new Tratamiento("Ibuprofeno", LocalDate.of(2023, 8, 15)));
+        tratamientoRepository.save(new Tratamiento("Amoxicilina", LocalDate.of(2023, 9, 5)));
 
         // Asociar mascotas con cliente
         Long clientId = 1L; // Inicializamos el ID del cliente.
