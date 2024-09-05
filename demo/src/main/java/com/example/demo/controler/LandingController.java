@@ -163,6 +163,23 @@ public class LandingController {
 
     }
 
+    @GetMapping("/inicioVeterinario/{id}")
+    public String inicioVet(Model model, @PathVariable("id") Long id) {
+
+        Optional<Veterinario> vet = veterinarioService.SearchById(id);
+
+        if (vet.isPresent()) {
+            Veterinario v = vet.get();
+            model.addAttribute("vet", v);
+            System.out.println("Veterinario " + v.getNombre());
+            return "homePageVet";
+        }else {
+            //TODO: mandar a pagina de error que no se inicio sesion
+            return "redirect:/error/" + id;
+        }
+
+    }
+
 
     @GetMapping("error/{cedula}")
     public String errorCedula(@PathVariable("cedula") String cedula, Model model) {
