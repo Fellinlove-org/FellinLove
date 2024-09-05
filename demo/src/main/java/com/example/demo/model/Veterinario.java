@@ -25,7 +25,7 @@ public class Veterinario {
     @OneToMany(mappedBy = "veterinario")
     private List<Tratamiento> tratamientos = new ArrayList<>();
 
-    public Veterinario(Long id, String cedula, String nombre, String especialidad,String correo, String password,String foto) {
+    public Veterinario(Long id, String cedula, String nombre, String especialidad,String correo, String password, String foto) {
         this.id = id;
         this.cedula = cedula;
         this.nombre = nombre;
@@ -103,4 +103,12 @@ public class Veterinario {
         this.foto = foto;
     }
 
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
 }
