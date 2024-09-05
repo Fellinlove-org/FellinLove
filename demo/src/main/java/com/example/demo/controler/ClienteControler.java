@@ -58,7 +58,7 @@ public class ClienteControler {
 
     @PostMapping("/agregar")
     public String agregarCliente(@ModelAttribute("cliente") Cliente cliente) {
-        Cliente c = clienteService.SearchById(cliente.getId()).get();
+        Cliente c = clienteService.findByCedula(cliente.getcedula()).get();
         if (c == null) {
             clienteService.add(cliente);
             return "redirect:/clientes/all";

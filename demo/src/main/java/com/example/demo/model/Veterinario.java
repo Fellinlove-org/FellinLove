@@ -19,26 +19,29 @@ public class Veterinario {
     private String especialidad;
     private String correo;
     private String password;
+    private String foto;
 
 
     @OneToMany(mappedBy = "veterinario")
     private List<Tratamiento> tratamientos = new ArrayList<>();
 
-    public Veterinario(Long id, String cedula, String nombre, String especialidad,String correo, String password) {
+    public Veterinario(Long id, String cedula, String nombre, String especialidad,String correo, String password, String foto) {
         this.id = id;
         this.cedula = cedula;
         this.nombre = nombre;
         this.especialidad = especialidad;
         this.correo = correo;
         this.password = password;
+        this.foto = foto;
     }
 
-    public Veterinario(String cedula, String nombre,String especialidad, String correo, String password) {
+    public Veterinario(String cedula, String nombre,String especialidad, String correo, String password, String foto) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.especialidad = especialidad;
         this.correo = correo;
         this.password = password;
+        this.foto = foto;
     }
 
     public Veterinario() {
@@ -90,5 +93,13 @@ public class Veterinario {
     
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }
