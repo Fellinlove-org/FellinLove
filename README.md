@@ -12,9 +12,21 @@ Bienvenido al repositorio del proyecto **FellinLove**, una página web diseñada
 - **Blog**: Publicaciones y consejos sobre el cuidado de las mascotas.
 - **Contacto**: Formulario de contacto, ubicación de la clínica, y horarios de atención.
 
+
+## Diseño del sistema
+
+### Diagrama de clases
+
+![Diagrama Clases](/demo/src/main/resources/static/images/diagrama_clases.png)
+
+### Diagrama entidad-relación
+
+![Diagrama Entidad Relación](/demo/src/main/resources/static/images/diagrama_entidad_relacion.png)
+
 ## Tecnologías Utilizadas
 
 - **Frontend**: HTML5, CSS3, JavaScript, Bootstrap.
+- **Backend**: spring boot
 
 ## Datos de prueba
 
