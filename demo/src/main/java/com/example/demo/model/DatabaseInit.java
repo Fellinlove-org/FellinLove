@@ -218,9 +218,9 @@ mascotaRepository.save(new Mascota("Paws", "Persa", 4, 4.1f, "Problemas dentales
  
  
          // Agregar veterinarios a la base de datos
-         veterinarioRepository.save(new Veterinario("2222", "Dr. Juan Pérez", "Medicina General", "juan.perez@mail.com", "0001"));
-         veterinarioRepository.save(new Veterinario("3333", "Dra. Ana López", "Cirugía", "ana.lopez@mail.com", "0002"));
-         veterinarioRepository.save(new Veterinario("5555", "Dr. Carlos Fernández", "Dermatología", "carlos.fernandez@mail.com", "0003"));
+         veterinarioRepository.save(new Veterinario("2222", "Dr. Juan Pérez", "Medicina General", "juan.perez@mail.com", "0001", "https://images.stockcake.com/public/d/f/e/dfe23983-8636-4f1a-a9a4-ee8d85435279_large/veterinarian-comforts-cat-stockcake.jpg"));
+         veterinarioRepository.save(new Veterinario("3333", "Dra. Ana López", "Cirugía", "ana.lopez@mail.com", "0002", "https://images.stockcake.com/public/3/8/0/38060d09-e5ab-4d1b-80fa-656e73895d7d_large/veterinarian-with-cat-stockcake.jpg"));
+         veterinarioRepository.save(new Veterinario("5555", "Dr. Carlos Fernández", "Dermatología", "carlos.fernandez@mail.com", "0003", "https://images.stockcake.com/public/6/0/4/60470f0d-602a-4498-80ab-2b0a93cdeee9_large/veterinarian-with-cat-stockcake.jpg"));
 
        
         // Asociar mascotas con cliente
