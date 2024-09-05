@@ -2,7 +2,7 @@
 
 Bienvenido al repositorio del proyecto **FellinLove**, una página web diseñada para la veterinaria *FellinLove*. Este sitio web está diseñado para proporcionar información sobre nuestros servicios, veterinarios, horarios. De igual
 
-![Gatito Adorable](/images/logo_definitivo_1.png)
+![Gatito Adorable](/demo/src/main/resources/static/images/logo_definitivo_1.png)
 
 ## Características
 
@@ -15,6 +15,21 @@ Bienvenido al repositorio del proyecto **FellinLove**, una página web diseñada
 ## Tecnologías Utilizadas
 
 - **Frontend**: HTML5, CSS3, JavaScript, Bootstrap.
+
+## Datos de prueba
+
+### URL
+
+- **Ver todos los clientes**: [localhost](http://localhost:8090/clientes/all)
+- **Ver todas las mascotas**: [localhost](http://localhost:8090/mascotas/all)
+- **Ver todos los veterinarios**: [localhost](http://localhost:8090/veterinario/all)
+
+### Datos de inicio de sesión
+
+- **Administrador**: Cedula = "123456", Contraseña = "0000"
+- **Cliente**: Cedula = 050
+- **Veterinario**: Cedula = "2222", Contraseña = "0001"
+
 
 
 ## Integrantes
