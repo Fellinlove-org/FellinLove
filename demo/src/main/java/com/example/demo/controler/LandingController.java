@@ -71,7 +71,6 @@ public class LandingController {
             System.out.println("Cliente " + c.getNombre());
             return "homePageUsuario";
         }else {
-            //TODO: mandar a pagina de error que no se inicio sesion
             return "redirect:/error/" + id;
         }
 

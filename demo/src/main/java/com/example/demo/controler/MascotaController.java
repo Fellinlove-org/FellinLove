@@ -67,7 +67,7 @@ public class MascotaController {
             return "redirect:/mascotas/all";
         } else {
             //TODO: manejo de error
-            return "homePage";
+            return "redirect:/error/" + cedula;
         }
         
     }
