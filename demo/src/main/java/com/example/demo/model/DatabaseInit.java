@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import com.example.demo.repository.AdministradorRepository;
 import com.example.demo.repository.ClienteRepository;
 import com.example.demo.repository.MascotaRepository;
 import com.example.demo.repository.TratamientoRepository;
@@ -27,8 +28,14 @@ public class DatabaseInit implements ApplicationRunner{
     @Autowired
     TratamientoRepository tratamientoRepository;
 
+    @Autowired
+    AdministradorRepository administradorRepository;
+
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
+
+        administradorRepository.save(new Administrador("123456", "Daniel Teran", "daniel_teran@example.com", "0000"));
 
         //Agregar clientes a la base de datos
 
