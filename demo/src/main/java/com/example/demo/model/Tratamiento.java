@@ -21,7 +21,11 @@ public class Tratamiento {
    
     @ManyToOne
     private Mascota mascota;
-    //Dalta veterinario y droga
+    @ManyToOne
+    private Veterinario veterinario;
+    @ManyToOne
+    private Droga droga;
+
 
 
     public Tratamiento(Long id, String nombre, LocalDate fecha) {
@@ -31,15 +35,21 @@ public class Tratamiento {
     }
     
 
-
+    // Constructor con parámetros para asociar mascota, veterinario y droga
+    public Tratamiento(String nombre, LocalDate fecha, Mascota mascota, Veterinario veterinario, Droga droga) {
+    this.nombre = nombre;
+    this.fecha = fecha;
+    this.mascota = mascota;
+    this.veterinario = veterinario;
+    this.droga = droga;
+}
 
     public Tratamiento(String nombre, LocalDate fecha) {
         this.nombre = nombre;
         this.fecha = fecha;
     }
 
-
-
+  
 
     // Constructor, getters y setters
     public Tratamiento() {}

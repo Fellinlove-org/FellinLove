@@ -1,9 +1,12 @@
 package com.example.demo.model;
 
 
+import java.util.ArrayList;
+import java.util.*;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 @Entity
 public class Veterinario {
     
@@ -17,6 +20,10 @@ public class Veterinario {
     private String correo;
     private String password;
 
+
+    @OneToMany(mappedBy = "veterinario")
+    private List<Tratamiento> tratamientos = new ArrayList<>();
+
     public Veterinario(Long id, String cedula, String nombre, String especialidad,String correo, String password) {
         this.id = id;
         this.cedula = cedula;
@@ -26,9 +33,10 @@ public class Veterinario {
         this.password = password;
     }
 
-    public Veterinario(String cedula, String nombre, String correo, String password) {
+    public Veterinario(String cedula, String nombre,String especialidad, String correo, String password) {
         this.cedula = cedula;
         this.nombre = nombre;
+        this.especialidad = especialidad;
         this.correo = correo;
         this.password = password;
     }

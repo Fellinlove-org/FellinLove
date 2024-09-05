@@ -11,3 +11,7 @@ import com.example.demo.model.Veterinario;
 public interface VeterinarioRepository extends JpaRepository<Veterinario, Long> {
     Optional<Veterinario> findByCedula(String cedula);
 }
+
+
+
+

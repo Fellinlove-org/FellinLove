@@ -6,12 +6,16 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Controller;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import com.example.demo.repository.AdministradorRepository;
 import com.example.demo.repository.ClienteRepository;
+import com.example.demo.repository.DrogaRepository;
 import com.example.demo.repository.MascotaRepository;
 import com.example.demo.repository.TratamientoRepository;
+import com.example.demo.repository.VeterinarioRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -25,11 +29,19 @@ public class DatabaseInit implements ApplicationRunner{
     @Autowired
     MascotaRepository mascotaRepository;
 
+
     @Autowired
-    TratamientoRepository tratamientoRepository;
+    VeterinarioRepository veterinarioRepository;
 
     @Autowired
     AdministradorRepository administradorRepository;
+
+    @Autowired
+    DrogaRepository drogaRepository;
+
+    
+    @Autowired
+    TratamientoRepository tratamientoRepository;
 
 
     @Override
@@ -93,116 +105,124 @@ public class DatabaseInit implements ApplicationRunner{
 
         // Agregar mascotas a la base de datos
         
-        mascotaRepository.save(new Mascota("Misu", "Persa", 3, 4.2f, "Asma", "https://images.ctfassets.net/denf86kkcx7r/15HC92CcCjQEg7U14aZkVM/914db181ce7e407bc2a0220436a32aa4/un_gato_persa-39"));
-        mascotaRepository.save(new Mascota("Gatito", "Siamés", 2, 3.8f, "Alergia", "https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2021/04/siames-scaled.jpg?fit=2560%2C1707&quality=50&strip=all&ssl=1"));
-        mascotaRepository.save(new Mascota("Nube", "Maine Coon", 4, 5.5f, "Obesidad", "https://www.purina.es/sites/default/files/styles/ttt_image_510/public/2024-02/sitesdefaultfilesstylessquare_medium_440x440public2022-06Maine-Coon-Cat.jpg?itok=6_sYilZv"));
-        mascotaRepository.save(new Mascota("Luna", "Bengala", 1, 3.0f, "Conjuntivitis", "https://www.tiendanimal.es/articulos/wp-content/uploads/2020/04/gato-bengali-1200x900.jpg"));
-        mascotaRepository.save(new Mascota("Felix", "Británico de pelo corto", 5, 4.8f, "Artritis", "https://nfnatcane.es/blog/wp-content/uploads/2020/07/British-shorthair.jpg"));
-        mascotaRepository.save(new Mascota("Salem", "Esfinge", 2, 3.5f, "Dermatitis", "https://peru21-pe.b-cdn.net/sites/default/efsfiles/2024-03/NM4QZM4W3FEGZKUAKV3RFDHOVU.jpeg"));
-        mascotaRepository.save(new Mascota("Tom", "Azul ruso", 4, 4.3f, "Problemas dentales", "https://t1.uc.ltmcdn.com/es/posts/7/0/2/como_es_el_gato_azul_ruso_22207_600.jpg"));
-        mascotaRepository.save(new Mascota("Milo", "Chartreux", 3, 3.9f, "Infección urinaria", "https://imagenes.muyinteresante.com/files/article_social_75/uploads/2022/10/12/6346c7ff3ac74.jpeg"));
-        mascotaRepository.save(new Mascota("Simba", "Abisinio", 2, 4.0f, "Inmunodeficiencia felina", "https://www.elmueble.com/medio/2023/03/30/gato-abisinio_94f72109_230330141505_900x900.jpg"));
-        mascotaRepository.save(new Mascota("Coco", "Ragdoll", 1, 4.5f, "Parásitos", "https://www.purina.es/sites/default/files/styles/ttt_image_510/public/2021-01/Ragdoll.1.jpg?itok=LrGDnQWi"));
-        mascotaRepository.save(new Mascota("Oreo", "Gato doméstico", 2, 4.0f, "Obesidad", "https://www.pets4homes.co.uk/images/articles/5962/large/13-different-types-of-domestic-cats.jpg"));
-        mascotaRepository.save(new Mascota("Mittens", "Siberiano", 3, 5.0f, "Infección respiratoria", "https://www.cats.org.uk/uploads/images/featurebox/hero-image-1600x900.jpg"));
-        mascotaRepository.save(new Mascota("Pinky", "Himalayo", 4, 4.6f, "Problemas de piel", "https://www.thecatsite.com/community/attachments/4-jpg.413867/"));
-        mascotaRepository.save(new Mascota("Oscar", "Norwegian Forest", 5, 5.2f, "Diarrea", "https://www.catster.com/wp-content/uploads/2019/06/close-up-of-a-Norwegian-Forest-cat.jpg"));
-        mascotaRepository.save(new Mascota("Bella", "Abisinio", 1, 3.4f, "Inmunodeficiencia felina", "https://www.animalplanet.com.au/wp-content/uploads/2022/01/Abysinnian-Profile.jpg"));
-        mascotaRepository.save(new Mascota("Cleo", "Bengala", 2, 4.1f, "Alergia alimentaria", "https://www.cattime.com/assets/uploads/2011/12/file_22903_bengal-cat.jpg"));
-        mascotaRepository.save(new Mascota("Max", "Británico de pelo corto", 3, 4.0f, "Problemas cardíacos", "https://www.britishshorthair.ca/wp-content/uploads/2020/10/British-Shorthair-5.jpg"));
-        mascotaRepository.save(new Mascota("Lily", "Siamés", 2, 3.8f, "Alergia", "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Siamese_kitten.jpg/1200px-Siamese_kitten.jpg"));
-        mascotaRepository.save(new Mascota("Nina", "Gato de pelo largo", 1, 4.3f, "Parásitos", "https://www.vetstreet.com/images/article/606x337/Long-Haired-Cat-Breed.jpg"));
-        mascotaRepository.save(new Mascota("Maggie", "Sphynx", 3, 4.0f, "Dermatitis", "https://cdn2.thecatapi.com/images/Sy5u7l9VX.jpg"));
-        mascotaRepository.save(new Mascota("Toby", "Manx", 4, 5.1f, "Problemas digestivos", "https://www.lovemeow.com/assets/imgs/8/0/0/800.jpg"));
-        mascotaRepository.save(new Mascota("Zara", "Scottish Fold", 5, 4.7f, "Diarrea", "https://cdn2.thecatapi.com/images/62c5N5cV7.jpg"));
-        mascotaRepository.save(new Mascota("Buddy", "Cornish Rex", 2, 3.9f, "Problemas respiratorios", "https://upload.wikimedia.org/wikipedia/commons/7/74/Cornish_Rex_cat_in_Stuttgart.jpg"));
-        mascotaRepository.save(new Mascota("Misty", "Burmese", 3, 4.4f, "Problemas dentales", "https://www.thecatsite.com/community/attachments/burmese-1-jpg.410185/"));
-        mascotaRepository.save(new Mascota("Paws", "Oriental", 4, 3.8f, "Enfermedad hepática", "https://cdn2.thecatapi.com/images/4t4dgv5Nm.jpg"));
-        mascotaRepository.save(new Mascota("Whiskers", "Singapura", 1, 4.0f, "Obesidad", "https://cdn2.thecatapi.com/images/S1K6f5cV7.jpg"));
-        mascotaRepository.save(new Mascota("Charlie", "Selkirk Rex", 2, 3.7f, "Alergia", "https://upload.wikimedia.org/wikipedia/commons/7/7a/Selkirk_Rex.jpg"));
-        mascotaRepository.save(new Mascota("Sasha", "Turco Van", 3, 4.2f, "Problemas digestivos", "https://cdn2.thecatapi.com/images/Syx1x5c47.jpg"));
-        mascotaRepository.save(new Mascota("Oliver", "Ragdoll", 4, 4.5f, "Parásitos", "https://cdn2.thecatapi.com/images/SJ_2V5R5E.jpg"));
-        mascotaRepository.save(new Mascota("Luna", "Somalí", 5, 5.0f, "Problemas respiratorios", "https://cdn2.thecatapi.com/images/B1v2A5c5V.jpg"));
-        mascotaRepository.save(new Mascota("Daisy", "Maine Coon", 1, 5.3f, "Obesidad", "https://cdn2.thecatapi.com/images/H1vZp5c5m.jpg"));
-        mascotaRepository.save(new Mascota("Jasper", "Gato doméstico de pelo corto", 2, 4.0f, "Dermatitis", "https://cdn2.thecatapi.com/images/BJ4f5l9N7.jpg"));
-        mascotaRepository.save(new Mascota("Lola", "American Shorthair", 3, 3.9f, "Infección respiratoria", "https://cdn2.thecatapi.com/images/rJ8F6l54m.jpg"));
-        mascotaRepository.save(new Mascota("Tina", "Balinese", 4, 4.1f, "Problemas dentales", "https://cdn2.thecatapi.com/images/Sy5f5l5pm.jpg"));
-        mascotaRepository.save(new Mascota("Rusty", "Bengala", 2, 4.2f, "Enfermedad hepática", "https://cdn2.thecatapi.com/images/SkXmj9r5z.jpg"));
-        mascotaRepository.save(new Mascota("Nora", "Gato de pelo corto", 3, 3.7f, "Alergia", "https://cdn2.thecatapi.com/images/B1U5m5p9G.jpg"));
-        mascotaRepository.save(new Mascota("Rex", "Gato de pelo largo", 4, 4.0f, "Infección urinaria", "https://cdn2.thecatapi.com/images/Bk5R6l5z.jpg"));
-        mascotaRepository.save(new Mascota("Missy", "Gato Rex", 5, 4.5f, "Obesidad", "https://cdn2.thecatapi.com/images/BkX4X5cV7.jpg"));
-        mascotaRepository.save(new Mascota("Bandit", "British Shorthair", 1, 4.3f, "Parásitos", "https://cdn2.thecatapi.com/images/B1mJ6l5Vm.jpg"));
-        mascotaRepository.save(new Mascota("Peanut", "Siberiano", 2, 4.1f, "Dermatitis", "https://cdn2.thecatapi.com/images/BJ9qX9p9z.jpg"));
-        mascotaRepository.save(new Mascota("Sammy", "Chartreux", 3, 5.0f, "Problemas cardíacos", "https://cdn2.thecatapi.com/images/S1Fz9r5p9.jpg"));
-        mascotaRepository.save(new Mascota("Ginger", "Cornish Rex", 4, 4.2f, "Alergia", "https://cdn2.thecatapi.com/images/S1t7l5p9.jpg"));
-        mascotaRepository.save(new Mascota("Loki", "Sphynx", 5, 4.0f, "Problemas dentales", "https://cdn2.thecatapi.com/images/Byu4X9l9V.jpg"));
-        mascotaRepository.save(new Mascota("Oliver", "Russian Blue", 1, 5.0f, "Obesidad", "https://cdn2.thecatapi.com/images/HJ8fX5p5.jpg"));
-        mascotaRepository.save(new Mascota("Oscar", "Egyptian Mau", 2, 4.1f, "Infección respiratoria", "https://cdn2.thecatapi.com/images/B1J7X9p5.jpg"));
-        mascotaRepository.save(new Mascota("Sophie", "Turkish Angora", 3, 4.5f, "Problemas digestivos", "https://cdn2.thecatapi.com/images/By5f5X5V7.jpg"));
-        mascotaRepository.save(new Mascota("Jasmine", "Himalayan", 4, 4.2f, "Parásitos", "https://cdn2.thecatapi.com/images/H1t4X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Max", "Munchkin", 5, 4.6f, "Problemas dentales", "https://cdn2.thecatapi.com/images/B1kJX5p5.jpg"));
-        mascotaRepository.save(new Mascota("Roxy", "Gato doméstico", 1, 3.8f, "Alergia", "https://cdn2.thecatapi.com/images/Hk5qX5c5.jpg"));
-        mascotaRepository.save(new Mascota("Toby", "American Curl", 2, 4.1f, "Infección urinaria", "https://cdn2.thecatapi.com/images/S1v7X5p9.jpg"));
-        mascotaRepository.save(new Mascota("Lucy", "Manx", 3, 3.9f, "Problemas respiratorios", "https://cdn2.thecatapi.com/images/SkF4X9c5.jpg"));
-        mascotaRepository.save(new Mascota("Bella", "Turkish Van", 4, 4.5f, "Diarrea", "https://cdn2.thecatapi.com/images/By8qX9p5.jpg"));
-        mascotaRepository.save(new Mascota("Lola", "Siamés", 5, 4.0f, "Obesidad", "https://cdn2.thecatapi.com/images/B1X5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Mittens", "Burmese", 1, 4.2f, "Inmunodeficiencia felina", "https://cdn2.thecatapi.com/images/BkF5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Tina", "Selkirk Rex", 2, 4.3f, "Problemas digestivos", "https://cdn2.thecatapi.com/images/Sy8f5p9z.jpg"));
-        mascotaRepository.save(new Mascota("Oscar", "Siberiano", 3, 4.4f, "Alergia", "https://cdn2.thecatapi.com/images/Sk5X5p5V.jpg"));
-        mascotaRepository.save(new Mascota("Milo", "Bengala", 4, 4.2f, "Dermatitis", "https://cdn2.thecatapi.com/images/HJX5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Whiskers", "Oriental", 5, 4.0f, "Infección respiratoria", "https://cdn2.thecatapi.com/images/Sy5qX5p5.jpg"));
-        mascotaRepository.save(new Mascota("Sasha", "Turco Angora", 1, 5.1f, "Problemas dentales", "https://cdn2.thecatapi.com/images/By8X5p9z.jpg"));
-        mascotaRepository.save(new Mascota("Charlie", "Gato de pelo corto", 2, 4.3f, "Parásitos", "https://cdn2.thecatapi.com/images/HkF5X5c5.jpg"));
-        mascotaRepository.save(new Mascota("Lucy", "Bengala", 3, 3.8f, "Problemas digestivos", "https://cdn2.thecatapi.com/images/S1F5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Maggie", "Chartreux", 4, 4.1f, "Obesidad", "https://cdn2.thecatapi.com/images/B1k8X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Paws", "Gato doméstico", 5, 3.9f, "Infección urinaria", "https://cdn2.thecatapi.com/images/B1X5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Oreo", "Siamés", 1, 4.0f, "Dermatitis", "https://cdn2.thecatapi.com/images/Sk5qX5p5.jpg"));
-        mascotaRepository.save(new Mascota("Daisy", "Manx", 2, 4.2f, "Problemas respiratorios", "https://cdn2.thecatapi.com/images/B1v8X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Rusty", "Turkish Van", 3, 4.3f, "Inmunodeficiencia felina", "https://cdn2.thecatapi.com/images/Sy5qX5p5.jpg"));
-        mascotaRepository.save(new Mascota("Jasper", "American Shorthair", 4, 4.1f, "Obesidad", "https://cdn2.thecatapi.com/images/S1k5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Nina", "Burmese", 5, 4.2f, "Alergia", "https://cdn2.thecatapi.com/images/By8X5p5z.jpg"));
-        mascotaRepository.save(new Mascota("Toby", "Balinese", 1, 4.0f, "Parásitos", "https://cdn2.thecatapi.com/images/B1X5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Misty", "Sphynx", 2, 3.9f, "Diarrea", "https://cdn2.thecatapi.com/images/HJX5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Cleo", "Manx", 3, 4.4f, "Problemas dentales", "https://cdn2.thecatapi.com/images/S1X5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Bella", "Maine Coon", 4, 5.0f, "Problemas digestivos", "https://cdn2.thecatapi.com/images/Sk5X5p5p.jpg"));
-        mascotaRepository.save(new Mascota("Oscar", "Siberiano", 5, 4.2f, "Infección respiratoria", "https://cdn2.thecatapi.com/images/HJX5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Whiskers", "Russian Blue", 1, 4.5f, "Parásitos", "https://cdn2.thecatapi.com/images/B1F5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Lola", "Bengala", 2, 4.1f, "Problemas dentales", "https://cdn2.thecatapi.com/images/Sk5X5p5V.jpg"));
-        mascotaRepository.save(new Mascota("Sasha", "Himalayo", 3, 4.0f, "Alergia", "https://cdn2.thecatapi.com/images/B1X5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Jasper", "Turkish Angora", 4, 4.3f, "Obesidad", "https://cdn2.thecatapi.com/images/Bk5X5p5z.jpg"));
-        mascotaRepository.save(new Mascota("Maggie", "Oriental", 5, 4.1f, "Infección urinaria", "https://cdn2.thecatapi.com/images/HJX5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Daisy", "Bengala", 1, 4.2f, "Problemas digestivos", "https://cdn2.thecatapi.com/images/S1X5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Cleo", "Sphynx", 2, 3.9f, "Parásitos", "https://cdn2.thecatapi.com/images/S1F5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Rusty", "Chartreux", 3, 4.1f, "Obesidad", "https://cdn2.thecatapi.com/images/Bk5X5p5z.jpg"));
-        mascotaRepository.save(new Mascota("Luna", "Siamés", 4, 4.2f, "Alergia", "https://cdn2.thecatapi.com/images/HJX5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Oscar", "Manx", 5, 4.4f, "Infección respiratoria", "https://cdn2.thecatapi.com/images/S1X5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Jasper", "Burmese", 1, 4.5f, "Problemas dentales", "https://cdn2.thecatapi.com/images/B1F5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Daisy", "Maine Coon", 2, 4.6f, "Obesidad", "https://cdn2.thecatapi.com/images/Sk5X5p5p.jpg"));
-        mascotaRepository.save(new Mascota("Maggie", "Bengala", 3, 4.0f, "Problemas digestivos", "https://cdn2.thecatapi.com/images/HJX5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Lola", "Turkish Van", 4, 4.2f, "Parásitos", "https://cdn2.thecatapi.com/images/S1X5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Sasha", "Oriental", 5, 4.3f, "Diarrea", "https://cdn2.thecatapi.com/images/B1X5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Rusty", "Sphynx", 1, 4.0f, "Infección urinaria", "https://cdn2.thecatapi.com/images/HJX5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Whiskers", "American Shorthair", 2, 4.5f, "Obesidad", "https://cdn2.thecatapi.com/images/S1X5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Luna", "Balinese", 3, 4.3f, "Alergia", "https://cdn2.thecatapi.com/images/S1F5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Maggie", "Bengala", 4, 4.1f, "Problemas digestivos", "https://cdn2.thecatapi.com/images/Sk5X5p5z.jpg"));
-        mascotaRepository.save(new Mascota("Toby", "Siamés", 5, 4.2f, "Parásitos", "https://cdn2.thecatapi.com/images/S1X5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Misty", "Manx", 1, 4.3f, "Obesidad", "https://cdn2.thecatapi.com/images/S1F5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Cleo", "Maine Coon", 2, 4.6f, "Infección respiratoria", "https://cdn2.thecatapi.com/images/Sk5X5p5p.jpg"));
-        mascotaRepository.save(new Mascota("Charlie", "Sphynx", 3, 4.0f, "Parásitos", "https://cdn2.thecatapi.com/images/HJX5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Oscar", "Burmese", 4, 4.5f, "Diarrea", "https://cdn2.thecatapi.com/images/S1X5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Sasha", "Oriental", 5, 4.2f, "Problemas dentales", "https://cdn2.thecatapi.com/images/Sk5X5p5z.jpg"));
-        mascotaRepository.save(new Mascota("Nina", "Sphynx", 1, 4.0f, "Infección urinaria", "https://cdn2.thecatapi.com/images/S1X5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Misty", "Manx", 2, 4.5f, "Problemas digestivos", "https://cdn2.thecatapi.com/images/S1F5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Charlie", "Bengala", 3, 4.3f, "Obesidad", "https://cdn2.thecatapi.com/images/Sk5X5p5z.jpg"));
-        mascotaRepository.save(new Mascota("Jasper", "Siamés", 4, 4.4f, "Parásitos", "https://cdn2.thecatapi.com/images/HJX5X5p5.jpg"));
-        mascotaRepository.save(new Mascota("Bella", "Burmese", 5, 4.1f, "Problemas respiratorios", "https://cdn2.thecatapi.com/images/S1X5X5p5.jpg"));
+       // Agregar mascotas a la base de datos
+mascotaRepository.save(new Mascota("Misu", "Persa", 3, 4.2f, "Asma", "https://static.nationalgeographicla.com/files/styles/image_3200/public/nationalgeographic_1468962.jpg?w=1900&h=1400"));
+mascotaRepository.save(new Mascota("Gatito", "Siamés", 2, 3.8f, "Alergia", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7Rsfl6dIGPbojoNrUPdja0WjgGk8ESACRZg&s"));
+mascotaRepository.save(new Mascota("Nube", "Maine Coon", 4, 5.5f, "Obesidad", "https://static.nationalgeographic.es/files/styles/image_3200/public/75552.ngsversion.1422285553360.jpg?w=1900&h=1267"));
+mascotaRepository.save(new Mascota("Luna", "Bengala", 1, 3.0f, "Conjuntivitis", "https://es.mypet.com/wp-content/uploads/sites/23/2021/03/GettyImages-623368750-e1582816063521-1.jpg"));
+mascotaRepository.save(new Mascota("Felix", "Británico de pelo corto", 5, 4.8f, "Artritis", "https://www.mirringo.com.co/Portals/mirringo/Images/articulos-actualidad-gatuna/ciclo-de-vida-de-los-gatos/Interna-1-ciclo-de-vida-de-los-gatos.jpg?ver=2024-03-20-160432-910"));
+mascotaRepository.save(new Mascota("Salem", "Esfinge", 2, 3.5f, "Dermatitis", "https://urgenciesveterinaries.com/wp-content/uploads/2023/09/survet-gato-caida-pelo-01.jpeg"));
+mascotaRepository.save(new Mascota("Tom", "Azul ruso", 4, 4.3f, "Problemas dentales", "https://images.ctfassets.net/denf86kkcx7r/4IPlg4Qazd4sFRuCUHIJ1T/f6c71da7eec727babcd554d843a528b8/gatocomuneuropeo-97"));
+mascotaRepository.save(new Mascota("Milo", "Chartreux", 3, 3.9f, "Infección urinaria", "https://static.nationalgeographic.es/files/styles/image_3200/public/01-cat-groom-nationalgeographic-1031934.jpg?w=1600"));
+mascotaRepository.save(new Mascota("Simba", "Abisinio", 2, 4.0f, "Inmunodeficiencia felina", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFfYvvtpTzrBYEKzjEzJH8lWbS1ab2pjeiAA&s"));
+mascotaRepository.save(new Mascota("Coco", "Ragdoll", 1, 4.5f, "Parásitos", "https://greentology.life/wp-content/uploads/2023/11/gatos_adorable-gatito-gafas-sol.jpg"));
+mascotaRepository.save(new Mascota("Oreo", "Gato doméstico", 2, 4.0f, "Obesidad", "https://fotografias.lasexta.com/clipping/cmsimages02/2019/01/25/DB41B993-B4C4-4E95-8B01-C445B8544E8E/98.jpg?crop=4156,2338,x0,y219&width=1900&height=1069&optimize=high&format=webply"));
+mascotaRepository.save(new Mascota("Mittens", "Siberiano", 3, 5.0f, "Infección respiratoria", "https://upload.wikimedia.org/wikipedia/commons/4/46/Zuri.jpg"));
+mascotaRepository.save(new Mascota("Pinky", "Himalayo", 4, 4.6f, "Problemas de piel", "https://www.zooplus.es/magazine/wp-content/uploads/2022/01/Psicologia-felina.jpeg"));
+mascotaRepository.save(new Mascota("Oscar", "Norwegian Forest", 5, 5.2f, "Diarrea", "https://media.es.wired.com/photos/657cb5b81e17b099f8f9e15c/16:9/w_3008,h_1692,c_limit/gatos%20172050389.jpg"));
+mascotaRepository.save(new Mascota("Bella", "Abisinio", 1, 3.4f, "Inmunodeficiencia felina", "https://www.clinicaveterinariazarpa.com/wp-content/uploads/2024/01/zarpa-blog.jpg"));
+mascotaRepository.save(new Mascota("Cleo", "Bengala", 2, 4.1f, "Alergia alimentaria", "https://static.nationalgeographicla.com/files/styles/image_3200/public/01-cat-questions-nationalgeographic_1228126.jpg?w=1600&h=900"));
+mascotaRepository.save(new Mascota("Max", "Británico de pelo corto", 3, 4.0f, "Problemas cardíacos", "https://purina.com.co/sites/default/files/styles/webp/public/2022-10/purina-10-datos-curiosos-sobre-los-gatos.png.webp?itok=3B4Lm7-f"));
+mascotaRepository.save(new Mascota("Lily", "Siamés", 2, 3.8f, "Alergia", "https://www.hola.com/horizon/square/ee725cadf31b-gatos-caseros-t.jpg"));
+mascotaRepository.save(new Mascota("Nina", "Gato de pelo largo", 1, 4.3f, "Parásitos", "https://www.ngenespanol.com/wp-content/uploads/2024/02/estas-son-las-razas-de-gatos-que-viven-mas-1280x720.jpg"));
+mascotaRepository.save(new Mascota("Maggie", "Sphynx", 3, 4.0f, "Dermatitis", "https://s1.elespanol.com/2023/03/10/curiosidades/mascotas/747436034_231551833_854x640.jpg"));
+mascotaRepository.save(new Mascota("Toby", "Manx", 4, 5.1f, "Problemas digestivos", "https://cdn.royalcanin-weshare-online.io/GlbQCHwBBKJuub5qnL9Z/v5/bp-lot-3-american-bobtail-davinci"));
+mascotaRepository.save(new Mascota("Zara", "Scottish Fold", 5, 4.7f, "Diarrea", "https://www.whiskas.cl/cdn-cgi/image/height=617,f=auto,quality=90/sites/g/files/fnmzdf4541/files/2023-11/elever-un-Chaton-ses-premiers-mois.jpg"));
+mascotaRepository.save(new Mascota("Buddy", "Cornish Rex", 2, 3.9f, "Problemas respiratorios", "https://www.marthadebayle.com/wp-content/uploads/2023/06/de-donde-vienen-los-gatos.jpg"));
+mascotaRepository.save(new Mascota("Misty", "Burmese", 3, 4.4f, "Problemas dentales", "https://s1.ppllstatics.com/lasprovincias/www/multimedia/202112/12/media/cortadas/gatos-kb2-U160232243326NVC-1248x770@Las%20Provincias.jpg"));
+mascotaRepository.save(new Mascota("Paws", "Oriental", 4, 3.8f, "Enfermedad hepática", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/220px-Cat_November_2010-1a.jpg"));
+mascotaRepository.save(new Mascota("Whiskers", "Singapura", 1, 4.0f, "Obesidad", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSA0sgWEbLlrrbm2qrM7I4xbHo2LGMnMuUIvQ&s"));
+mascotaRepository.save(new Mascota("Charlie", "Selkirk Rex", 2, 3.7f, "Alergia", "https://www.elespectador.com/resizer/GtLezpDdZTdlwNqHVM1C0zSafJw=/arc-anglerfish-arc2-prod-elespectador/public/BOP5BVFGYBDMDK4J5B7YQ3VOUM.jpg"));
+mascotaRepository.save(new Mascota("Sasha", "Turco Van", 3, 4.2f, "Problemas digestivos", "https://www.veterinariaargosalbacete.com/wp-content/uploads/2020/12/mi-gato-pierde-mucho-pelo.jpg"));
+mascotaRepository.save(new Mascota("Oliver", "Ragdoll", 4, 4.5f, "Parásitos", "https://img2.rtve.es/i/?w=1600&i=1618587961630.jpg"));
+mascotaRepository.save(new Mascota("Luna", "Somalí", 5, 5.0f, "Problemas respiratorios", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgWOCLVV0wRNYlUPGDb-3RZto74mTVl55NMA&s"));
+mascotaRepository.save(new Mascota("Daisy", "Maine Coon", 1, 5.3f, "Obesidad", "https://puppis.blog/wp-content/uploads/2022/02/abc-cuidado-de-los-gatos-min.jpg"));
+mascotaRepository.save(new Mascota("Simba", "Bengala", 2, 4.2f, "Inmunodeficiencia felina", "https://cdn.prod.website-files.com/63634f4a7b868a399577cf37/63e10bf28752f848463155b3_razas%20de%20gatos.jpg"));
+mascotaRepository.save(new Mascota("Lola", "Bengala", 3, 4.1f, "Problemas dentales", "https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/10E9B/production/_109757296_gettyimages-1128004359.jpg.webp"));
+mascotaRepository.save(new Mascota("Leo", "Siamés", 4, 3.8f, "Problemas de piel", "https://estaticos-cdn.prensaiberica.es/clip/4e1211c1-1520-41a7-aabb-42c2e03d1731_alta-libre-aspect-ratio_default_0.jpg"));
+mascotaRepository.save(new Mascota("Kiki", "Siamés", 5, 3.9f, "Alergia alimentaria", "https://okdiario.com/img/2021/04/20/curiosidades-sobre-los-gatos-domesticos-635x358.jpg"));
+mascotaRepository.save(new Mascota("Trixie", "Británico de pelo corto", 1, 4.0f, "Artritis", "https://imagenes.eltiempo.com/files/image_1200_600/uploads/2023/03/13/640f76f75c8c7.jpeg"));
+mascotaRepository.save(new Mascota("Fiona", "British Shorthair", 2, 4.2f, "Obesidad", "https://www.cadenadial.com/wp-content/uploads/2021/10/GettyImages-1302471279-1-1-scaled-e1649764781524.jpg"));
+mascotaRepository.save(new Mascota("Tommy", "Maine Coon", 3, 5.5f, "Infección respiratoria", "https://parcerosfelinos.com/wp-content/uploads/2022/06/La-flexibilidad-y-agilidad-de-los-gatos-1024x576.jpg"));
+mascotaRepository.save(new Mascota("Coco", "Maine Coon", 4, 5.4f, "Diarrea", "https://imagenes.20minutos.es/files/image_1920_1080/uploads/imagenes/2023/08/22/gato-esfinge-sphynx-dmitri-makeev-wikimedia-commons-cc-by-sa-4-0.jpeg"));
+mascotaRepository.save(new Mascota("Lucy", "Turco Van", 5, 4.1f, "Alergia alimentaria", "https://www.ngenespanol.com/wp-content/uploads/2023/06/gatos-nariz-1280x720.jpeg"));
+mascotaRepository.save(new Mascota("Rex", "Sphynx", 1, 3.7f, "Problemas respiratorios", "https://dovet.es/wp-content/uploads/2017/01/gato-768x658.jpg"));
+mascotaRepository.save(new Mascota("Lilly", "Sphynx", 2, 3.9f, "Parásitos", "https://media.admagazine.com/photos/618a65c8e702c61c265bbcef/master/w_1600%2Cc_limit/73996.jpg"));
+mascotaRepository.save(new Mascota("Charlie", "Scottish Fold", 3, 4.0f, "Problemas dentales", "https://static.fundacion-affinity.org/cdn/farfuture/46mZnLhAYw8xwZBGnHdtITnaZqhrx5cvHSN81eUMWzw/mtime:1528830293/sites/default/files/el-gato-necesita-tener-acceso-al-exterior.jpg"));
+mascotaRepository.save(new Mascota("Milo", "Scottish Fold", 4, 3.8f, "Inmunodeficiencia felina", "https://clinicaveterinarium.es/wp-content/uploads/2023/11/lindo-gatito-gato-siames-interior.jpg"));
+mascotaRepository.save(new Mascota("Toby", "Singapura", 5, 4.2f, "Enfermedad hepática", "https://www.zooplus.es/magazine/wp-content/uploads/2018/11/fotolia_122422577-768x576.jpg"));
+mascotaRepository.save(new Mascota("Bella", "Singapura", 1, 4.3f, "Problemas digestivos", "https://cdn.nubika.es/wp-content/uploads/2023/11/12151442/manias-gatos.jpg"));
+mascotaRepository.save(new Mascota("Paws", "Oriental", 2, 4.1f, "Problemas respiratorios", "https://s1.elespanol.com/2020/11/16/curiosidades/mascotas/mascotas-gatos-plantas_536457166_165216701_1706x960.jpg"));
+mascotaRepository.save(new Mascota("Ginger", "Siamés", 3, 3.6f, "Alergia alimentaria", "https://es.mypet.com/wp-content/uploads/sites/23/2021/03/el-celo-en-los-gatos-1.jpg?w=1024"));
+mascotaRepository.save(new Mascota("Luna", "Siamés", 4, 3.8f, "Obesidad", "https://www.laalergia.com/sites/reactine_es/files/files/header-images/shutterstock_1007849866_1_gatos1.jpg"));
+mascotaRepository.save(new Mascota("Whiskers", "Ragdoll", 5, 4.0f, "Alergia", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbAFikj08RaTh0rrq0bz38GGks5jimSJE5Qg&s"));
+mascotaRepository.save(new Mascota("Luna", "Persa", 3, 4.0f, "Alergia", "https://imagenes.eltiempo.com/files/image_1200_600/uploads/2023/02/07/63e2e8ab9eda8.jpeg"));
+mascotaRepository.save(new Mascota("Lola", "Siamés", 2, 3.5f, "Asma", "https://content.elmueble.com/medio/2023/04/14/gato-de-raza-ragdoll_5c5827ec_230414185205_1000x1493.jpg"));
+mascotaRepository.save(new Mascota("Maggie", "Maine Coon", 4, 5.1f, "Conjuntivitis", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB0c_EPB9CwcFXEDhfoe3gMcX2xawCOu1Hyw&s"));
+mascotaRepository.save(new Mascota("Charlie", "Sphynx", 1, 4.2f, "Dermatitis", "https://t2.uc.ltmcdn.com/es/posts/8/4/6/cuales_son_los_gatos_mas_tranquilos_33648_600.webp"));
+mascotaRepository.save(new Mascota("Felix", "Bengala", 5, 4.4f, "Infección respiratoria", "https://www.tiendanimal.es/articulos/wp-content/uploads/2018/01/mitos-sobre-gatos-1200x900.jpg"));
+mascotaRepository.save(new Mascota("Oscar", "Scottish Fold", 3, 4.1f, "Problemas dentales", "https://imagenes.heraldo.es/files/image_1920_1080/uploads/imagenes/2024/01/26/gatito-gato-gsc1.jpeg"));
+mascotaRepository.save(new Mascota("Ginger", "Siamés", 2, 3.7f, "Parásitos", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqd0wOkN4enR8kBYhBauFqJE-lWCfQxtULtw&s"));
+mascotaRepository.save(new Mascota("Milo", "Maine Coon", 4, 5.3f, "Diarrea", "https://www.clarin.com/2012/02/04/BJbM2IRnQg_1200x0.jpg"));
+mascotaRepository.save(new Mascota("Nina", "Bengala", 1, 4.0f, "Problemas digestivos", "https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2023/12/12/17023776436291.jpg"));
+mascotaRepository.save(new Mascota("Sasha", "Sphynx", 3, 4.2f, "Problemas respiratorios", "https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/18504/production/_90488599_thinkstockphotos_gato6.jpg.webp"));
+mascotaRepository.save(new Mascota("Luna", "Turco Van", 2, 4.5f, "Conjuntivitis", "https://cdn.royalcanin-weshare-online.io/fyI_PmYBaxEApS7LyAb0/v1/ec36h-is-your-cat-stressed-hero-cat"));
+mascotaRepository.save(new Mascota("Bella", "Siamés", 4, 3.8f, "Artritis", "https://vitakraft.es/wp-content/uploads/2022/05/Blog_ColaGatos-1110x600.jpg"));
+mascotaRepository.save(new Mascota("Simba", "Sphynx", 1, 3.9f, "Obesidad", "https://purina.com.uy/sites/default/files/styles/webp/public/2022-10/conoce-por-que-no-es-buena-idea-usar-un-disfraz-para-tu-gato-desktop.png.webp?itok=pa7TzVHV"));
+mascotaRepository.save(new Mascota("Ginger", "Maine Coon", 2, 5.0f, "Problemas dentales", "https://www.elespectador.com/resizer/v2/LKMDZKHDHVE75GCRD5XPBUKHCY.png?auth=d67de540966cff25edba7ada9da45a77a1d027404c50f8ee20c387e5f1d8e441&width=920&height=613&smart=true&quality=60"));
+mascotaRepository.save(new Mascota("Daisy", "Bengala", 3, 4.3f, "Alergia", "https://estaticos-cdn.prensaiberica.es/clip/132634e7-ba6a-4ea6-b531-f0377b7a9eba_alta-libre-aspect-ratio_default_0.jpg"));
+mascotaRepository.save(new Mascota("Max", "Persa", 4, 4.1f, "Problemas digestivos", "https://images.ctfassets.net/ozvjkvyngwhv/7XI7Nz6LVrBPN8PqHFOGg/1837c9f22f7b95bc0001d4dec4d5b70e/1024-X-300-IMG-BLOG-CAIDA-DEL-PELO-DE-TU-PELUDO-__1_.jpg"));
+mascotaRepository.save(new Mascota("Cleo", "Scottish Fold", 2, 4.2f, "Infección respiratoria", "https://static.eldiario.es/clip/ab74aa95-3656-424c-8ca1-dce590aabb97_16-9-discover-aspect-ratio_default_0.jpg"));
+mascotaRepository.save(new Mascota("Whiskers", "Sphynx", 5, 3.9f, "Problemas de piel", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTPlwn347GKEW5rFh5y34Ow_epRu4bqNXFTA&s"));
+mascotaRepository.save(new Mascota("Lucy", "Maine Coon", 3, 5.4f, "Alergia alimentaria", "https://vitakraft.es/wp-content/uploads/2020/06/imagen_gato_cachorro_1920x1280-1110x600.jpg"));
+mascotaRepository.save(new Mascota("Toby", "Bengala", 1, 4.0f, "Problemas respiratorios", "https://okdiario.com/img/2020/07/25/curiosidades-sobre-la-inteligencia-de-los-gatos-635x358.jpg"));
+mascotaRepository.save(new Mascota("Coco", "Siamés", 2, 4.5f, "Artritis", "https://resizer.glanacion.com/resizer/v2/un-experto-recomendo-con-que-gatos-no-hay-que-4WWGJ4UZUNC6PIMTJ7UEII2WAA.jpg?auth=fe8ee5dd7cd5bbc7e39915c95ecfebae17d1e3305e95f232afeaea5dffc4b121&width=880&height=586&quality=70&smart=true"));
+mascotaRepository.save(new Mascota("Paws", "Scottish Fold", 4, 3.7f, "Conjuntivitis", "https://www.aon.es/personales/seguro-perro-gato/wp-content/uploads/sites/2/2022/11/beautiful-cat-portrait-close-up-scaled.jpg"));
+mascotaRepository.save(new Mascota("Oliver", "Sphynx", 3, 4.1f, "Problemas digestivos", "https://pymstatic.com/58113/conversions/rasgos-personalidad-de-gatos-wide_webp.webp"));
+mascotaRepository.save(new Mascota("Lilly", "Maine Coon", 2, 5.0f, "Alergia", "https://www.abc.es/xlsemanal/wp-content/uploads/sites/5/2023/10/como-entender-gatos-animales.jpg"));
+mascotaRepository.save(new Mascota("Trixie", "Siamés", 1, 3.8f, "Problemas dentales", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6M8la1eBKQsT5oTD813L68C313PFOuFLtjg&s"));
+mascotaRepository.save(new Mascota("Rex", "Turco Van", 2, 4.3f, "Infección respiratoria", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNlmQqkTa7XWHHg8AWHHVxuM0fAMay5QRqCw&s"));
+mascotaRepository.save(new Mascota("Zara", "Sphynx", 3, 4.2f, "Problemas de piel", "https://media.admagazine.com/photos/6272c673fa786b10d9e7780d/1:1/w_2000,h_2000,c_limit/Gato%20en%20mesa.jpg"));
+mascotaRepository.save(new Mascota("Tommy", "Scottish Fold", 5, 4.4f, "Artritis", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR85NT0d9snLMWnuXMkyqLoZp1V-Fh-muhXUQ&s"));
+mascotaRepository.save(new Mascota("Ginger", "Siamés", 1, 3.9f, "Diarrea", "https://images.ctfassets.net/denf86kkcx7r/7HUeRIOQ67bN5lIiOki9ak/080930351b7b94d4cef7ec73afff522d/ojosgato-29"));
+mascotaRepository.save(new Mascota("Paws", "Bengala", 2, 4.1f, "Problemas digestivos", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpxwVkMp-Ywwaw_nHmZ0ECWQARUXfoyPydvw&s"));
+mascotaRepository.save(new Mascota("Whiskers", "Persa", 3, 4.0f, "Inmunodeficiencia felina", "https://www.semana.com/resizer/v2/ZBGOE4OONZFWHCNBX62IC4XGYM.jpg?auth=239467349145c9956f034421e45259e12a778ffb204946658239289137f33bb6&smart=true&quality=75&width=1280&height=720"));
+mascotaRepository.save(new Mascota("Lola", "Scottish Fold", 4, 4.2f, "Alergia alimentaria", "https://s3.abcstatics.com/abc/www/multimedia/sociedad/2024/07/11/gato-RaZLibek03KjY2lBzGD2qEN-1200x840@diario_abc.jpg"));
+mascotaRepository.save(new Mascota("Milo", "Turco Van", 5, 4.3f, "Problemas respiratorios", "https://www.purina.es/sites/default/files/2021-12/Temperatura%20corporal%20de%20los%20gatos_teaser_0.jpg"));
+mascotaRepository.save(new Mascota("Felix", "Maine Coon", 2, 5.2f, "Problemas dentales", "https://gatogazzu.org/wp-content/uploads/2022/08/abuelo-de-los-gatos-930x620.jpg"));
+mascotaRepository.save(new Mascota("Maggie", "Siamés", 1, 3.6f, "Artritis", "https://paradispets.com/wp-content/uploads/2022/08/Gato_Bengali_Trepando_Arbol_Paradispets-600x450.jpg"));
+mascotaRepository.save(new Mascota("Simba", "Sphynx", 4, 4.5f, "Problemas digestivos", "https://www.semana.com/resizer/v2/CIHCDVOZDVDZJH3WEEVHBWIEXQ.jpg?auth=4039191476d08871fb55ec848583ab79d116a195944ad9801fea1cd071463723&smart=true&quality=75&width=1280"));
+mascotaRepository.save(new Mascota("Charlie", "Bengala", 3, 4.4f, "Infección respiratoria", "https://manchas.com/wp-content/uploads/2024/05/arena-gato.png"));
+mascotaRepository.save(new Mascota("Luna", "Persa", 2, 4.1f, "Alergia alimentaria", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwVwucpWLWNs2HBkpY4BWvy91ruBJQt4UXLA&s"));
+mascotaRepository.save(new Mascota("Nina", "Maine Coon", 5, 5.1f, "Problemas de piel", "https://hospitalveterinariodonostia.com/wp-content/uploads/2022/02/Personalidad-gatos-674x337.png"));
+mascotaRepository.save(new Mascota("Oscar", "Scottish Fold", 4, 4.3f, "Conjuntivitis", "https://caracol.com.co/resizer/v2/D72LMWGUFBCGPCG3BBZWYYEJGQ.jpg?auth=552e83952f719f5644534af5b51938818611533417438a78db1b56a8af31a677&width=650&height=488&quality=70&smart=true"));
+mascotaRepository.save(new Mascota("Whiskers", "Turco Van", 2, 4.2f, "Alergia", "https://hips.hearstapps.com/hmg-prod/images/gettyimages-1056403846-662750de6b3b0.jpg?crop=1xw:0.8404971085409253xh;center,top&resize=1200:*"));
+mascotaRepository.save(new Mascota("Rex", "Siamés", 3, 4.1f, "Problemas respiratorios", "https://nupec.com/wp-content/uploads/2022/09/fluffy-red-cat-resting-in-bright-sunlight-2022-08-01-02-05-31-utc-min.jpg"));
+mascotaRepository.save(new Mascota("Bella", "Sphynx", 4, 3.8f, "Problemas digestivos", "https://www.laclinicaveterinaria.com/wp-content/uploads/2023/09/Las-vibrisas-o-bigotes-de-los-gatos.webp"));
+mascotaRepository.save(new Mascota("Cleo", "Bengala", 5, 4.4f, "Inmunodeficiencia felina", "https://www.tiendanimal.es/articulos/wp-content/uploads/2022/03/Gato-Singapura-1200x900.jpg"));
+mascotaRepository.save(new Mascota("Tommy", "Persa", 3, 4.0f, "Alergia alimentaria", "https://cnnespanol.cnn.com/wp-content/uploads/2024/07/estereotipo-mujeres-gato-e1722197008180.webp?w=414&h=311&crop=1"));
+mascotaRepository.save(new Mascota("Ginger", "Maine Coon", 2, 5.0f, "Problemas respiratorios", "https://phantom-expansion.unidadeditorial.es/2f87033555d26483c0dc80c06caf5e48/resize/640/assets/multimedia/imagenes/2021/03/23/16164882584432.jpg"));
+mascotaRepository.save(new Mascota("Simba", "Siamés", 1, 3.6f, "Artritis", "https://urgenciesveterinaries.com/wp-content/uploads/2024/03/survet-toxoplasmosis-01.jpg"));
+mascotaRepository.save(new Mascota("Maggie", "Turco Van", 4, 4.3f, "Diarrea", "https://www.tugatobengali.com/wp-content/uploads/2022/04/exoticopelocorto-1.jpg"));
+mascotaRepository.save(new Mascota("Oscar", "Bengala", 3, 4.0f, "Problemas digestivos", "https://www.clinicanimal.vet/wp-content/uploads/2023/07/acariciando-gato.jpg"));
+mascotaRepository.save(new Mascota("Lilly", "Sphynx", 2, 3.8f, "Inmunodeficiencia felina", "https://imagenes.muyinteresante.com/files/article_social_75/uploads/2022/10/12/6346a7d3ec310.jpeg"));
+mascotaRepository.save(new Mascota("Paws", "Persa", 4, 4.1f, "Problemas dentales", "https://blog.laika.com.co/wp-content/uploads/2022/04/kabo-p6yH8VmGqxo-unsplash.jpg"));
 
 
-          // Agregar tratamientos a la base de datos
-        tratamientoRepository.save(new Tratamiento("Paracetamol", LocalDate.of(2023, 7, 24)));
-        tratamientoRepository.save(new Tratamiento("Ibuprofeno", LocalDate.of(2023, 8, 15)));
-        tratamientoRepository.save(new Tratamiento("Amoxicilina", LocalDate.of(2023, 9, 5)));
 
+
+         // Agregar drogas a la base de datos
+         drogaRepository.save(new Droga("Ibuprofeno", 10.0f, 15.0f, 100, "pastillas"));
+         drogaRepository.save(new Droga("Paracetamol", 5.0f, 8.0f, 200, "pastillas"));
+         drogaRepository.save(new Droga("Amoxicilina", 12.0f, 18.0f, 150, "capsulas"));
+ 
+ 
+         // Agregar veterinarios a la base de datos
+         veterinarioRepository.save(new Veterinario("2222", "Dr. Juan Pérez", "Medicina General", "juan.perez@mail.com", "0001"));
+         veterinarioRepository.save(new Veterinario("3333", "Dra. Ana López", "Cirugía", "ana.lopez@mail.com", "0002"));
+         veterinarioRepository.save(new Veterinario("5555", "Dr. Carlos Fernández", "Dermatología", "carlos.fernandez@mail.com", "0003"));
+
+       
         // Asociar mascotas con cliente
         Long clientId = 1L; // Inicializamos el ID del cliente.
         int mascotasPorCliente = 2; // Número de mascotas que asignaremos a cada cliente.
@@ -232,6 +252,43 @@ public class DatabaseInit implements ApplicationRunner{
                     clientId = 1L;
                 }
             }
-        }       
+        }
+        
+        
+       // Asignar tratamiento
+
+     // Define los IDs
+List<Long> mascotaIds = Arrays.asList(1L, 2L, 3L); // Cambia estos IDs por los reales
+List<Long> veterinarioIds = Arrays.asList(1L, 2L, 3L); // Cambia estos IDs por los reales
+List<Long> drogaIds = Arrays.asList(1L, 2L, 3L); // Cambia estos IDs por los reales
+
+// Crea un tratamiento para cada combinación de mascota, veterinario y droga
+for (Long mascotaId : mascotaIds) {
+    for (Long veterinarioId : veterinarioIds) {
+        for (Long drogaId : drogaIds) {
+            // Obtener las entidades
+            Mascota mascota = mascotaRepository.findById(mascotaId).orElse(null);
+            Veterinario veterinario = veterinarioRepository.findById(veterinarioId).orElse(null);
+            Droga droga = drogaRepository.findById(drogaId).orElse(null);
+
+            // Crear y guardar el tratamiento si todas las entidades existen
+            if (mascota != null && veterinario != null && droga != null) {
+                Tratamiento tratamiento = new Tratamiento(
+                    "Tratamiento de " + droga.getNombre(),
+                    LocalDate.now(),
+                    mascota,
+                    veterinario,
+                    droga
+                );
+
+                tratamientoRepository.save(tratamiento);
+            } else {
+                System.out.println("No se pudo encontrar alguna de las entidades necesarias para la combinación: "
+                        + "Mascota ID " + mascotaId + ", Veterinario ID " + veterinarioId + ", Droga ID " + drogaId);
+            }
+        }
+    }
+}
+
     }
 }
