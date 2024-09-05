@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Fellinlove Veterinaria</title>
+  <meta name="description" content="Fellinlove Veterinaria - El mejor cuidado para tu mascota">
+  <meta name="author" content="Fellinlove Veterinaria">
+  
+  <!-- Meta viewport para el diseño responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="/js/homePage.js"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Kavoon&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Yeseva+One&display=swap" rel="stylesheet">
+
+  <!-- Enlace a la hoja de estilos externa -->
+  <link rel="stylesheet" href="/css/homePage.css">
+
+</head>
+<body>
+  <!-- Contenedor del menú -->
+  <nav class="menu">
+    <div class="logo-container">
+      <div class="logo"></div>
+      <div class="logo-text">Fellinlove</div>
+    </div>
+    <ul>
+      <li><a href="#home" class="menu-item inicio">INICIO</a></li>
+      <li><a href="#nosotros" class="menu-item nosotros">NOSOTROS</a></li>
+      <li><a href="#servicios" class="menu-item servicio">SERVICIOS</a></li>
+      <li><a th:href="@{/Role}" class="menu-item iniciar-sesion">INICIAR SESIÓN</a></li>
+    </ul>
+  </nav>
+
+  <!-- Home -->
+  <div id="home" class="home">
+    <div class="overlay"></div>
+    <h2 class="home-titulo">LO MEJOR PARA TU MASCOTA</h2>
+  </div>
+
+  <!-- Sección "Nosotros" -->
+  <div id="nosotros" class="nosotros-overlay">
+    <div class="imagen-huellas"></div>
+    <div class="rectangulo-nosotros">
+      <div class="elipse-imagen-nosotros"></div>
+      <p class="bienvenidos-a-fellinlove-veterinaria">
+        Bienvenidos a Fellinlove Veterinaria, el lugar donde la salud y el bienestar de los gatos son nuestra prioridad. Desde nuestra fundación en 1998, nos hemos dedicado exclusivamente a ofrecer atención médica y cuidado especializado para felinos, con el propósito de proporcionarles un ambiente sereno y amoroso.
+      </p>
+      <h1 class="clinica-veterinaria">Clínica Veterinaria</h1>
+      <a href="#" class="contactanos-btn">Contáctanos</a>
+    </div>
+  </div>
+
+  <!-- Sección "Servicios" -->
+   <br><br><br>
+   <br><br><br>
+   <br><br><br>
+   <!-- Sección "Nuestra mision" -->
+   <section class="nuestra-mision">
+    <h1 class="mision-titulo">Nuestra misión es la salud y bienestar de tus mascotas.</h1>
+    <h2 class="mision-subtitulo">Hacemos que esto sea posible brindándoles un servicio de clínica veterinaria integral y de excelente calidad.</h2>
+  
+    <div class="slider-container">
+      <div class="slider">
+        <div class="slide">
+          <img class="slide-image" src="https://images.stockcake.com/public/2/9/0/290de399-bfe9-414d-9425-60f12264d4f4_large/veterinarian-cuddling-kitten-stockcake.jpg" alt="gato siendo atendido">
+          <div class="slide-content">
+            <h3 class="slide-title">Cuidado de Alta Calidad</h3>
+            <p class="slide-text">Nuestra misión es brindar a tu felino el cuidado y la atención de la más alta calidad, asegurando que cada aspecto de su bienestar sea atendido con esmero y dedicación.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img class="slide-image" src="https://images.stockcake.com/public/9/0/5/9056c727-1d92-4bb3-b482-e57b7328f261_large/veterinarian-examining-kitten-stockcake.jpg" alt="gato siendo cuidado">
+          <div class="slide-content">
+            <h3 class="slide-title">Disponibilidad 24/7</h3>
+            <p class="slide-text">Nuestra misión es proporcionar a tu felino el mejor cuidado posible, las 24 horas del día, los 7 días de la semana. Estamos comprometidos a estar siempre disponibles para atender cualquier necesidad que pueda surgir.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img class="slide-image" src="https://images.stockcake.com/public/2/6/e/26e57dbe-4470-429d-8495-307233900fce_large/veterinarian-with-cat-stockcake.jpg" alt="gato siendo tratado">
+          <div class="slide-content">
+            <h3 class="slide-title">Atención Oportuna</h3>
+            <p class="slide-text">Ofrecemos citas disponibles para tu gatito, entendiendo la importancia de una atención oportuna y personalizada.</p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Controles del Slider -->
+      <button class="prev">❮</button>
+      <button class="next">❯</button>
+    </div>
+</section>
+ 
+    <br><br><br>
+    <br><br><br>
+   <!-- -----------------------------------------------------------------------Sección "Servicios" ------------------------------------------------------------------------------------------------------------------------------>
+   <section class="services">
+     <h2>Servicios</h2>
+     <p>En Fellinlove ofrecemos todos los servicios de clínica veterinaria para tu felino.</p>
+     <div class="service-container">
+         <div class="service">
+             <img src="https://cdn-icons-png.flaticon.com/128/15879/15879403.png" alt="Consulta general">
+             <h3>Consulta general</h3>
+             <a href="#">Agendar consulta</a>
+         </div>
+         <div class="service">
+             <img src="https://cdn-icons-png.flaticon.com/128/9757/9757050.png" alt="Consulta nutricional">
+             <h3>Consulta nutricional</h3>
+             <a href="#">Agendar consulta</a>
+         </div>
+         <div class="service">
+             <img src="https://cdn-icons-png.flaticon.com/128/12048/12048489.png" alt="Urgencias Veterinarias 24/7">
+             <h3>Urgencias Veterinarias 24/7</h3>
+             <a href="#">Encuentra tu clínica</a>
+         </div>
+         <div class="service">
+             <img src="https://cdn-icons-png.flaticon.com/128/8624/8624769.png" alt="Baño y Peluquería">
+             <h3>Baño y Peluquería</h3>
+             <a href="#">¡Agendá tu cita ya!</a>
+         </div>
+         <div class="service">
+             <img src="https://cdn-icons-png.flaticon.com/128/1068/1068891.png" alt="Cardiología">
+             <h3>Cardiología</h3>
+             <a href="#">Agenda tu consulta</a>
+         </div>
+         <div class="service">
+             <img src="https://cdn-icons-png.flaticon.com/128/1041/1041327.png" alt="Profilaxis">
+             <h3>Profilaxis</h3>
+             <a href="#">Conoce más</a>
+         </div>
+         <div class="service">
+             <img src="https://cdn-icons-png.flaticon.com/128/1615/1615222.png" alt="Esterilización">
+             <h3>Esterilización</h3>
+             <a href="#">Agenda Cita</a>
+         </div>
+         <div class="service">
+             <img src="https://cdn-icons-png.flaticon.com/128/3626/3626796.png" alt="Exámenes de laboratorio">
+             <h3>Exámenes de laboratorio</h3>
+             <a href="#">Llámanos</a>
+         </div>
+         <div class="service">
+             <img src="https://cdn-icons-png.flaticon.com/128/4666/4666723.png" alt="Vacunación">
+             <h3>Vacunación</h3>
+             <a href="#">Contáctanos</a>
+         </div>
+     </div>
+ </section>
+ <br>
+ <br>
+ <footer>
+   <div class="footer">
+     <div id="button"></div>
+   <div id="container">
+   <div id="cont">
+   <div class="footer_center">
+     <p>Copyright © 2024 FellInLove Todos los derechos reservados</p>
+   </div>
+   </div>
+   </div>
+   </div>
+     <br>
+     <br>
+ </footer>
+
+  <!-- Script JavaScript para cambiar la imagen de fondo -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Array con las URLs de las imágenes
+      const images = [
+        'https://images.stockcake.com/public/4/d/1/4d140bdc-a4c1-4729-9e77-a0e4793a7ea3_large/veterinarian-holding-cat-stockcake.jpg',
+        'https://images.stockcake.com/public/6/6/6/6662c973-1046-461d-a256-9068b5335e22_large/veterinarian-examining-cat-stockcake.jpg'
+      ];
+
+      let currentIndex = 0; // Índice de la imagen actual
+
+      function changeImage() {
+        const rectangle13 = document.querySelector('.rectangle-13');
+        
+        // Cambia la imagen de fondo
+        rectangle13.style.backgroundImage = `url(${images[currentIndex]})`;
+
+        // Actualiza el índice para la próxima imagen
+        currentIndex = (currentIndex + 1) % images.length;
+      }
+
+      // Cambia la imagen cada 7 segundos (7000 ms)
+      setInterval(changeImage, 7000);
+
+      // Cambia la imagen inmediatamente al cargar
+      changeImage();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+      <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Kavoon&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Yeseva+One&display=swap" rel="stylesheet">
+  
+    <link rel="stylesheet" href="/css/homePage.css">
+</head>
+</head>
+<body>
+    <nav class="menu">
+        <div class="logo-container">
+          <div class="logo"></div>
+          <div class="logo-text">Fellinlove</div>
+        </div>
+        <ul>
+          <li><a th:href="@{/mascotas/all}" class="menu-item inicio">MASCOTAS</a></li>
+          <li><a href="#home" class="menu-item inicio">INICIO</a></li>
+          <li><a href="#nosotros" class="menu-item nosotros">NOSOTROS</a></li>
+          <li><a href="#servicios" class="menu-item servicio">SERVICIOS</a></li>
+          <li><a href="#" class="menu-item iniciar-sesion">INICIAR SESIÓN</a></li>
+        </ul>
+      </nav>
+      <br><br><br><br><br>
+      <div class="button-container">
+        <a class="ButtonVA" th:href="@{/clientes/add}" th:text="Agregar">Agregar</a>
+        <a class="ButtonVA" th:href="@{/}" th:text="Volver">Volver</a>
+    </div>
+    <br>
+      <table class="table table-striped table-bordered border-primaryx" style="width: 80%; margin: 0 auto; text-align: center;">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>foto</th>
+                <th>Cedula</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Celular</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cliente : ${clientes}">
+                <td th:text="${cliente.id}"></td>
+                <td><img th:src="${cliente.foto}" alt=" Foto del cliente" width="50px"></td>
+                <td th:text="${cliente.getcedula()}"></td>                
+                <td th:text="${cliente.nombre}"></td>
+                <td th:text="${cliente.correo}"></td>
+                <td th:text="${cliente.celular}"></td>
+                <td><a th:href="@{/clientes/find/{id}(id=${cliente.id})}"  class="options-link">
+                    <img src="https://static.vecteezy.com/system/resources/previews/009/356/887/non_2x/eye-icon-sign-symbol-design-free-png.png" width="40px" class="option-icon">
+                  </a>
+                  <a th:href="@{/clientes/update/{id}(id=${cliente.id})}"  class="options-link">
+                    <img src="https://cdn-icons-png.flaticon.com/128/45/45406.png" width="40px" class="option-icon">
+                  </a>
+                  <a th:href="@{/clientes/delete/{id}(id=${cliente.id})}"  class="options-link">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1017/1017479.png" width="40px" class="option-icon">
+                  </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <footer>
+      <div class="footer">
+        <div id="button"></div>
+      <div id="container">
+      <div id="cont">
+      <div class="footer_center">
+        <p>Copyright © 2024 FellInLove Todos los derechos reservados</p>
+      </div>
+      </div>
+      </div>
+      </div>
+        <br>
+        <br>
+    </footer>
+</body>
+</html>
