@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.demo.model.Administrador;
 import com.example.demo.model.Cliente;
+import com.example.demo.model.Veterinario;
 import com.example.demo.repository.ClienteRepository;
 import com.example.demo.service.AdministradorService;
 import com.example.demo.service.ClienteService;
+import com.example.demo.service.VeterinarioService;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -30,6 +33,9 @@ public class LandingController {
 
     @Autowired
     AdministradorService administradorService;
+
+    @Autowired
+    VeterinarioService veterinarioService;
 
     //http://localhost:8090/
     @GetMapping("/")
@@ -52,6 +58,17 @@ public class LandingController {
         return "login_admin";
     }
 
+    @GetMapping("/loginVeterinario")
+    public String mostrarLoginVeterinario(Model model) {
+
+        String cedula = "";
+        String password = "";
+        model.addAttribute("cedula", cedula);
+        model.addAttribute("password", password);
+
+        return "login_veterinario";
+    }
+
     @PostMapping("/loginAdmin")
     public String loginAdministrador(@ModelAttribute("cedula") String cedula, @ModelAttribute("password") String password, Model model) {
         
@@ -62,6 +79,23 @@ public class LandingController {
             Administrador a = admin.get();
             model.addAttribute("admin", a);
             return "redirect:/inicioAdmin/" + a.getId();
+        } else {
+            //TODO: mostrar error inicio de sesion
+            model.addAttribute("cliente", "");
+            return "redirect:/";
+        }
+    }
+
+    @PostMapping("/loginVeterinario")
+    public String logindeVeterinaro(@ModelAttribute("cedula") String cedula, @ModelAttribute("password") String password, Model model) {
+        Optional<Veterinario> veterinario = veterinarioService.findByCedula(cedula);
+
+        if (veterinario.isPresent() && veterinario.get().getPassword().equals(password)) {
+
+            // Asiganar
+            Veterinario v = veterinario.get();
+            model.addAttribute("veterinario", v);
+            return "redirect:/inicioVeterinario/" + v.getId();
         } else {
             //TODO: mostrar error inicio de sesion
             model.addAttribute("cliente", "");
