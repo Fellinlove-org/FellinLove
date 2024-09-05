@@ -218,9 +218,15 @@ mascotaRepository.save(new Mascota("Paws", "Persa", 4, 4.1f, "Problemas dentales
  
  
          // Agregar veterinarios a la base de datos
+<<<<<<< HEAD
+         veterinarioRepository.save(new Veterinario("2222", "Dr. Juan Pérez", "Medicina General", "juan.perez@mail.com", "0001", "https://images.stockcake.com/public/d/f/e/dfe23983-8636-4f1a-a9a4-ee8d85435279_large/veterinarian-comforts-cat-stockcake.jpg"));
+         veterinarioRepository.save(new Veterinario("3333", "Dra. Ana López", "Cirugía", "ana.lopez@mail.com", "0002", "https://images.stockcake.com/public/3/8/0/38060d09-e5ab-4d1b-80fa-656e73895d7d_large/veterinarian-with-cat-stockcake.jpg"));
+         veterinarioRepository.save(new Veterinario("5555", "Dr. Carlos Fernández", "Dermatología", "carlos.fernandez@mail.com", "0003", "https://images.stockcake.com/public/6/0/4/60470f0d-602a-4498-80ab-2b0a93cdeee9_large/veterinarian-with-cat-stockcake.jpg"));
+=======
          veterinarioRepository.save(new Veterinario("2222", "Dr. Juan Pérez", "Medicina General", "juan.perez@mail.com", "0001", "https://images.stockcake.com/public/e/9/3/e9369a0d-c4d0-4688-851b-07edafc906ff_large/veterinarian-examining-rabbit-stockcake.jpg"));
          veterinarioRepository.save(new Veterinario("3333", "Dra. Ana López", "Cirugía", "ana.lopez@mail.com", "0002", "https://images.stockcake.com/public/0/b/f/0bfe396f-1e8d-4232-a5c5-693ac3598e47_large/veterinarian-examining-parrot-stockcake.jpg"));
          veterinarioRepository.save(new Veterinario("5555", "Dr. Carlos Fernández", "Dermatología", "carlos.fernandez@mail.com", "0003", "https://images.stockcake.com/public/1/3/b/13be04b3-a895-45b6-b22f-d67e6855c6e3_large/veterinarian-with-husky-stockcake.jpg"));
+>>>>>>> origin/develop
 
        
         // Asociar mascotas con cliente

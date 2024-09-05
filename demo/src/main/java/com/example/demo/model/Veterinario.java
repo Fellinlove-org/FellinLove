@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 
-import java.util.ArrayList;
 import java.util.*;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +12,7 @@ public class Veterinario {
     @Id
     @GeneratedValue
     private Long id;
+
 
     private String cedula;
     private String nombre;
@@ -94,6 +94,15 @@ public class Veterinario {
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
 
     public String getFoto() {
         return foto;
