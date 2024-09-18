@@ -216,11 +216,28 @@ public class DatabaseInit implements ApplicationRunner{
         drogaRepository.save(new Droga("Paracetamol", 5.0f, 8.0f, 200, 78));
         drogaRepository.save(new Droga("Amoxicilina", 12.0f, 18.0f, 150, 100));
  
- 
-        // Agregar veterinarios a la base de datos
-        veterinarioRepository.save(new Veterinario("2222", "Dr. Juan Pérez", "Medicina General", "juan.perez@mail.com", "0001", "https://images.stockcake.com/public/e/9/3/e9369a0d-c4d0-4688-851b-07edafc906ff_large/veterinarian-examining-rabbit-stockcake.jpg"));
-        veterinarioRepository.save(new Veterinario("3333", "Dra. Ana López", "Cirugía", "ana.lopez@mail.com", "0002", "https://images.stockcake.com/public/0/b/f/0bfe396f-1e8d-4232-a5c5-693ac3598e47_large/veterinarian-examining-parrot-stockcake.jpg"));
-        veterinarioRepository.save(new Veterinario("5555", "Dr. Carlos Fernández", "Dermatología", "carlos.fernandez@mail.com", "0003", "https://images.stockcake.com/public/1/3/b/13be04b3-a895-45b6-b22f-d67e6855c6e3_large/veterinarian-with-husky-stockcake.jpg"));
+ // Agregar veterinarios a la base de datos
+veterinarioRepository.save(new Veterinario("2222", "Dr. Juan Pérez", "Medicina General", "juan.perez@mail.com", "0001", "https://images.stockcake.com/public/e/9/3/e9369a0d-c4d0-4688-851b-07edafc906ff_large/veterinarian-examining-rabbit-stockcake.jpg"));
+veterinarioRepository.save(new Veterinario("3333", "Dra. Ana López", "Cirugía", "ana.lopez@mail.com", "0002", "https://images.stockcake.com/public/0/b/f/0bfe396f-1e8d-4232-a5c5-693ac3598e47_large/veterinarian-examining-parrot-stockcake.jpg"));
+veterinarioRepository.save(new Veterinario("5555", "Dr. Carlos Fernández", "Dermatología", "carlos.fernandez@mail.com", "0003", "https://images.stockcake.com/public/2/4/a/24af6981-08bc-4281-8063-2c8578141a0d_large/veterinarian-caring-dog-stockcake.jpg"));
+veterinarioRepository.save(new Veterinario("6666", "Dra. Marta González", "Oftalmología", "marta.gonzalez@mail.com", "0004", "https://images.stockcake.com/public/4/1/8/4187b99f-5eda-4342-a0c2-6673afac8a1e_large/vet-examining-dog-stockcake.jpg"));
+veterinarioRepository.save(new Veterinario("7777", "Dr. Luis Martínez", "Oncología", "luis.martinez@mail.com", "0005", "https://images.stockcake.com/public/f/7/3/f737970f-6e10-4353-aa82-d1b9dc3b94a3_large/veterinarian-examining-kitten-stockcake.jpg"));
+veterinarioRepository.save(new Veterinario("8888", "Dra. Clara Rivera", "Cardiología", "clara.rivera@mail.com", "0006", "https://images.stockcake.com/public/f/c/c/fccba0e9-a1d0-471d-aca3-3a99777233f8_large/puppy-vet-visit-stockcake.jpg"));
+veterinarioRepository.save(new Veterinario("9999", "Dr. Miguel Torres", "Neurología", "miguel.torres@mail.com", "0007", "https://images.stockcake.com/public/1/4/c/14ca6ccf-cfe1-4438-bd99-d8e618ec3602_large/veterinarian-examining-parrot-stockcake.jpg"));
+veterinarioRepository.save(new Veterinario("1010", "Dra. Patricia Morales", "Nutrición", "patricia.morales@mail.com", "0008", "https://images.stockcake.com/public/6/1/f/61fb54c5-0de2-42e0-85f2-a20c9a589684_large/veterinarian-examines-cat-stockcake.jpg"));
+veterinarioRepository.save(new Veterinario("1111", "Dr. Javier Hernández", "Anestesiología", "javier.hernandez@mail.com", "0009", "https://images.stockcake.com/public/9/8/0/98004d06-d724-404c-bcc1-411a13d39b1d_large/veterinarian-examining-owl-stockcake.jpg"));
+veterinarioRepository.save(new Veterinario("1212", "Dra. Sofía Romero", "Rehabilitación", "sofia.romero@mail.com", "0010", "https://images.stockcake.com/public/b/e/0/be000a37-483e-438c-853a-939929f13d89_large/vet-examining-dog-stockcake.jpg"));
+veterinarioRepository.save(new Veterinario("1313", "Dr. Andrés Vega", "Medicina Felina", "andres.vega@mail.com", "0011", "https://images.stockcake.com/public/c/a/2/ca2c500a-d923-4d3f-a8cb-70ceb0bd3f76_large/veterinarian-examining-iguana-stockcake.jpg"));
+veterinarioRepository.save(new Veterinario("1414", "Dra. Laura Fuentes", "Ortopedia", "laura.fuentes@mail.com", "0012", "https://images.stockcake.com/public/d/4/d/d4d0589c-746f-46e9-9e45-462ee737cc99_large/veterinarian-examining-kitten-stockcake.jpg"));
+veterinarioRepository.save(new Veterinario("1515", "Dr. Diego Navarro", "Odontología", "diego.navarro@mail.com", "0013", "https://images.stockcake.com/public/4/b/4/4b4f006c-a1fd-4b77-89a6-7f44e7417eb5_large/veterinarian-with-ferret-stockcake.jpg"));
+veterinarioRepository.save(new Veterinario("1616", "Dra. Gabriela Salinas", "Medicina Equina", "gabriela.salinas@mail.com", "0014", "https://images.stockcake.com/public/4/c/7/4c79c1df-36ec-4088-9db4-1fe420e91036_large/veterinarian-holding-hamster-stockcake.jpg"));
+veterinarioRepository.save(new Veterinario("1717", "Dr. Pedro Vargas", "Toxicología", "pedro.vargas@mail.com", "0015", "https://images.stockcake.com/public/4/5/b/45bdd751-c59b-46e1-a234-a8955a39fdb3_large/veterinarian-examining-rabbit-stockcake.jpg"));
+veterinarioRepository.save(new Veterinario("1818", "Dra. Valeria Medina", "Etología", "valeria.medina@mail.com", "0016", "https://images.stockcake.com/public/0/6/5/065f044e-fbdc-4d77-a176-e1c13f12246d_large/veterinarian-embraces-horse-stockcake.jpg"));
+veterinarioRepository.save(new Veterinario("1919", "Dr. Sergio Ramírez", "Radiología", "sergio.ramirez@mail.com", "0017", "https://images.stockcake.com/public/7/b/a/7babc602-7afb-488f-8976-6eee8f485f40_large/veterinarian-holding-kitten-stockcake.jpg"));
+veterinarioRepository.save(new Veterinario("2020", "Dra. Julia Ortiz", "Patología", "julia.ortiz@mail.com", "0018", "https://images.stockcake.com/public/2/0/6/20609582-d6ce-4426-8e70-de398a954c6f_large/veterinarian-examining-rabbit-stockcake.jpg"));
+veterinarioRepository.save(new Veterinario("2121", "Dr. Mario Mendoza", "Parasitología", "mario.mendoza@mail.com", "0019", "https://images.stockcake.com/public/4/a/0/4a05e197-c914-40af-ae7f-e9a12eae4330_large/veterinarian-examining-dog-stockcake.jpg"));
+veterinarioRepository.save(new Veterinario("2223", "Dra. Mariana Castillo", "Reproducción", "mariana.castillo@mail.com", "0020", "https://images.stockcake.com/public/6/7/6/67625ce5-d76e-4582-adf0-82f2f2e80fb3_large/veterinarian-examining-cat-stockcake.jpg"));
+
 
        
         // Asociar mascotas con cliente
