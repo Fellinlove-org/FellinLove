@@ -1,6 +1,7 @@
 package com.example.demo.controler;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,8 +59,8 @@ public class ClienteControler {
 
     @PostMapping("/agregar")
     public String agregarCliente(@ModelAttribute("cliente") Cliente cliente) {
-        Cliente c = clienteService.findByCedula(cliente.getcedula()).get();
-        if (c == null) {
+        Optional<Cliente> c = clienteService.findByCedula(cliente.getcedula());
+        if (!c.isPresent()) {
             clienteService.add(cliente);
             return "redirect:/clientes/all";
         }else{
