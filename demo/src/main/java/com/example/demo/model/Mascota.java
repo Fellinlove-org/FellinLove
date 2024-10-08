@@ -2,6 +2,8 @@ package com.example.demo.model;
 
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -22,9 +24,11 @@ public class Mascota {
     private String enfermedad;
     private String foto;
 
-     @OneToMany(mappedBy = "mascota")
+    @JsonIgnore
+    @OneToMany(mappedBy = "mascota")
     private List<Tratamiento> tratamientos = new ArrayList<>();
 
+    @JsonIgnore
     @ManyToOne
     private Cliente cliente;
 
@@ -123,5 +127,8 @@ public class Mascota {
         this.cliente = cliente;
     }
 
-    
+    public String toString() {
+        return "Mascota [id=" + id + ", nombre=" + nombre + ", raza=" + raza + ", edad=" + edad + ", peso=" + peso
+                + ", enfermedad=" + enfermedad + ", foto=" + foto + "]";
+    }
 }

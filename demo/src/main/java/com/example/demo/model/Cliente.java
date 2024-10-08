@@ -7,6 +7,8 @@ import jakarta.persistence.OneToMany;
 
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Cliente {
 
@@ -20,6 +22,7 @@ public class Cliente {
     private String celular;
     private String foto;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Mascota> mascotas = new ArrayList<>();
     
