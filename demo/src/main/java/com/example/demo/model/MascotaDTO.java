@@ -2,12 +2,12 @@ package com.example.demo.model;
 
 public class MascotaDTO {
     private Mascota mascota;
-    private String cedula;
+    private Long id;
 
 
-    public MascotaDTO(Mascota m, String c) {
+    public MascotaDTO(Mascota m, Long id) {
         this.mascota = m;
-        this.cedula = c;
+        this.id = id;
     }
 
     // Getters y Setters
@@ -21,11 +21,11 @@ public class MascotaDTO {
         this.mascota = mascota;
     }
 
-    public String getCedula() {
-        return cedula;
+    public Long getId() {
+        return id;
     }
 
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
+    public void setId(Long id) {
+        this.id = id;
     }
 }

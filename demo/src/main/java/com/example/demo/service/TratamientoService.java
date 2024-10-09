@@ -2,6 +2,8 @@ package com.example.demo.service;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.List;
+
 
 import com.example.demo.model.Tratamiento;
 
@@ -16,7 +18,7 @@ public interface TratamientoService {
 
     public void delete(Long id);
 
-
+    public List<Tratamiento> findByMascotaId(Long mascotaId);
 }
 
 

@@ -14,6 +14,8 @@ public interface MascotaService {
 
     public void add(Mascota mascota);
 
+    public void add(Mascota mascota, Long clienteId);
+
     public void update(Mascota mascota);
 
     public void delete(Long id);

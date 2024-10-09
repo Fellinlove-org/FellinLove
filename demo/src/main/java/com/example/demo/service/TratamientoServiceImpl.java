@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,12 @@ public class TratamientoServiceImpl implements TratamientoService{
     @Override
     public void delete(Long id) {
         tratamientoRepository.deleteById(id);
+    }
+
+
+    @Override
+    public List<Tratamiento> findByMascotaId(Long mascotaId) {
+        return tratamientoRepository.findByMascotaId(mascotaId);
     }
     
 

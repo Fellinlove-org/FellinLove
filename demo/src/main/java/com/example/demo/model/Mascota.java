@@ -20,7 +20,7 @@ public class Mascota {
     private String nombre;
     private String raza;
     private int edad;
-    private float peso;
+    private double peso;
     private String enfermedad;
     private String foto;
 
@@ -83,11 +83,11 @@ public class Mascota {
         this.edad = edad;
     }
 
-    public float getPeso() {
+    public double getPeso() {
         return peso;
     }
 
-    public void setPeso(float peso) {
+    public void setPeso(double peso) {
         this.peso = peso;
     }
 

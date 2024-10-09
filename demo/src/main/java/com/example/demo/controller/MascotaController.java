@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.demo.model.Cliente;
 import com.example.demo.model.Mascota;
 import com.example.demo.model.MascotaDTO;
+import com.example.demo.model.Tratamiento;
 import com.example.demo.repository.ClienteRepository;
 import com.example.demo.service.ClienteService;
 import com.example.demo.service.MascotaService;
+import com.example.demo.service.TratamientoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -38,6 +40,9 @@ public class MascotaController {
     ClienteService clienteService;
 
     @Autowired
+    TratamientoService tratamientoService;
+
+    @Autowired
     private ObjectMapper objectMapper;
 
     @GetMapping("/all")
@@ -47,9 +52,8 @@ public class MascotaController {
     }
 
     @GetMapping("/find/{id}")
-    public String mostrarMascota(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("mascota", mascotaService.SearchById(id));
-        return "mostrar_mascota";
+    public Mascota mostrarMascota(@PathVariable("id") Long id) {
+        return mascotaService.SearchById(id);
     }
 
     @GetMapping("/search/{id}")
@@ -58,9 +62,14 @@ public class MascotaController {
     }
 
     @PostMapping("/add")
-    public void mostrarFormularioCrearMascota(@RequestBody Mascota mascota){
-        if (mascota.getNombre() == null) {
-            System.out.println("No se puede agregar una mascota sin nombre");
+    public void mostrarFormularioCrearMascota(@org.springframework.web.bind.annotation.RequestBody MascotaDTO mascotaDTO){
+        if (mascotaDTO == null) {
+            System.out.println("EL JSON ES NULL");
+            return;
+        }else{
+            System.out.println("mascota DTO: " +mascotaDTO.getMascota().toString());
+            System.out.println("cedula: " + mascotaDTO.getId().toString());
+            mascotaService.add(mascotaDTO.getMascota(), mascotaDTO.getId());
         }
         //mascotaService.add(mascota);
         //if (cliente.isPresent()) {
@@ -76,16 +85,15 @@ public class MascotaController {
         
     
     @PostMapping("/prueba")
-    public Mascota mostrarPrueba(@RequestBody Mascota mascota) {
-        try {
-            // Ya no es necesario usar ObjectMapper, ya que @RequestBody hace la conversión
-            System.out.println("PRUEBA: " + mascota);
-
-            // Devolver la mascota deserializada
-            return mascota;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;  // En caso de error, devolver null o manejar el error como se requiera
+    public MascotaDTO mostrarPrueba(@org.springframework.web.bind.annotation.RequestBody MascotaDTO mascotaDTO) {
+        if (mascotaDTO != null) {
+            System.out.println("MascotaDTO no es null");
+            System.out.println("Mascota: " + mascotaDTO.getMascota().toString());
+            System.out.println("Cédula: " + mascotaDTO.getId());
+            return mascotaDTO;
+        } else {
+            System.out.println("MascotaDTO es null");
+            return null;
         }
     }
 
@@ -97,23 +105,25 @@ public class MascotaController {
         return "modificar_mascota";
     }
 
-    @PostMapping("update/{id}")
-    public String updateCliente(@PathVariable("id") Long id, @ModelAttribute("mascota") Mascota mascota, @ModelAttribute("cedula") String cedula) {
-        Cliente c = clienteService.findByCedula(cedula).get();
-        if(c == null){
-            return "redirect:/error/" + cedula;
-        }else{
-            mascota.setCliente(c);
+    @PostMapping("/update")
+    public void updateCliente(@org.springframework.web.bind.annotation.RequestBody MascotaDTO mascotaDTO) {
+        Long id = mascotaDTO.getId();
+        Mascota mascota = mascotaDTO.getMascota();
+        Optional<Cliente> c = clienteService.SearchById(id);
+        if(c.isPresent()){
+            mascota.setCliente(c.get());
             mascotaService.update(mascota);
-            return "redirect:/mascotas/all";
         }
     }
 
 
     @GetMapping("/delete/{id}")
-    public String borrarMascota(@PathVariable("id") Long id) {
+    public void borrarMascota(@PathVariable("id") Long id) {
+        List<Tratamiento> listTratamieto = tratamientoService.findByMascotaId(id);
+        for (Tratamiento t : listTratamieto) {
+            tratamientoService.delete(t.getId());
+        }
         mascotaService.delete(id);
-        return "redirect:/mascotas/all";
     }
 
 }
