@@ -4,14 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.model.Cliente;
 import com.example.demo.model.Mascota;
-import com.example.demo.repository.MascotaRepository;
 import com.example.demo.service.ClienteService;
 import com.example.demo.service.MascotaService;
 
@@ -25,7 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 
-@RequestMapping("/clientes")
+@RequestMapping("/cliente")
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class ClienteControler {

@@ -1,30 +1,33 @@
 package com.example.demo.controller;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.model.Administrador;
 import com.example.demo.model.Cliente;
 import com.example.demo.model.Veterinario;
-import com.example.demo.repository.ClienteRepository;
 import com.example.demo.service.AdministradorService;
 import com.example.demo.service.ClienteService;
 import com.example.demo.service.VeterinarioService;
 
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 
 
-
-@Controller
+@RequestMapping("/")
+@RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class LandingController {
     
 
@@ -67,6 +70,34 @@ public class LandingController {
         model.addAttribute("password", password);
 
         return "login_veterinario";
+    }
+
+    @GetMapping("/login/{cedula}")
+    public ResponseEntity<Map<String, String>> loginUser(@PathVariable("cedula") String cedula) {
+
+        Optional<Cliente> cliente = clienteService.findByCedula(cedula);
+
+        Map<String, String> response = new HashMap<>();
+
+        if(!cliente.isPresent()){
+            Optional<Veterinario> veterinario = veterinarioService.findByCedula(cedula);
+            if (!veterinario.isPresent()) {
+                Optional<Administrador> admin = administradorService.findByCedula(cedula);
+                if (!admin.isPresent()) {
+                    response.put("userType", "notFound");
+                    return ResponseEntity.ok(response);
+                }else{
+                    response.put("userType", "administrador");
+                    return ResponseEntity.ok(response);
+                }
+            }else{
+                response.put("userType", "veterinario");
+                return ResponseEntity.ok(response);
+            }
+        }else{
+            response.put("userType", "cliente");
+            return ResponseEntity.ok(response);
+        }
     }
 
     @PostMapping("/loginAdmin")
