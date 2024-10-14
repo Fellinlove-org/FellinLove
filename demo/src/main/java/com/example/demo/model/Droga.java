@@ -1,6 +1,9 @@
 package com.example.demo.model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,39 +12,30 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class Droga {
-
     @Id
     @GeneratedValue
     private Long id;
 
     private String nombre;
-    private float precio;
-    private float precioVenta;
-    private Integer unidadesDispo;
-    private Integer UnidadesVenta;
+    private double precioVenta;
+    private double precioCompra;
+    private int unidadesDisponibles;
+    private int unidadesVendidas;
 
-     @OneToMany(mappedBy = "droga")
-    private List<Tratamiento> tratamientos = new ArrayList<>();
+    @JsonIgnoreProperties("droga")
+    @OneToMany(mappedBy = "droga")
+    private List<Tratamiento> consulta = new ArrayList<>();
+
+    public Droga(String nombre, double precioVenta, double precioCompra, int unidadesDisponibles,
+            int unidadesVendidas) {
+        this.nombre = nombre;
+        this.precioVenta = precioVenta;
+        this.precioCompra = precioCompra;
+        this.unidadesDisponibles = unidadesDisponibles;
+        this.unidadesVendidas = unidadesVendidas;
+    }
 
     public Droga() {
-
-    }
-
-    public Droga(Long id, String nombre, float precio, float precioVenta, Integer unidadesDispo, Integer unidadesVenta) {
-        this.id = id;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.precioVenta = precioVenta;
-        this.unidadesDispo = unidadesDispo;
-        UnidadesVenta = unidadesVenta;
-    }
-
-    public Droga(String nombre, float precio, float precioVenta, Integer unidadesDispo, Integer unidadesVenta) {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.precioVenta = precioVenta;
-        this.unidadesDispo = unidadesDispo;
-        UnidadesVenta = unidadesVenta;
     }
 
     public Long getId() {
@@ -60,38 +54,44 @@ public class Droga {
         this.nombre = nombre;
     }
 
-    public float getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(float precio) {
-        this.precio = precio;
-    }
-
-    public float getPrecioVenta() {
+    public double getPrecioVenta() {
         return precioVenta;
     }
 
-    public void setPrecioVenta(float precioVenta) {
+    public void setPrecioVenta(double precioVenta) {
         this.precioVenta = precioVenta;
     }
 
-    public Integer getUnidadesDispo() {
-        return unidadesDispo;
+    public double getPrecioCompra() {
+        return precioCompra;
     }
 
-    public void setUnidadesDispo(Integer unidadesDispo) {
-        this.unidadesDispo = unidadesDispo;
+    public void setPrecioCompra(double precioCompra) {
+        this.precioCompra = precioCompra;
     }
 
-    public Integer getUnidadesVenta() {
-        return UnidadesVenta;
+    public List<Tratamiento> getConsulta() {
+        return consulta;
     }
 
-    public void setUnidadesVenta(Integer unidadesVenta) {
-        UnidadesVenta = unidadesVenta;
+    public void setConsulta(List<Tratamiento> consulta) {
+        this.consulta = consulta;
     }
-    
-    
+
+    public int getUnidadesDisponibles() {
+        return unidadesDisponibles;
+    }
+
+    public void setUnidadesDisponibles(int unidadesDisponibles) {
+        this.unidadesDisponibles = unidadesDisponibles;
+    }
+
+    public int getUnidadesVendidas() {
+        return unidadesVendidas;
+    }
+
+    public void setUnidadesVendidas(int unidadesVendidas) {
+        this.unidadesVendidas = unidadesVendidas;
+    }
 
 }

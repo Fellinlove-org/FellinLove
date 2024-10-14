@@ -111,9 +111,9 @@ public class MascotaController {
 
     @GetMapping("/delete/{id}")
     public void borrarMascota(@PathVariable("id") Long id) {
-        List<Tratamiento> listTratamieto = tratamientoService.findByMascotaId(id);
+        List<Tratamiento> listTratamieto = (List<Tratamiento>) tratamientoService.findById(id);
         for (Tratamiento t : listTratamieto) {
-            tratamientoService.delete(t.getId());
+            tratamientoService.deleteById(t.getId());
         }
         mascotaService.delete(id);
     }
