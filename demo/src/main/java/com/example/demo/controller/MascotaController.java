@@ -38,9 +38,18 @@ public class MascotaController {
 
 
     @GetMapping("/all")
-    public String mostrarTodasMascotas(Model model) {
-        model.addAttribute("mascotas", mascotaService.SearchAll());
-        return "mostrar_todas_mascotas";
+    public List<Mascota> mostrarTodasMascotas(Model model) {
+        return mascotaService.SearchAll();
+    }
+
+    @GetMapping("/cedula/{cedula}")
+    public List<Mascota> mostrarMascotaCedula(@PathVariable("cedula") String cedula) {
+        Optional<Cliente> c = clienteService.findByCedula(cedula);
+        if (c.isPresent()) {
+            List<Mascota> mascotas = mascotaService.findByClienteId(c.get().getId());
+            return mascotas;
+        }
+        return null;
     }
 
     @GetMapping("/find/{id}")
@@ -63,38 +72,6 @@ public class MascotaController {
             System.out.println("cedula: " + mascotaDTO.getId().toString());
             mascotaService.add(mascotaDTO.getMascota(), mascotaDTO.getId());
         }
-        //mascotaService.add(mascota);
-        //if (cliente.isPresent()) {
-            // Asiganar cliente
-            //Cliente c = cliente.get();
-            //mascota.setCliente(c);
-            //mascotaService.add(mascota);
-            
-        //}
-    }
-        
-            
-        
-    
-    @PostMapping("/prueba")
-    public MascotaDTO mostrarPrueba(@org.springframework.web.bind.annotation.RequestBody MascotaDTO mascotaDTO) {
-        if (mascotaDTO != null) {
-            System.out.println("MascotaDTO no es null");
-            System.out.println("Mascota: " + mascotaDTO.getMascota().toString());
-            System.out.println("Cédula: " + mascotaDTO.getId());
-            return mascotaDTO;
-        } else {
-            System.out.println("MascotaDTO es null");
-            return null;
-        }
-    }
-
-
-    @GetMapping("/update/{id}")
-    public String mostrarFormularioActualizarMascota(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("mascota", mascotaService.SearchById(id));
-        model.addAttribute("cedula", mascotaService.SearchById(id).getCliente().getcedula());
-        return "modificar_mascota";
     }
 
     @PostMapping("/update")
@@ -111,7 +88,7 @@ public class MascotaController {
 
     @GetMapping("/delete/{id}")
     public void borrarMascota(@PathVariable("id") Long id) {
-        List<Tratamiento> listTratamieto = (List<Tratamiento>) tratamientoService.findById(id);
+        List<Tratamiento> listTratamieto = tratamientoService.findByMascotaId(id);
         for (Tratamiento t : listTratamieto) {
             tratamientoService.deleteById(t.getId());
         }

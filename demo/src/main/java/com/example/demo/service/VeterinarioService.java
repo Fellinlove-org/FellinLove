@@ -1,13 +1,13 @@
 package com.example.demo.service;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import com.example.demo.model.Veterinario;
 
 public interface VeterinarioService {
 
-    public Collection<Veterinario> SearchAll();
+    public List<Veterinario> SearchAll();
 
     public Optional<Veterinario> SearchById(Long id);
 

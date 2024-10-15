@@ -27,7 +27,7 @@ public class MascotaServiceImpl implements MascotaService{
     }
 
     @Override
-    public Collection<Mascota> SearchAll() {
+    public List<Mascota> SearchAll() {
 
         return mascotaRepository.findAll();
     }

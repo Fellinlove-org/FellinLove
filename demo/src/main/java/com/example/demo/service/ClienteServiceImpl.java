@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class ClienteServiceImpl implements ClienteService{
 
     }
     @Override
-    public Collection<Cliente> SearchAll() {
+    public List<Cliente> SearchAll() {
 
         return clienteRepository.findAll();
         

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.model.Cliente;
 import com.example.demo.model.Mascota;
+import com.example.demo.model.MascotaDTO;
 import com.example.demo.service.ClienteService;
 import com.example.demo.service.MascotaService;
 
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 
-@RequestMapping("/cliente")
+@RequestMapping("/clientes")
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class ClienteControler {
@@ -41,36 +42,20 @@ public class ClienteControler {
     }
 
     @GetMapping("/all")
-    public String mostrarTodosClientes(Model model) {
-        model.addAttribute("clientes", clienteService.SearchAll());
-        return "mostrar_todos_clientes";
+    public List<Cliente> mostrarTodosClientes() {
+        return clienteService.SearchAll();
     }
 
-    @GetMapping("/find/{id}")
-    public String mostrarCliente(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("cliente", clienteService.SearchById(id).get());
-        model.addAttribute("mascotas", mascotaService.findByClienteId(id));
-        return "mostrar_cliente";
-    }
+   
 
-    @GetMapping("/add")
-    public String mostrarFormularioCrear(Model model) {
-
-        Cliente cliente= new Cliente("", "", "", "", "");
-
-        model.addAttribute("cliente", cliente);
-
-        return "crear_cliente";
-    }
-
-    @PostMapping("/agregar")
-    public String agregarCliente(@ModelAttribute("cliente") Cliente cliente) {
-        Optional<Cliente> c = clienteService.findByCedula(cliente.getcedula());
+    @PostMapping("/add")
+    public String agregarCliente(@org.springframework.web.bind.annotation.RequestBody Cliente cliente) {
+        Optional<Cliente> c = clienteService.SearchById(cliente.getId());
         if (!c.isPresent()) {
             clienteService.add(cliente);
-            return "redirect:/clientes/all";
+            return "si lo agrego";
         }else{
-            return "redirect:/errorUpdate/" + cliente.getcedula();
+            return "EL CLIENTRE YA ESTA ";
         }
     }
 
@@ -87,19 +72,9 @@ public class ClienteControler {
         
     }
 
-    @GetMapping("update/{id}")
-    public String mostarFormularioUpdate(@PathVariable("id") Long id, Model model) {
-        Cliente c = clienteService.SearchById(id).get();
-        if(c != null){
-            model.addAttribute("cliente", c);
-            return "modificar_cliente";
-        }else{
-            return "redirect:/error/" + id;
-        }
-    }
     @PostMapping("update/{id}")
-    public String updateCliente(@PathVariable("id") Long id, @ModelAttribute("cliente") Cliente cliente) {
-        clienteService.update(cliente);
+    public String updateCliente(@PathVariable("id") Long id) {
+        //clienteService.update(cliente);
         return "redirect:/clientes/all";
     }
     

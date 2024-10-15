@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class TratamientoServiceImpl implements TratamientoService {
     }
 
     @Override
-    public Collection<Tratamiento> findAll() {
+    public List<Tratamiento> findAll() {
         return tratamientoRepository.findAll();
     }
 
@@ -39,5 +39,10 @@ public class TratamientoServiceImpl implements TratamientoService {
         if (tratamiento.getId() != null && tratamientoRepository.existsById(tratamiento.getId())) {
             tratamientoRepository.save(tratamiento);
         }
+    }
+
+    @Override
+    public List<Tratamiento> findByMascotaId(Long mascotaId) {
+        return tratamientoRepository.findByMascotaId(mascotaId);
     }
 }

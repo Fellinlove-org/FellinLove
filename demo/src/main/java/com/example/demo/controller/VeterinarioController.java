@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.ui.Model;
 
 
-@RequestMapping("/veterinario")
+@RequestMapping("/veterinarios")
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class VeterinarioController {
@@ -24,10 +25,8 @@ public class VeterinarioController {
     VeterinarioService veterinarioService;
 
     @GetMapping("/all")
-    public String mostrarTodosveterinarios(Model model) {
-        model.addAttribute("veterinario", veterinarioService.SearchAll());
-
-        return "mostrar_todos_veterinario";
+    public List<Veterinario> mostrarTodosveterinarios() {
+        return veterinarioService.SearchAll();
     }
 
 

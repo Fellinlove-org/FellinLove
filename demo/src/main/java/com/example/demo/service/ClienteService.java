@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import com.example.demo.model.Cliente;
@@ -11,7 +11,7 @@ public interface ClienteService {
 
     public Optional<Cliente> findByCedula(String cedula);
 
-    public Collection<Cliente> SearchAll();
+    public List<Cliente> SearchAll();
 
     public void deleteById(Long id);
 
