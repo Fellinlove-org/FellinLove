@@ -1,67 +1,44 @@
+
 package com.example.demo.model;
+
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-
-import java.time.LocalDate;
 
 @Entity
 public class Tratamiento {
-    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
-    
-    private String nombre;
-    private LocalDate fecha;
 
-   
+    @JsonIgnoreProperties("consulta")
     @ManyToOne
-    private Mascota mascota;
-    @ManyToOne
+    @JoinColumn(name = "veterinario_id")
     private Veterinario veterinario;
+
+    @JsonIgnoreProperties("consulta")
     @ManyToOne
+    @JoinColumn(name = "mascota_id")
+    private Mascota mascota;
+
+    @JsonIgnoreProperties("consulta")
+    @ManyToOne
+    @JoinColumn(name = "droga_id")
     private Droga droga;
 
+    private Date fechaConsulta;
 
-
-    public Tratamiento(Long id, String nombre, LocalDate fecha) {
-        this.id = id;
-        this.nombre = nombre;
-        this.fecha = fecha;
-    }
-    
-
-    // Constructor con parámetros para asociar mascota, veterinario y droga
-    public Tratamiento(String nombre, LocalDate fecha, Mascota mascota, Veterinario veterinario, Droga droga) {
-    this.nombre = nombre;
-    this.fecha = fecha;
-    this.mascota = mascota;
-    this.veterinario = veterinario;
-    this.droga = droga;
-}
-
-    public Tratamiento(String nombre, LocalDate fecha) {
-        this.nombre = nombre;
-        this.fecha = fecha;
+    public Tratamiento() {
     }
 
-  
-
-    // Constructor, getters y setters
-    public Tratamiento() {}
-    
-
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    public Tratamiento(Date fechaConsulta) {
+        this.fechaConsulta = fechaConsulta;
     }
 
     public Long getId() {
@@ -72,14 +49,35 @@ public class Tratamiento {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Veterinario getVeterinario() {
+        return veterinario;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setVeterinario(Veterinario veterinario) {
+        this.veterinario = veterinario;
     }
 
+    public Date getFechaConsulta() {
+        return fechaConsulta;
+    }
 
- 
+    public void setFechaConsulta(Date fechaConsulta) {
+        this.fechaConsulta = fechaConsulta;
+    }
+
+    public Mascota getMascota() {
+        return mascota;
+    }
+
+    public void setMascota(Mascota mascota) {
+        this.mascota = mascota;
+    }
+
+    public Droga getDroga() {
+        return droga;
+    }
+
+    public void setDroga(Droga droga) {
+        this.droga = droga;
+    }
 }

@@ -5,10 +5,18 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Controller;
 
-import java.time.LocalDate;
-import java.util.Arrays;
+import java.io.InputStream;
+import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
+
+
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.example.demo.repository.AdministradorRepository;
 import com.example.demo.repository.ClienteRepository;
@@ -211,10 +219,7 @@ public class DatabaseInit implements ApplicationRunner{
 
 
 
-        // Agregar drogas a la base de datos
-        drogaRepository.save(new Droga("Ibuprofeno", 10.0f, 15.0f, 100, 50));
-        drogaRepository.save(new Droga("Paracetamol", 5.0f, 8.0f, 200, 78));
-        drogaRepository.save(new Droga("Amoxicilina", 12.0f, 18.0f, 150, 100));
+
  
  // Agregar veterinarios a la base de datos
 veterinarioRepository.save(new Veterinario("2222", "Dr. Juan Pérez", "Medicina General", "juan.perez@mail.com", "0001", "https://images.stockcake.com/public/e/9/3/e9369a0d-c4d0-4688-851b-07edafc906ff_large/veterinarian-examining-rabbit-stockcake.jpg"));
@@ -274,38 +279,114 @@ veterinarioRepository.save(new Veterinario("2223", "Dra. Mariana Castillo", "Rep
         
        // Asignar tratamiento
 
-     // Define los IDs
-List<Long> mascotaIds = Arrays.asList(1L, 2L, 3L); // Cambia estos IDs por los reales
-List<Long> veterinarioIds = Arrays.asList(1L, 2L, 3L); // Cambia estos IDs por los reales
-List<Long> drogaIds = Arrays.asList(1L, 2L, 3L); // Cambia estos IDs por los reales
+// Ruta al archivo Excel
+                InputStream inputStream = getClass().getResourceAsStream("/static/excel/MEDICAMENTOS_VETERINARIA.xlsx");
+        
+                // Leer el archivo Excel
+                Workbook workbook = new XSSFWorkbook(inputStream);
+                Sheet sheet = workbook.getSheetAt(0); // Leer la primera hoja
 
-// Crea un tratamiento para cada combinación de mascota, veterinario y droga
-for (Long mascotaId : mascotaIds) {
-    for (Long veterinarioId : veterinarioIds) {
-        for (Long drogaId : drogaIds) {
-            // Obtener las entidades
-            Mascota mascota = mascotaRepository.findById(mascotaId).orElse(null);
-            Veterinario veterinario = veterinarioRepository.findById(veterinarioId).orElse(null);
-            Droga droga = drogaRepository.findById(drogaId).orElse(null);
+                // Iterar sobre las filas del archivo
+                Iterator<Row> rows = sheet.iterator();
 
-            // Crear y guardar el tratamiento si todas las entidades existen
-            if (mascota != null && veterinario != null && droga != null) {
-                Tratamiento tratamiento = new Tratamiento(
-                    "Tratamiento de " + droga.getNombre(),
-                    LocalDate.now(),
-                    mascota,
-                    veterinario,
-                    droga
-                );
+                while (rows.hasNext()) {
+                        Row row = rows.next();
 
-                tratamientoRepository.save(tratamiento);
-            } else {
-                System.out.println("No se pudo encontrar alguna de las entidades necesarias para la combinación: "
-                        + "Mascota ID " + mascotaId + ", Veterinario ID " + veterinarioId + ", Droga ID " + drogaId);
-            }
-        }
-    }
-}
+                        // Suponiendo que la primera fila contiene encabezados
+                        if (row.getRowNum() == 0) {
+                                continue; // Omitir encabezados
+                        }
+
+                        // Suponiendo que el archivo tiene las columnas: nombre, dosis, descripción,
+                        // etc.
+                        String nombre = row.getCell(0).getStringCellValue();
+                        double precioVenta = row.getCell(1).getNumericCellValue();
+                        double precioCompra = row.getCell(2).getNumericCellValue();
+                        int unidadesDisponibles = (int) row.getCell(3).getNumericCellValue();
+                        int unidadesVendidas = (int) row.getCell(4).getNumericCellValue();
+                        // Otros campos que puedas tener...
+
+                        // Crear una nueva instancia de Droga
+                        Droga droga = new Droga();
+                        droga.setNombre(nombre);
+                        droga.setPrecioVenta(precioVenta);
+                        droga.setPrecioCompra(precioCompra);
+                        droga.setUnidadesDisponibles(unidadesDisponibles);
+                        droga.setUnidadesVendidas(unidadesVendidas);
+                        // Asignar otros campos...
+
+                        // Guardar el medicamento en la base de datos
+                        drogaRepository.save(droga);
+                }
+
+                // Cerrar el workbook y el InputStream
+                workbook.close();
+                inputStream.close();
+
+                // Asociar mascotas a clientes
+                List<Mascota> mascotas = mascotaRepository.findAll();
+                List<Cliente> clientes = clienteRepository.findAll();
+
+                int indiceMascota = 0;
+                for (Cliente cliente : clientes) {
+                        for (int i = 0; i < 2 && indiceMascota < mascotas.size(); i++) {
+                                Mascota mascota = mascotas.get(indiceMascota);
+                                mascota.setCliente(cliente);
+                                mascotaRepository.save(mascota);
+                                indiceMascota++;
+                        }
+                }
+
+                Calendar calendar = Calendar.getInstance();
+
+                calendar.set(2023, Calendar.MAY, 10);
+                tratamientoRepository.save(new Tratamiento(calendar.getTime()));
+
+                calendar.set(2023, Calendar.JUNE, 15);
+                tratamientoRepository.save(new Tratamiento(calendar.getTime()));
+
+                calendar.set(2023, Calendar.JULY, 20);
+                tratamientoRepository.save(new Tratamiento(calendar.getTime()));
+
+                calendar.set(2023, Calendar.AUGUST, 25);
+                tratamientoRepository.save(new Tratamiento(calendar.getTime()));
+
+                calendar.set(2023, Calendar.SEPTEMBER, 30);
+                tratamientoRepository.save(new Tratamiento(calendar.getTime()));
+
+                calendar.set(2023, Calendar.OCTOBER, 5);
+                tratamientoRepository.save(new Tratamiento(calendar.getTime()));
+
+                calendar.set(2023, Calendar.NOVEMBER, 10);
+                tratamientoRepository.save(new Tratamiento(calendar.getTime()));
+
+                calendar.set(2023, Calendar.DECEMBER, 15);
+                tratamientoRepository.save(new Tratamiento(calendar.getTime()));
+
+                calendar.set(2024, Calendar.JANUARY, 20);
+                tratamientoRepository.save(new Tratamiento(calendar.getTime()));
+
+                calendar.set(2024, Calendar.FEBRUARY, 25);
+                tratamientoRepository.save(new Tratamiento(calendar.getTime()));
+
+                int cantidad_mascota = mascotaRepository.findAll().size();
+                int cantidad_vet = veterinarioRepository.findAll().size();
+                int cantidad_droga = drogaRepository.findAll().size();
+
+                for (Tratamiento tratamiento : tratamientoRepository.findAll()) {
+                        int mascota_id = ThreadLocalRandom.current().nextInt(1, cantidad_mascota);
+                        int vet_id = ThreadLocalRandom.current().nextInt(1, cantidad_vet);
+                        int droga_id = ThreadLocalRandom.current().nextInt(1, cantidad_droga);
+
+                        Mascota mascota = mascotaRepository.findById(Long.valueOf(mascota_id)).get();
+                        Veterinario veterinario = veterinarioRepository.findById(Long.valueOf(vet_id)).get();
+                        Droga droga = drogaRepository.findById(Long.valueOf(droga_id)).get();
+
+                        tratamiento.setMascota(mascota);
+                        tratamiento.setVeterinario(veterinario);
+                        tratamiento.setDroga(droga);
+                }
+
 
     }
 }

@@ -77,6 +77,13 @@
 			<version>2.17.2</version>
 		</dependency>
 
+		<dependency>
+    		<groupId>org.apache.poi</groupId>
+    		<artifactId>poi-ooxml</artifactId>
+    		<version>5.2.3</version> <!-- Asegúrate de usar la última versión -->
+		</dependency>
+
+
 
 	</dependencies>
 

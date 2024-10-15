@@ -1,25 +1,23 @@
 package com.example.demo.service;
 
 import java.util.Collection;
-import java.util.Optional;
-import java.util.List;
 
+import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Tratamiento;
 
+@Service
 public interface TratamientoService {
-    public Optional <Tratamiento> SearchById(Long id);
 
-    public Collection <Tratamiento> SearchAll();
+    public Tratamiento findById(Long id);
 
-    public void add(Tratamiento tratamiento);
+    public Collection<Tratamiento> findAll();
 
-    public void update(Tratamiento tratamiento);
+    public void add(Tratamiento consulta);
 
-    public void delete(Long id);
+    public void deleteById(Long id);
 
-    public List<Tratamiento> findByMascotaId(Long mascotaId);
+    public void update(Tratamiento consulta);
 }
-
 
 
