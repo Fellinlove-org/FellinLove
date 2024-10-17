@@ -43,6 +43,14 @@ public class ClienteControler {
     }
 
 
+    //METODO PARA ENCONTRAR A UN CLIENTE POR SU CEDULA
+    //url: http://localhost:8090/cliente/find/cedula
+    @GetMapping("/find/cedula/{cedula}")
+    public Optional<Cliente> findByCedula(@PathVariable("cedula") String cedula) {
+        return clienteService.findByCedula(cedula);
+    }
+
+
     //METODO PARA ENCONTRAR A TODOS LOS CLIENTES
     //url: http://localhost:8090/cliente/find/all
     @GetMapping("/find/all")

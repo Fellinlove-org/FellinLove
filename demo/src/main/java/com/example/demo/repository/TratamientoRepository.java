@@ -10,4 +10,6 @@ import com.example.demo.model.Tratamiento;
 public interface TratamientoRepository extends JpaRepository<Tratamiento, Long>{
     public List<Tratamiento> findByMascotaId(Long clienteId);
 
+    public List<Tratamiento> findByVeterinarioId(Long veterinarioId);
+
 }

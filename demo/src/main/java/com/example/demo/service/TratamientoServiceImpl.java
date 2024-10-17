@@ -45,4 +45,9 @@ public class TratamientoServiceImpl implements TratamientoService {
     public List<Tratamiento> findByMascotaId(Long mascotaId) {
         return tratamientoRepository.findByMascotaId(mascotaId);
     }
+
+    @Override
+    public List<Tratamiento> findByVeterinarioId(Long veterinarioId) {
+        return tratamientoRepository.findByVeterinarioId(veterinarioId);
+    }
 }

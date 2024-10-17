@@ -20,6 +20,8 @@ public interface TratamientoService {
     public void update(Tratamiento consulta);
 
     public List<Tratamiento> findByMascotaId(Long mascotaId);
+
+    public List<Tratamiento> findByVeterinarioId(Long veterinarioId);
 }
 
 
