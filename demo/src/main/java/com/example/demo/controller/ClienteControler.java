@@ -10,21 +10,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.model.Cliente;
 import com.example.demo.model.Mascota;
-import com.example.demo.model.MascotaDTO;
 import com.example.demo.service.ClienteService;
 import com.example.demo.service.MascotaService;
 
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 
 
 
 
-@RequestMapping("/clientes")
+@RequestMapping("/cliente")
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class ClienteControler {
@@ -34,20 +33,26 @@ public class ClienteControler {
 
     @Autowired
     MascotaService mascotaService;
-    
 
-    @GetMapping("/search/{cedula}")
-    public Optional<Cliente> findByCedula(@PathVariable("cedula") String cedula) {
-        return clienteService.findByCedula(cedula);
+
+    //METODO PARA ENCONTRAR A UN CLIENTE POR SI ID
+    //url: http://localhost:8090/cliente/find/1
+    @GetMapping("/find/{id}")
+    public Optional<Cliente> findById(@PathVariable("id") Long id) {
+        return clienteService.SearchById(id);
     }
 
-    @GetMapping("/all")
+
+    //METODO PARA ENCONTRAR A TODOS LOS CLIENTES
+    //url: http://localhost:8090/cliente/find/all
+    @GetMapping("/find/all")
     public List<Cliente> mostrarTodosClientes() {
         return clienteService.SearchAll();
     }
 
-   
 
+    //METODO PARA AGREGAR A UN CLIENTE
+    //url: http://localhost:8090/cliente/add
     @PostMapping("/add")
     public String agregarCliente(@org.springframework.web.bind.annotation.RequestBody Cliente cliente) {
         Optional<Cliente> c = clienteService.SearchById(cliente.getId());
@@ -59,25 +64,27 @@ public class ClienteControler {
         }
     }
 
+
+    //METODO PARA ACTUALIZAR UN CLIENTE
+    //url: http://localhost:8090/cliente/update
+    @PutMapping("update")
+    public String update(@org.springframework.web.bind.annotation.RequestBody Cliente cliente) {
+        clienteService.update(cliente);
+        return "se actualizo";
+    }
     
 
-    @GetMapping("delete/{id}")
-    public String BorrarCliente(@PathVariable("id") Long id){
+    //METODO PARA BORRAR UN CLIENTE
+    //url: http://localhost:8090/cliente/delete/1
+    @DeleteMapping("delete/{id}")
+    public String delete(@PathVariable("id") Long id) {
         List<Mascota> mascotas = mascotaService.findByClienteId(id);
         for (Mascota mascota : mascotas) {
             mascotaService.delete(mascota.getId());
         }
         clienteService.deleteById(id);
-        return "redirect:/clientes/all";
-        
+        return "se borro";
     }
+    
 
-    @PostMapping("update/{id}")
-    public String updateCliente(@PathVariable("id") Long id) {
-        //clienteService.update(cliente);
-        return "redirect:/clientes/all";
-    }
-    
-    
-    
 }
