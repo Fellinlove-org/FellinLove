@@ -82,14 +82,9 @@ public class MascotaController {
 
     //METODO PARA AGREGAR A UNA MASCOTA
     //url: http://localhost:8090/mascota/add
-    @PostMapping("/add/{cedula}")
-    public Mascota mostrarFormularioCrearMascota(@RequestBody Mascota mascota, @PathVariable("cedula") String cedula) {
-        Optional<Cliente> c = clienteService.findByCedula(cedula);
-        if (c.isPresent()) {
-            mascota.setCliente(c.get());
-            return mascotaService.add(mascota);
-        }
-        return null;
+    @PostMapping("/add/{idcliente}")
+    public Mascota mostrarFormularioCrearMascota(@RequestBody Mascota mascota, @PathVariable("idcliente") Long idcliente) {
+        return mascotaService.add(mascota, idcliente);
     }
 
 

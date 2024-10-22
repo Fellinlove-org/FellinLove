@@ -11,7 +11,7 @@ public interface MascotaService {
 
     public List<Mascota> SearchAll();
 
-    public Mascota add(Mascota mascota);
+    public Mascota add(Mascota mascota, Long idcliente);
 
     public Mascota update(Mascota mascota);
 

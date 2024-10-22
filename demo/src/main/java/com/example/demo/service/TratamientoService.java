@@ -13,7 +13,7 @@ public interface TratamientoService {
 
     public List<Tratamiento> findAll();
 
-    public void add(Tratamiento consulta);
+    public Tratamiento add(Tratamiento tratamiento, Long idveterinario, Long idmascota, Long iddroga);
 
     public void deleteById(Long id);
 

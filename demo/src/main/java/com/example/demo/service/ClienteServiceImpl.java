@@ -37,8 +37,8 @@ public class ClienteServiceImpl implements ClienteService{
         
     }
     @Override
-    public void add(Cliente cliente) {
-        clienteRepository.save(cliente);
+    public Cliente add(Cliente cliente) {
+        return clienteRepository.save(cliente);
     }
     @Override
     public Optional<Cliente> findByCedula(String cedula) {

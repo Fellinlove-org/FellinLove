@@ -27,6 +27,18 @@ public class Droga {
     @OneToMany(mappedBy = "droga", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Tratamiento> tratamientos = new ArrayList<>();
 
+    
+
+    public Droga(Long id, String nombre, double precioVenta, double precioCompra, int unidadesDisponibles,
+            int unidadesVendidas) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precioVenta = precioVenta;
+        this.precioCompra = precioCompra;
+        this.unidadesDisponibles = unidadesDisponibles;
+        this.unidadesVendidas = unidadesVendidas;
+    }
+
     public Droga(String nombre, double precioVenta, double precioCompra, int unidadesDisponibles,
             int unidadesVendidas) {
         this.nombre = nombre;
