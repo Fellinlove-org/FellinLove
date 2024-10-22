@@ -3,7 +3,7 @@ package com.example.demo.model;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,22 +17,39 @@ public class Tratamiento {
     @GeneratedValue
     private Long id;
 
-    @JsonIgnoreProperties("consulta")
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "veterinario_id")
     private Veterinario veterinario;
 
-    @JsonIgnoreProperties("consulta")
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "mascota_id")
     private Mascota mascota;
 
-    @JsonIgnoreProperties("consulta")
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "droga_id")
     private Droga droga;
 
     private Date fechaConsulta;
+
+    
+
+    public Tratamiento(Veterinario veterinario, Mascota mascota, Droga droga, Date fechaConsulta) {
+        this.veterinario = veterinario;
+        this.mascota = mascota;
+        this.droga = droga;
+        this.fechaConsulta = fechaConsulta;
+    }
+
+    public Tratamiento(Long id, Veterinario veterinario, Mascota mascota, Droga droga, Date fechaConsulta) {
+        this.id = id;
+        this.veterinario = veterinario;
+        this.mascota = mascota;
+        this.droga = droga;
+        this.fechaConsulta = fechaConsulta;
+    }
 
     public Tratamiento() {
     }

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.demo.model.Cliente;
 import com.example.demo.model.Mascota;
-import com.example.demo.model.Tratamiento;
 import com.example.demo.service.ClienteService;
 import com.example.demo.service.MascotaService;
 import com.example.demo.service.TratamientoService;
@@ -75,40 +74,36 @@ public class MascotaController {
         return mascotaService.SearchById(id);
     }
 
+    @GetMapping("/count/active")
+    public Integer countActive() {
+        return mascotaService.countActive();
+    }
+
 
     //METODO PARA AGREGAR A UNA MASCOTA
     //url: http://localhost:8090/mascota/add
-    @PostMapping("/add")
-        public String mostrarFormularioCrearMascota(@RequestBody Mascota mascota){
-        if (mascota == null) {
-            System.out.println("EL JSON ES NULL");
-            return "EL JSON ES NULL";
+    @PostMapping("/add/{cedula}")
+    public Mascota mostrarFormularioCrearMascota(@RequestBody Mascota mascota, @PathVariable("cedula") String cedula) {
+        Optional<Cliente> c = clienteService.findByCedula(cedula);
+        if (c.isPresent()) {
+            mascota.setCliente(c.get());
+            return mascotaService.add(mascota);
         }
-        
-        System.out.println("Mascota: " + mascota.getNombre());
-        System.out.println("Cliente: " + mascota.getCliente());
-        
-        if (mascota.getCliente() == null) {
-            System.out.println("El cliente es NULL");
-            return "El cliente es NULL";
-        } else {
-            mascotaService.add(mascota);
-            return "MASCOTA AGREGADA CORRECTAMENTE";
+        return null;
     }
-}
 
 
 
     //METODO PARA ACTUALIZAR UNA MASCOTA
     //url: http://localhost:8090/mascota/update
-    @PutMapping("/update")
-    public void updateCliente(@RequestBody Mascota mascota) {
-        if (mascota == null) {
-            System.out.println("EL JSON ES NULL");
-            return;
-        }else{
-            mascotaService.update(mascota);
+    @PutMapping("/update/{cedula}")
+    public Mascota updateCliente(@RequestBody Mascota mascota, @PathVariable("cedula") String cedula) {
+        Optional<Cliente> c = clienteService.findByCedula(cedula);
+        if (c.isPresent()) {
+            mascota.setCliente(c.get());
+            return mascotaService.update(mascota);
         }
+        return null;
     }
 
 
@@ -116,10 +111,6 @@ public class MascotaController {
     //url: http://localhost:8090/mascota/delete/1
     @DeleteMapping("/delete/{id}")
     public void borrarMascota(@PathVariable("id") Long id) {
-        List<Tratamiento> listTratamieto = tratamientoService.findByMascotaId(id);
-        for (Tratamiento t : listTratamieto) {
-            tratamientoService.deleteById(t.getId());
-        }
         mascotaService.delete(id);
     }
 

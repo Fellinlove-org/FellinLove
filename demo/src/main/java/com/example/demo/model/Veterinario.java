@@ -2,6 +2,10 @@ package com.example.demo.model;
 
 
 import java.util.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -22,7 +26,8 @@ public class Veterinario {
     private String foto;
 
 
-    @OneToMany(mappedBy = "veterinario")
+    @JsonIgnore
+    @OneToMany(mappedBy = "veterinario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Tratamiento> tratamientos = new ArrayList<>();
 
     public Veterinario(Long id, String cedula, String nombre, String especialidad,String correo, String password, String foto) {

@@ -3,8 +3,8 @@ package com.example.demo.model;
 import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -25,18 +25,20 @@ public class Mascota {
     private double peso;
     private String enfermedad;
     private String foto;
+    private Boolean estado;
 
     
-    @JsonIgnoreProperties("mascotas")
-    @OneToMany(mappedBy = "mascota")
+    @JsonIgnore
+    @OneToMany(mappedBy = "mascota", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Tratamiento> tratamientos = new ArrayList<>();
 
     
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    public Mascota(Long id, String nombre, String raza, int edad, float peso, String enfermedad, String foto) {
+    public Mascota(Long id, String nombre, String raza, int edad, double peso, String enfermedad, String foto, Boolean estado) {
         this.id = id;
         this.nombre = nombre;
         this.raza = raza;
@@ -44,15 +46,18 @@ public class Mascota {
         this.peso = peso;
         this.enfermedad = enfermedad;
         this.foto = foto;
+        this.estado = estado;
     }
 
-    public Mascota(String nombre, String raza, int edad, float peso, String enfermedad, String foto) {
+    public Mascota(String nombre, String raza, int edad, double peso, String enfermedad, String foto, Boolean estado) {
+        this.nombre = nombre;
         this.nombre = nombre;
         this.raza = raza;
         this.edad = edad;
         this.peso = peso;
         this.enfermedad = enfermedad;
         this.foto = foto;
+        this.estado = estado;
     }
 
     public Mascota() {
@@ -117,7 +122,24 @@ public class Mascota {
         return id;
     }
 
+    
 
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+
+    public List<Tratamiento> getTratamientos() {
+        return tratamientos;
+    }
+
+    public void setTratamientos(List<Tratamiento> tratamientos) {
+        this.tratamientos = tratamientos;
+    }
 
     public void setId(Long id) {
         this.id = id;

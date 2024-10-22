@@ -3,8 +3,9 @@ package com.example.demo.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -22,9 +23,9 @@ public class Droga {
     private int unidadesDisponibles;
     private int unidadesVendidas;
 
-    @JsonIgnoreProperties("droga")
-    @OneToMany(mappedBy = "droga")
-    private List<Tratamiento> consulta = new ArrayList<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "droga", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Tratamiento> tratamientos = new ArrayList<>();
 
     public Droga(String nombre, double precioVenta, double precioCompra, int unidadesDisponibles,
             int unidadesVendidas) {
@@ -71,11 +72,11 @@ public class Droga {
     }
 
     public List<Tratamiento> getConsulta() {
-        return consulta;
+        return tratamientos;
     }
 
-    public void setConsulta(List<Tratamiento> consulta) {
-        this.consulta = consulta;
+    public void setConsulta(List<Tratamiento> tratamientos) {
+        this.tratamientos = tratamientos;
     }
 
     public int getUnidadesDisponibles() {

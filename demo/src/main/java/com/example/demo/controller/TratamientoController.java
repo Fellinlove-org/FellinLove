@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.demo.service.TratamientoService;
+
 import com.example.demo.model.Tratamiento;
 
 @RequestMapping("/tratamiento")
@@ -38,11 +40,21 @@ public class TratamientoController {
         return tratamientoService.findById(id);
     }
 
+    @GetMapping("/count")
+    public Integer countTratamiento() {
+        return tratamientoService.countTratamiento();
+    }
+
+    @GetMapping("/sum")
+    public Integer sumTotalVentas() {
+        return tratamientoService.sumTotalVentas();
+    }
+
 
     // METODO PARA AGREGAR UN TRATAMIENTO
     // url: http://localhost:8090/tratamiento/add
-    @PostMapping("/add")
-    public void agregarTratamiento(@org.springframework.web.bind.annotation.RequestBody Tratamiento tratamiento) {
+    @PostMapping("/add/{idveterinario}/{idmascota}/{iddroga}")
+    public void agregarTratamiento(@RequestBody Tratamiento tratamiento) {
         tratamientoService.add(tratamiento);;
     }
 
@@ -50,7 +62,7 @@ public class TratamientoController {
     // METODO PARA ACTUALIZAR UN TRATAMIENTO
     // url: http://localhost:8090/tratamiento/update
     @PutMapping("/update")
-    public void update(@org.springframework.web.bind.annotation.RequestBody Tratamiento tratamiento) {
+    public void update(@RequestBody Tratamiento tratamiento) {
         tratamientoService.update(tratamiento);
     }
 

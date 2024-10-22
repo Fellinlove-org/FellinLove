@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.model.Tratamiento;
 import com.example.demo.model.Veterinario;
 import com.example.demo.service.TratamientoService;
 import com.example.demo.service.VeterinarioService;
@@ -95,10 +94,6 @@ public class VeterinarioController {
     //url: http://localhost:8090/veterinario/delete/1
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable("id") Long id) {
-        List<Tratamiento> listTratamiento =tratamientoService.findByVeterinarioId(id);
-        for (Tratamiento t : listTratamiento) {
-            tratamientoService.deleteById(t.getId());
-        }
         veterinarioService.deleteById(id);;
     }
 }

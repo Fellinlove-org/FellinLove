@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.model.Cliente;
 import com.example.demo.model.Mascota;
 import com.example.demo.repository.ClienteRepository;
 import com.example.demo.repository.MascotaRepository;
@@ -32,15 +31,13 @@ public class MascotaServiceImpl implements MascotaService{
     }
 
     @Override
-    public void add(Mascota mascota) {
-    
-        mascotaRepository.save(mascota);
+    public Mascota add(Mascota mascota) {
+        return mascotaRepository.save(mascota);
     }
 
     @Override
-    public void update(Mascota mascota) {
-        
-        mascotaRepository.save(mascota);
+    public Mascota update(Mascota mascota) {
+        return mascotaRepository.save(mascota);
     }
 
     @Override
@@ -54,11 +51,10 @@ public class MascotaServiceImpl implements MascotaService{
         return mascotaRepository.findByClienteId(clienteId);
     }
 
+
     @Override
-    public void add(Mascota mascota, Long clienteId) {
-        Cliente c = clienteRepository.findById(clienteId).get();
-        mascota.setCliente(c);
-        mascotaRepository.save(mascota);
+    public Integer countActive() {
+        return mascotaRepository.countActive();
     }
     
 }

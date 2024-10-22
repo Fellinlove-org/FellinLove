@@ -22,6 +22,10 @@ public interface TratamientoService {
     public List<Tratamiento> findByMascotaId(Long mascotaId);
 
     public List<Tratamiento> findByVeterinarioId(Long veterinarioId);
+
+    public Integer countTratamiento();
+
+    public Integer sumTotalVentas();
 }
 
 

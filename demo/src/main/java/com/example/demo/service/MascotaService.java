@@ -11,13 +11,13 @@ public interface MascotaService {
 
     public List<Mascota> SearchAll();
 
-    public void add(Mascota mascota);
+    public Mascota add(Mascota mascota);
 
-    public void add(Mascota mascota, Long clienteId);
-
-    public void update(Mascota mascota);
+    public Mascota update(Mascota mascota);
 
     public void delete(Long id);
 
-    List<Mascota> findByClienteId(Long clienteId);   
+    public List<Mascota> findByClienteId(Long clienteId);   
+
+    public Integer countActive();
 }
