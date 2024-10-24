@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 import org.junit.Test;
@@ -116,5 +117,57 @@ public class ClienteControllerTest {
         .andExpect(jsonPath("$.celular").value("1234567890"))
         .andExpect(jsonPath("$.foto").value("url fotos"));
     }
+
+    @Test
+    public void ClienteController_findById_NotFound() throws Exception {
+        when(clienteService.SearchById(Mockito.anyLong())).thenReturn(
+            null
+        );
+
+        ResultActions result = mockMvc.perform(
+            get("/cliente/find/1")
+        );
+
+        result.andExpect(status().isNotFound());
+    }
     
+
+    @Test
+    public void ClienteController_findByCedula_Cliente() throws Exception {
+        when(clienteService.findByCedula(anyString())).thenReturn(
+            new Cliente(
+                1L,
+                "123455", 
+                "daniel", 
+                "teragod@gmail.com", 
+                "1234567890", 
+                "url fotos"
+            )
+        );
+
+        ResultActions result = mockMvc.perform(
+            get("/cliente/find/cedula/001")
+        );
+
+        result.andExpect(status().isOk())
+        .andExpect(content().contentType("application/json"))
+        .andExpect(jsonPath("$.cedula").value("123455"))
+        .andExpect(jsonPath("$.nombre").value("daniel"))
+        .andExpect(jsonPath("$.correo").value("teragod@gmail.com"))
+        .andExpect(jsonPath("$.celular").value("1234567890"))
+        .andExpect(jsonPath("$.foto").value("url fotos"));
+    }
+
+    @Test
+    public void ClienteController_findByCedula_NotFound() throws Exception {
+        when(clienteService.findByCedula(anyString())).thenReturn(
+            null
+        );
+
+        ResultActions result = mockMvc.perform(
+            get("/cliente/find/cedula/1")
+        );
+
+        result.andExpect(status().isNotFound());
+    }
 }

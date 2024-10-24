@@ -51,9 +51,8 @@ public class ClienteController {
         Cliente cliente = clienteService.findByCedula(cedula);
         if (cliente != null) {
             return new ResponseEntity<>(cliente, HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(cliente, HttpStatus.NOT_FOUND);
         }
+        return new ResponseEntity<>(cliente, HttpStatus.NOT_FOUND);
     }
 
 
