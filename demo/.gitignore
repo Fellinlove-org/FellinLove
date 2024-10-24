@@ -31,3 +31,11 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+### database ###
+
+fellinlove.mv.db
+fellinlove.trace.db
+testdb.mv.db
+testdb.trace.db

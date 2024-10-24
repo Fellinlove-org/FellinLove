@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/cliente")
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class ClienteControler {
+public class ClienteController {
 
     @Autowired
     ClienteService clienteService;
@@ -37,12 +36,11 @@ public class ClienteControler {
     //url: http://localhost:8090/cliente/find/1
     @GetMapping("/find/{id}")
     public ResponseEntity<Cliente> findById(@PathVariable("id") Long id) {
-        Optional<Cliente> cliente = clienteService.SearchById(id);
-        if(cliente.isPresent()){
-            return new ResponseEntity<>(cliente.get(), HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(cliente.get(), HttpStatus.NOT_FOUND);
+        Cliente cliente = clienteService.SearchById(id);
+        if(cliente != null){
+            return new ResponseEntity<>(cliente, HttpStatus.OK);
         }
+        return new ResponseEntity<>(cliente, HttpStatus.NOT_FOUND);
     }
 
 
@@ -50,11 +48,11 @@ public class ClienteControler {
     //url: http://localhost:8090/cliente/find/cedula
     @GetMapping("/find/cedula/{cedula}")
     public ResponseEntity<Cliente> findByCedula(@PathVariable("cedula") String cedula) {
-        Optional<Cliente> cliente = clienteService.findByCedula(cedula);
-        if (cliente.isPresent()) {
-            return new ResponseEntity<>(cliente.get(), HttpStatus.OK);
+        Cliente cliente = clienteService.findByCedula(cedula);
+        if (cliente != null) {
+            return new ResponseEntity<>(cliente, HttpStatus.OK);
         }else{
-            return new ResponseEntity<>(cliente.get(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(cliente, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -73,12 +71,12 @@ public class ClienteControler {
     //url: http://localhost:8090/cliente/add
     @PostMapping("/add")
     public ResponseEntity<Cliente> agregarCliente(@RequestBody Cliente cliente) {
-        Optional<Cliente> c = clienteService.SearchById(cliente.getId());
-        if (!c.isPresent()) {
+        Cliente c = clienteService.SearchById(cliente.getId());
+        if (c == null) {
             Cliente saved = clienteService.add(cliente);
             return new ResponseEntity<>(saved, HttpStatus.CREATED);
         }else{
-            return new ResponseEntity<>(c.get(), HttpStatus.CONFLICT);
+            return new ResponseEntity<>(c, HttpStatus.CONFLICT);
         }
     }
 

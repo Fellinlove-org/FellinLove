@@ -75,11 +75,11 @@ public class LandingController {
     @GetMapping("/login/{cedula}")
     public ResponseEntity<Map<String, String>> loginUser(@PathVariable("cedula") String cedula) {
 
-        Optional<Cliente> cliente = clienteService.findByCedula(cedula);
+        Cliente cliente = clienteService.findByCedula(cedula);
 
         Map<String, String> response = new HashMap<>();
 
-        if(!cliente.isPresent()){
+        if(cliente == null){
             Optional<Veterinario> veterinario = veterinarioService.findByCedula(cedula);
             if (!veterinario.isPresent()) {
                 Optional<Administrador> admin = administradorService.findByCedula(cedula);
@@ -143,38 +143,6 @@ public class LandingController {
         model.addAttribute("cedula", cedula);
 
         return "Login";
-    }
-
-    @PostMapping("/loginUser")
-    public String loginUsuario(@ModelAttribute("cedula") String cedula, Model model) {
-        
-        Optional<Cliente> cliente = clienteService.findByCedula(cedula);
-
-        if (cliente.isPresent()) {
-            // Asiganar cliente
-            Cliente c = cliente.get();
-            model.addAttribute("cliente", c);
-            return "redirect:/inicio/" + c.getId();
-        } else {
-            model.addAttribute("cliente", "");
-            return "redirect:/";
-        }
-    }
-
-    @GetMapping("/inicio/{id}")
-    public String inicioUser(Model model, @PathVariable("id") Long id) {
-
-        Optional<Cliente> cliente = clienteService.SearchById(id);
-
-        if (cliente.isPresent()) {
-            Cliente c = cliente.get();
-            model.addAttribute("cliente", c);
-            System.out.println("Cliente " + c.getNombre());
-            return "homePageUsuario";
-        }else {
-            return "redirect:/error/" + id;
-        }
-
     }
 
     @GetMapping("/inicioAdmin/{id}")

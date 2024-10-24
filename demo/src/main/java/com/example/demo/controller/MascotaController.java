@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,9 +49,9 @@ public class MascotaController {
     //url: http://localhost:8090/mascota/cedula/030
     @GetMapping("/cedula/{cedula}")
     public List<Mascota> mostrarMascotaCedula(@PathVariable("cedula") String cedula) {
-        Optional<Cliente> c = clienteService.findByCedula(cedula);
-        if (c.isPresent()) {
-            List<Mascota> mascotas = mascotaService.findByClienteId(c.get().getId());
+        Cliente c = clienteService.findByCedula(cedula);
+        if (c != null) {
+            List<Mascota> mascotas = mascotaService.findByClienteId(c.getId());
             return mascotas;
         }
         return null;
@@ -93,9 +92,9 @@ public class MascotaController {
     //url: http://localhost:8090/mascota/update
     @PutMapping("/update/{cedula}")
     public Mascota updateCliente(@RequestBody Mascota mascota, @PathVariable("cedula") String cedula) {
-        Optional<Cliente> c = clienteService.findByCedula(cedula);
-        if (c.isPresent()) {
-            mascota.setCliente(c.get());
+        Cliente c = clienteService.findByCedula(cedula);
+        if (c != null) {
+            mascota.setCliente(c);
             return mascotaService.update(mascota);
         }
         return null;
