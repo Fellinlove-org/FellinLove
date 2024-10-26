@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +20,7 @@ import com.example.demo.model.Mascota;
 import com.example.demo.service.ClienteService;
 import com.example.demo.service.MascotaService;
 import com.example.demo.service.TratamientoService;
+
 
 
 
@@ -100,6 +103,17 @@ public class MascotaController {
         return null;
     }
 
+    @GetMapping("findcliente/{id}")
+    public Cliente getClienteIdMacota(@PathVariable("id") Long id) {
+        Mascota mascota = mascotaService.SearchById(id);
+        Cliente c = mascota.getCliente();
+        if (mascota != null) {
+            return c;
+        } else {
+            return null;
+        }
+    }
+    
 
     //METODO PARA BORRAR UNA MASCOTA POR SU ID
     //url: http://localhost:8090/mascota/delete/1

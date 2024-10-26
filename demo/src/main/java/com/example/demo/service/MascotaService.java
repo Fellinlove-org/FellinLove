@@ -17,7 +17,7 @@ public interface MascotaService {
 
     public void delete(Long id);
 
-    public List<Mascota> findByClienteId(Long clienteId);   
+    public List<Mascota> findByClienteId(Long clienteId);
 
     public Integer countActive();
 }
