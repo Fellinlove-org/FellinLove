@@ -103,7 +103,7 @@ public class MascotaController {
         return null;
     }
 
-    @GetMapping("findcliente/{id}")
+    @GetMapping("find/cliente/{id}")
     public Cliente getClienteIdMacota(@PathVariable("id") Long id) {
         Mascota mascota = mascotaService.SearchById(id);
         Cliente c = mascota.getCliente();
