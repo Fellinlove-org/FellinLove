@@ -70,13 +70,16 @@ public class ClienteController {
     //url: http://localhost:8090/cliente/add
     @PostMapping("/add")
     public ResponseEntity<Cliente> agregarCliente(@RequestBody Cliente cliente) {
-        Cliente c = clienteService.SearchById(cliente.getId());
-        if (c == null) {
+
+         if (clienteService.SearchById(cliente.getId()) != null) {
+
+            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+            
+        }else{ 
             Cliente saved = clienteService.add(cliente);
             return new ResponseEntity<>(saved, HttpStatus.CREATED);
-        }else{
-            return new ResponseEntity<>(c, HttpStatus.CONFLICT);
         }
+        
     }
 
 

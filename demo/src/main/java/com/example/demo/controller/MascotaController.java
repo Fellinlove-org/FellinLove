@@ -102,7 +102,8 @@ public class MascotaController {
         }
         return null;
     }
-
+    //METODO PARA ENCONTRAR UN CLIENTE POR SU ID
+    //url: http://localhost:8090/mascota/find/cliente/
     @GetMapping("find/cliente/{id}")
     public Cliente getClienteIdMacota(@PathVariable("id") Long id) {
         Mascota mascota = mascotaService.SearchById(id);

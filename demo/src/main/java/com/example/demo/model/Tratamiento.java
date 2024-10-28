@@ -4,6 +4,7 @@ package com.example.demo.model;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,17 +18,19 @@ public class Tratamiento {
     @GeneratedValue
     private Long id;
 
-    @JsonIgnore
+    private int cantidad;
+
+    @JsonIgnoreProperties("consulta")
     @ManyToOne
     @JoinColumn(name = "veterinario_id")
     private Veterinario veterinario;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("consulta")
     @ManyToOne
     @JoinColumn(name = "mascota_id")
     private Mascota mascota;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("consulta")
     @ManyToOne
     @JoinColumn(name = "droga_id")
     private Droga droga;
@@ -36,19 +39,21 @@ public class Tratamiento {
 
     
 
-    public Tratamiento(Veterinario veterinario, Mascota mascota, Droga droga, Date fechaConsulta) {
+    public Tratamiento(Veterinario veterinario, Mascota mascota, Droga droga, Date fechaConsulta, int cantidad) {
         this.veterinario = veterinario;
         this.mascota = mascota;
         this.droga = droga;
         this.fechaConsulta = fechaConsulta;
+        this.cantidad = cantidad;
     }
 
-    public Tratamiento(Long id, Veterinario veterinario, Mascota mascota, Droga droga, Date fechaConsulta) {
+    public Tratamiento(Long id, Veterinario veterinario, Mascota mascota, Droga droga, Date fechaConsulta, int cantidad) {
         this.id = id;
         this.veterinario = veterinario;
         this.mascota = mascota;
         this.droga = droga;
         this.fechaConsulta = fechaConsulta;
+        this.cantidad = cantidad;
     }
 
     public Tratamiento() {
@@ -97,4 +102,13 @@ public class Tratamiento {
     public void setDroga(Droga droga) {
         this.droga = droga;
     }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
 }

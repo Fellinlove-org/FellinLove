@@ -53,7 +53,7 @@ public class TratamientoController {
 
     // METODO PARA AGREGAR UN TRATAMIENTO
     // url: http://localhost:8090/tratamiento/add
-    @PostMapping("/add/{idveterinario}/{idmascota}/{iddroga}")
+    @PostMapping("/add")
     public void agregarTratamiento(
         @RequestBody Tratamiento tratamiento,
         @PathVariable("idveterinario") Long idveterinario,
