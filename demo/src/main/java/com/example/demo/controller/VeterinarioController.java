@@ -35,18 +35,18 @@ public class VeterinarioController {
 
 
     @GetMapping("/login/{cedula}/{password}")
-    public ResponseEntity<Map<String, String>> login(@PathVariable("cedula") String cedula, @PathVariable("password") String password) {
+    public ResponseEntity<String> login(@PathVariable("cedula") String cedula, @PathVariable("password") String password) {
         Optional<Veterinario> veterinario = veterinarioService.findByCedula(cedula);
-        Map<String, String> response = new HashMap<>();
         if (!veterinario.isPresent()) {
-            response.put("msg", "Cédula o contraseña incorrectos");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+            return new ResponseEntity<>("Cedula o password incorrectos", HttpStatus.UNAUTHORIZED);
         }else if(!veterinario.get().getPassword().equals(password)){
-            response.put("msg", "Cédula o contraseña incorrectos");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+            return new ResponseEntity<>("Cedula o password incorrectos", HttpStatus.UNAUTHORIZED);
         }else{
-            response.put("msg", "ok");
-            return ResponseEntity.ok(response);
+            return new ResponseEntity<>("""
+                {
+                    "msg":"Acceso permitido"
+                }
+                """, HttpStatus.ACCEPTED);
         }
     }
 
