@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Administrador;
+import com.example.demo.model.Veterinario;
 import com.example.demo.service.AdministradorService;
 
 @RequestMapping("/admin")
@@ -33,18 +34,18 @@ public class AdministradorController {
     }
 
     @GetMapping("/login/{cedula}/{password}")
-    public ResponseEntity<Map<String, String>> login(@PathVariable("cedula") String cedula, @PathVariable("password") String password) {
-        Optional<Administrador> admin = administradorService.findByCedula(cedula);
-        Map<String, String> response = new HashMap<>();
-        if (!admin.isPresent()) {
-            response.put("msg", "Cédula o contraseña incorrectos");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
-        }else if(!admin.get().getPassword().equals(password)){
-            response.put("msg", "Cédula o contraseña incorrectos");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+    public ResponseEntity<String> login(@PathVariable("cedula") String cedula, @PathVariable("password") String password) {
+        Optional<Administrador> administrador = administradorService.findByCedula(cedula);
+        if (!administrador.isPresent()) {
+            return new ResponseEntity<>("Cedula o password incorrectos", HttpStatus.UNAUTHORIZED);
+        }else if(!administrador.get().getPassword().equals(password)){
+            return new ResponseEntity<>("Cedula o password incorrectos", HttpStatus.UNAUTHORIZED);
         }else{
-            response.put("msg", "ok");
-            return ResponseEntity.ok(response);
+            return new ResponseEntity<>("""
+                {
+                    "msg":"Acceso permitido"
+                }
+                """, HttpStatus.ACCEPTED);
         }
     }
 }
