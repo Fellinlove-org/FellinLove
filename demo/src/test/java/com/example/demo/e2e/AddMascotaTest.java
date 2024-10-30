@@ -2,9 +2,11 @@ package com.example.demo.e2e;
 
 import java.time.Duration;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -75,7 +77,7 @@ public class AddMascotaTest {
         WebElement celular = driver.findElement(By.id("celular"));
         WebElement foto = driver.findElement(By.id("foto"));
         WebElement btnAdd = driver.findElement(By.id("btn-submit"));
-        nombre.sendKeys("daniel");
+        nombre.sendKeys("Daniel Escobar");
         cedula.sendKeys("123456789");
         correo.sendKeys("daniel@gmail.com");
         celular.sendKeys("321321321");
@@ -85,11 +87,63 @@ public class AddMascotaTest {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("cliente")));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("search-cliente")));
         WebElement nombreSearch = driver.findElement(By.id("search-cliente"));
-        nombreSearch.sendKeys("daniel");
+        nombreSearch.sendKeys("Daniel Escobar");
         WebElement btnSearch = driver.findElement(By.id("btn-search"));
         btnSearch.click();
 
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("edit-cliente")));
+        WebElement btnEdit = driver.findElement(By.id("edit-cliente"));
+        btnEdit.click();
 
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("form-cliente")));
+        WebElement nombreEdit = driver.findElement(By.id("nombre"));
+        nombreEdit.clear();
+        nombreEdit.sendKeys("Daniel Teran");
+
+        WebElement btnUpdate = driver.findElement(By.id("btn-submit"));
+        btnUpdate.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("cliente")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("search-cliente")));
+        nombreSearch = driver.findElement(By.id("search-cliente"));
+        nombreSearch.sendKeys("Daniel Teran");
+        btnSearch = driver.findElement(By.id("btn-search"));
+        btnSearch.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("cliente")));
+        WebElement newNombre = driver.findElement(By.id("nombre-cliente"));
+
+        Assertions.assertThat(newNombre.getText()).isEqualTo("Daniel Teran");
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btn-mascotas")));
+        WebElement btnMascotas = driver.findElement(By.id("btn-mascotas"));
+        btnMascotas.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("add-mascota")));
+        WebElement btnAddMascota = driver.findElement(By.id("add-mascota"));
+        btnAddMascota.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("form-mascota")));
+        WebElement nombreMascota = driver.findElement(By.id("nombre-mascota"));
+        WebElement raza = driver.findElement(By.id("raza-mascota"));
+        WebElement edad = driver.findElement(By.id("edad-mascota"));
+        WebElement peso = driver.findElement(By.id("peso-mascota"));
+        WebElement enfermedad = driver.findElement(By.id("enfermedad-mascota"));
+        WebElement fotoMascota = driver.findElement(By.id("foto-mascota"));
+        WebElement btnAddMascota2 = driver.findElement(By.id("btn-submit-mascota"));
+        WebElement optionCliente = driver.findElement(By.id("cliente-option"));
+        nombreMascota.sendKeys("Misu");
+        raza.sendKeys("Persa");
+        edad.sendKeys("3");
+        peso.sendKeys("4.2");
+        enfermedad.sendKeys("Asma");
+        fotoMascota.sendKeys("foto misu");
+        optionCliente.click();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        btnAddMascota2.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("mascota")));
     }
 
 }
