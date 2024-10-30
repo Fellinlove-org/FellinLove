@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.demo.service.TratamientoService;
-
 import com.example.demo.model.Tratamiento;
 
 @RequestMapping("/tratamiento")
@@ -67,8 +68,9 @@ public class TratamientoController {
     // METODO PARA ACTUALIZAR UN TRATAMIENTO
     // url: http://localhost:8090/tratamiento/update
     @PutMapping("/update")
-    public void update(@RequestBody Tratamiento tratamiento) {
-        tratamientoService.update(tratamiento);
+    public ResponseEntity<Tratamiento>updateTratamiento(@RequestBody Tratamiento tratamiento) {
+        tratamientoService.updateTratamiento(tratamiento);
+        return new ResponseEntity<>(tratamiento, HttpStatus.OK);
     }
 
 

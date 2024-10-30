@@ -64,10 +64,10 @@ public class TratamientoServiceImpl implements TratamientoService {
     }
 
     @Override
-    public void update(Tratamiento tratamiento) {
+    public void updateTratamiento(Tratamiento tratamiento) {
         if (tratamiento.getId() != null && tratamientoRepository.existsById(tratamiento.getId())) {
             tratamientoRepository.save(tratamiento);
-        }
+         }   
     }
 
     @Override
@@ -89,4 +89,5 @@ public class TratamientoServiceImpl implements TratamientoService {
     public Integer sumTotalVentas() {
         return tratamientoRepository.sumTotalVentas();
     }
+    
 }
