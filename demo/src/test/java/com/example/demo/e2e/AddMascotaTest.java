@@ -132,18 +132,38 @@ public class AddMascotaTest {
         WebElement fotoMascota = driver.findElement(By.id("foto-mascota"));
         WebElement btnAddMascota2 = driver.findElement(By.id("btn-submit-mascota"));
         WebElement optionCliente = driver.findElement(By.id("cliente-option"));
-        nombreMascota.sendKeys("Misu");
-        raza.sendKeys("Persa");
-        edad.sendKeys("3");
-        peso.sendKeys("4.2");
-        enfermedad.sendKeys("Asma");
-        fotoMascota.sendKeys("foto misu");
+        nombreMascota.sendKeys("Hannah");
+        raza.sendKeys("Husky");
+        edad.sendKeys("4");
+        peso.sendKeys("18");
+        enfermedad.sendKeys("vecio");
+        fotoMascota.sendKeys("https://huskysiberianshadi.com/wp-content/uploads/2021/01/87B42900-7968-4AA2-9818-C8220F10C4BA.jpeg");
         optionCliente.click();
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         btnAddMascota2.click();
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("mascota")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("search-mascota")));
+        nombreSearch = driver.findElement(By.id("search-mascota"));
+        nombreSearch.sendKeys("Hannah");
+        WebElement btnSearchMascota = driver.findElement(By.id("btn-search-mascota"));
+        btnSearchMascota.click();
+
+        driver.get("http://localhost:4200/");
+        botonLogin = driver.findElement(By.id("login"));
+        botonLogin.click();
+        WebElement cedulaCliente = driver.findElement(By.id("cedula"));
+        cedulaCliente.sendKeys("123456789");
+        btnIngresar = driver.findElement(By.id("btn-login"));
+        btnIngresar.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("mis-mascotas")));
+        WebElement btnMisMascotas = driver.findElement(By.id("mis-mascotas"));
+        btnMisMascotas.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("mascota")));
+
+        WebElement nombreMascotaTable = driver.findElement(By.id("mascota-nombre"));
+
+        Assertions.assertThat(nombreMascotaTable.getText()).isEqualTo("Hannah");
+
     }
 
 }
