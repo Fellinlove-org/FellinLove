@@ -61,6 +61,7 @@ public class DatabaseInitTest implements ApplicationRunner{
 
         //Agregar clientes a la base de datos
 
+        /*
         clienteRepository.save(new Cliente("001", "Ana Gómez", "ana.gomez@example.com", "3000000001", "https://randomuser.me/api/portraits/women/1.jpg"));
         clienteRepository.save(new Cliente("002", "Pedro Martínez", "pedro.martinez@example.com", "3000000002", "https://randomuser.me/api/portraits/men/1.jpg"));
         clienteRepository.save(new Cliente("003", "Laura Fernández", "laura.fernandez@example.com", "3000000003", "https://randomuser.me/api/portraits/women/2.jpg"));
@@ -111,7 +112,7 @@ public class DatabaseInitTest implements ApplicationRunner{
         clienteRepository.save(new Cliente("048", "Alfredo Jiménez", "alfredo.jimenez@example.com", "3000000048", "https://randomuser.me/api/portraits/men/24.jpg"));
         clienteRepository.save(new Cliente("049", "Juliana Moreno", "juliana.moreno@example.com", "3000000049", "https://randomuser.me/api/portraits/women/25.jpg"));
         clienteRepository.save(new Cliente("050", "Samuel Hernández", "samuel.hernandez@example.com", "3000000050", "https://randomuser.me/api/portraits/men/25.jpg"));
-        
+         */
 
         // Agregar mascotas a la base de datos
         
