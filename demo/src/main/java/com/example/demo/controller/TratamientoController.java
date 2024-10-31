@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.demo.service.TratamientoService;
 import com.example.demo.model.Tratamiento;
+import com.example.demo.model.TratamientoDTO;
 
 @RequestMapping("/tratamiento")
 @RestController
@@ -29,7 +30,7 @@ public class TratamientoController {
     // METODO PARA ENCONTRAR TODOS LOS TRATAMIENTOS
     // url: http://localhost:8090/tratamiento/find/all
     @GetMapping("/find/all")
-    public List<Tratamiento> mostrarTodosTratamientos() {
+    public List<TratamientoDTO> mostrarTodosTratamientos() {
         return tratamientoService.findAll();
     }
 
@@ -37,8 +38,13 @@ public class TratamientoController {
     // METODO PARA ENCONTRAR UN TRATAMIENTO POR SU ID
     // url: http://localhost:8090/tratamiento/find/1
     @GetMapping("/find/{id}")
-    public Tratamiento mostrarTratamiento(@PathVariable("id") Long id) {
+    public TratamientoDTO mostrarTratamiento(@PathVariable("id") Long id) {
         return tratamientoService.findById(id);
+    }
+
+    @GetMapping("/find/mascota/{id}")
+    public List<TratamientoDTO> mostrarTratamientoMascota(@PathVariable("id") Long id) {
+        return tratamientoService.findByMascotaId(id);
     }
 
     @GetMapping("/count")
@@ -55,22 +61,17 @@ public class TratamientoController {
     // METODO PARA AGREGAR UN TRATAMIENTO
     // url: http://localhost:8090/tratamiento/add
     @PostMapping("/add")
-    public void agregarTratamiento(
-        @RequestBody Tratamiento tratamiento,
-        @PathVariable("idveterinario") Long idveterinario,
-        @PathVariable("idmascota") Long idmascota,
-        @PathVariable("iddroga") Long iddroga
-        ) {
-            tratamientoService.add(tratamiento, idveterinario, idmascota, iddroga);
+    public TratamientoDTO agregarTratamiento(@RequestBody TratamientoDTO tratamientoDTO) {
+        return tratamientoService.add(tratamientoDTO);
     }
 
 
     // METODO PARA ACTUALIZAR UN TRATAMIENTO
     // url: http://localhost:8090/tratamiento/update
     @PutMapping("/update")
-    public ResponseEntity<Tratamiento>updateTratamiento(@RequestBody Tratamiento tratamiento) {
-        tratamientoService.updateTratamiento(tratamiento);
-        return new ResponseEntity<>(tratamiento, HttpStatus.OK);
+    public ResponseEntity<TratamientoDTO>updateTratamiento(@RequestBody TratamientoDTO tratamientoDTO) {
+        tratamientoService.updateTratamiento(tratamientoDTO);
+        return new ResponseEntity<>(tratamientoDTO, HttpStatus.OK);
     }
 
 

@@ -23,4 +23,6 @@ public interface DrogaRepository extends JpaRepository<Droga, Long> {
 
     @Query(value = "SELECT nombre, unidades_vendidas FROM droga ORDER BY unidades_vendidas DESC LIMIT 3", nativeQuery = true)
     List<Object[]> findTopByUnidadesVendidas();
+
+    Droga findByNombre(String nombre);
 }

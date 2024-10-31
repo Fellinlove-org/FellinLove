@@ -13,6 +13,8 @@ import com.example.demo.model.Mascota;
 public interface MascotaRepository extends JpaRepository<Mascota, Long> {
     List<Mascota> findByClienteId(Long clienteId);
 
+    Mascota findByNombre(String nombre);
+
     //select count(*) from mascota where estado = true
     @Query(value = "select count(*) from mascota where estado = true", nativeQuery = true)
     Integer countActive();
