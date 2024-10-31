@@ -4,7 +4,6 @@ package com.example.demo.model;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,17 +19,17 @@ public class Tratamiento {
 
     private int cantidad;
 
-    @JsonIgnoreProperties("consulta")
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "veterinario_id")
     private Veterinario veterinario;
 
-    @JsonIgnoreProperties("consulta")
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "mascota_id")
     private Mascota mascota;
 
-    @JsonIgnoreProperties("consulta")
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "droga_id")
     private Droga droga;
