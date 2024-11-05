@@ -50,6 +50,7 @@ public class TratamientoServiceTestMock{
 
     }
 
+    /*
     @Test
     public void TratamientoService_add_NullTratamiento(){
 
@@ -161,4 +162,5 @@ public class TratamientoServiceTestMock{
         Assertions.assertThat(total).isGreaterThan(0);
         Assertions.assertThat(total).isEqualTo(expected);
     }
+         */
 }

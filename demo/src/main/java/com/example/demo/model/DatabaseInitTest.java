@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 
@@ -376,10 +377,12 @@ public class DatabaseInitTest implements ApplicationRunner{
         int cantidad_vet = veterinarioRepository.findAll().size();
         int cantidad_droga = drogaRepository.findAll().size();
 
+        Random random = new Random(12345);
+
         for (Tratamiento tratamiento : tratamientoRepository.findAll()) {
-            int mascota_id = ThreadLocalRandom.current().nextInt(1, cantidad_mascota);
-            int vet_id = ThreadLocalRandom.current().nextInt(1, cantidad_vet);
-            int droga_id = ThreadLocalRandom.current().nextInt(1, cantidad_droga);
+            int mascota_id = random.nextInt(cantidad_mascota) + 1;
+            int vet_id = random.nextInt(cantidad_vet) + 1;
+            int droga_id = random.nextInt(cantidad_droga) + 1;
 
             Mascota mascota = mascotaRepository.findById(Long.valueOf(mascota_id)).get();
             Veterinario veterinario = veterinarioRepository.findById(Long.valueOf(vet_id)).get();

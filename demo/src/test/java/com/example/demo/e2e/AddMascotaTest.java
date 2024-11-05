@@ -166,4 +166,140 @@ public class AddMascotaTest {
 
     }
 
+
+    @Test
+    public void SystemTest_AddTratamiento() {
+
+        driver.get("http://localhost:4200/");
+        driver.manage().window().maximize();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("login")));
+        WebElement botonLogin = driver.findElement(By.id("login"));
+        botonLogin.click();
+        
+        WebElement btnAdmin = driver.findElement(By.id("btn-admin"));
+        btnAdmin.click();
+
+        WebElement cedulaAdmin = driver.findElement(By.id("cedula"));
+        cedulaAdmin.sendKeys("123456");
+
+        WebElement passwordAdmin = driver.findElement(By.id("password"));
+        passwordAdmin.sendKeys("0000");
+
+        WebElement btnIngresar = driver.findElement(By.id("btn-login"));
+        btnIngresar.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("dashboard")));
+        WebElement btnDashboard = driver.findElement(By.id("dashboard"));
+        btnDashboard.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("kpi-value")));
+        WebElement kpiValue = driver.findElement(By.id("kpi-value"));
+        Assertions.assertThat(kpiValue.getText()).isEqualTo("$0.00");
+
+        WebElement tratamientosTotales = driver.findElement(By.id("total-tratamientos"));
+        Integer numtratamientos = Integer.parseInt(tratamientosTotales.getText());
+
+
+
+        driver.get("http://localhost:4200/");
+        botonLogin = driver.findElement(By.id("login"));
+        botonLogin.click();
+        
+        WebElement btnDoctor = driver.findElement(By.id("btn-doctor"));
+        btnDoctor.click();
+
+        WebElement cedulaVeterinario = driver.findElement(By.id("cedula"));
+        cedulaVeterinario.sendKeys("2222");
+
+        WebElement passwordVeterinario = driver.findElement(By.id("password"));
+        passwordVeterinario.sendKeys("0001");
+
+
+        btnIngresar = driver.findElement(By.id("btn-login"));
+        btnIngresar.click();
+        
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btn-mascotas")));
+
+        WebElement btnMascotas = driver.findElement(By.id("btn-mascotas"));
+        btnMascotas.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("mascota")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("search-mascota")));
+        WebElement nombreSearch = driver.findElement(By.id("search-mascota"));
+        nombreSearch.sendKeys("Misu");
+        WebElement btnSearchMascota = driver.findElement(By.id("btn-search-mascota"));
+        btnSearchMascota.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("mostar-mascota")));
+        WebElement mostrarMascota = driver.findElement(By.id("mostar-mascota"));
+        mostrarMascota.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("add-tratamiento")));
+        WebElement btnAddTratamiento = driver.findElement(By.id("add-tratamiento"));
+        btnAddTratamiento.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("form-tratamiento")));
+        WebElement droga = driver.findElement(By.id("droga"));
+        droga.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("droga3")));
+        WebElement droga3 = driver.findElement(By.id("droga3"));
+        droga3.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("cantidad")));
+        WebElement cantidad = driver.findElement(By.id("cantidad"));
+        cantidad.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("cantidad1")));
+        WebElement cantidad1 = driver.findElement(By.id("cantidad1"));
+        cantidad1.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btn-submit-tratamiento")));
+        WebElement btnSubmitTratamiento = driver.findElement(By.id("btn-submit-tratamiento"));
+        btnSubmitTratamiento.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("tratamiento1")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("search-tratamiento")));
+        nombreSearch = driver.findElement(By.id("search-tratamiento"));
+        nombreSearch.sendKeys("Misu");
+        WebElement btnSearchTratamiento = driver.findElement(By.id("btn-search-tratamiento"));
+        btnSearchTratamiento.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("tratamiento11")));
+        WebElement nombreVet = driver.findElement(By.id("nombre-veterinario11"));
+        WebElement nombreMascota = driver.findElement(By.id("nombre-mascota11"));
+        WebElement nombreDroga = driver.findElement(By.id("nombre-droga11"));
+        WebElement cantidadTratamiento = driver.findElement(By.id("cantidad11"));
+
+        Assertions.assertThat(nombreVet.getText()).isEqualTo("Dr. Juan Pérez");
+        Assertions.assertThat(nombreMascota.getText()).isEqualTo("Misu");
+        Assertions.assertThat(nombreDroga.getText()).isEqualTo("ACUIMIX");
+        Assertions.assertThat(cantidadTratamiento.getText()).isEqualTo("1");
+
+        driver.get("http://localhost:4200/");
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("login")));
+        botonLogin = driver.findElement(By.id("login"));
+        botonLogin.click();
+        
+        btnAdmin = driver.findElement(By.id("btn-admin"));
+        btnAdmin.click();
+
+        cedulaAdmin = driver.findElement(By.id("cedula"));
+        cedulaAdmin.sendKeys("123456");
+
+        passwordAdmin = driver.findElement(By.id("password"));
+        passwordAdmin.sendKeys("0000");
+
+        btnIngresar = driver.findElement(By.id("btn-login"));
+        btnIngresar.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("dashboard")));
+        btnDashboard = driver.findElement(By.id("dashboard"));
+        btnDashboard.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("kpi-value")));
+        kpiValue = driver.findElement(By.id("kpi-value"));
+        Assertions.assertThat(kpiValue.getText()).isIn("$114,800.00", "$22,960.00");
+
+        WebElement numtratamientos2 = driver.findElement(By.id("total-tratamientos"));
+        String numtratamientosString = String.valueOf(numtratamientos+1);
+        Assertions.assertThat(numtratamientos2.getText()).isEqualTo(numtratamientosString);
+    }
+
 }
