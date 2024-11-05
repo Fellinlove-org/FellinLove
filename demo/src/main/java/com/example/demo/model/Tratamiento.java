@@ -10,8 +10,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Tratamiento {
     @Id
     @GeneratedValue
@@ -36,7 +42,6 @@ public class Tratamiento {
 
     private Date fechaConsulta;
 
-    
 
     public Tratamiento(Veterinario veterinario, Mascota mascota, Droga droga, Date fechaConsulta, int cantidad) {
         this.veterinario = veterinario;
@@ -54,60 +59,8 @@ public class Tratamiento {
         this.fechaConsulta = fechaConsulta;
         this.cantidad = cantidad;
     }
-
-    public Tratamiento() {
-    }
-
+   
     public Tratamiento(Date fechaConsulta) {
         this.fechaConsulta = fechaConsulta;
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Veterinario getVeterinario() {
-        return veterinario;
-    }
-
-    public void setVeterinario(Veterinario veterinario) {
-        this.veterinario = veterinario;
-    }
-
-    public Date getFechaConsulta() {
-        return fechaConsulta;
-    }
-
-    public void setFechaConsulta(Date fechaConsulta) {
-        this.fechaConsulta = fechaConsulta;
-    }
-
-    public Mascota getMascota() {
-        return mascota;
-    }
-
-    public void setMascota(Mascota mascota) {
-        this.mascota = mascota;
-    }
-
-    public Droga getDroga() {
-        return droga;
-    }
-
-    public void setDroga(Droga droga) {
-        this.droga = droga;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
 }

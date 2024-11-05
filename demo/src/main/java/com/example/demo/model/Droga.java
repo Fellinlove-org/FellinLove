@@ -10,8 +10,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Droga {
     @Id
     @GeneratedValue
@@ -45,65 +51,6 @@ public class Droga {
         this.precioVenta = precioVenta;
         this.precioCompra = precioCompra;
         this.unidadesDisponibles = unidadesDisponibles;
-        this.unidadesVendidas = unidadesVendidas;
-    }
-
-    public Droga() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public double getPrecioVenta() {
-        return precioVenta;
-    }
-
-    public void setPrecioVenta(double precioVenta) {
-        this.precioVenta = precioVenta;
-    }
-
-    public double getPrecioCompra() {
-        return precioCompra;
-    }
-
-    public void setPrecioCompra(double precioCompra) {
-        this.precioCompra = precioCompra;
-    }
-
-    public List<Tratamiento> getConsulta() {
-        return tratamientos;
-    }
-
-    public void setConsulta(List<Tratamiento> tratamientos) {
-        this.tratamientos = tratamientos;
-    }
-
-    public int getUnidadesDisponibles() {
-        return unidadesDisponibles;
-    }
-
-    public void setUnidadesDisponibles(int unidadesDisponibles) {
-        this.unidadesDisponibles = unidadesDisponibles;
-    }
-
-    public int getUnidadesVendidas() {
-        return unidadesVendidas;
-    }
-
-    public void setUnidadesVendidas(int unidadesVendidas) {
         this.unidadesVendidas = unidadesVendidas;
     }
 

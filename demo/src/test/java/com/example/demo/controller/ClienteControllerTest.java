@@ -56,7 +56,7 @@ public class ClienteControllerTest {
 
         result.andExpect(status().isCreated())
         .andExpect(content().contentType("application/json"))
-        .andExpect(jsonPath("$.cedula").value(cliente.getcedula()))
+        .andExpect(jsonPath("$.cedula").value(cliente.getCedula()))
         .andExpect(jsonPath("$.nombre").value(cliente.getNombre()))
         .andExpect(jsonPath("$.correo").value(cliente.getCorreo()))
         .andExpect(jsonPath("$.celular").value(cliente.getCelular()))

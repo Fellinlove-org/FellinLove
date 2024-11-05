@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.database;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -12,7 +12,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 
 import org.apache.poi.ss.usermodel.Row;
@@ -20,6 +19,12 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import com.example.demo.model.Administrador;
+import com.example.demo.model.Cliente;
+import com.example.demo.model.Mascota;
+import com.example.demo.model.Veterinario;
+import com.example.demo.model.Droga;
+import com.example.demo.model.Tratamiento;
 import com.example.demo.repository.AdministradorRepository;
 import com.example.demo.repository.ClienteRepository;
 import com.example.demo.repository.DrogaRepository;

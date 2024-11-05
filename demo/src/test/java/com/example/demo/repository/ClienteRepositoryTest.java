@@ -133,12 +133,12 @@ public class ClienteRepositoryTest {
 
         // act
         Cliente cliente = clienteRepository.findByCedula(cedula).get();
-        cliente.setcedula(cedula);
+        cliente.setCedula(cedula);
         Cliente updatedCliente = clienteRepository.save(cliente);
 
         // assert
         Assertions.assertThat(updatedCliente).isNotNull();
-        Assertions.assertThat(updatedCliente.getcedula()).isEqualTo(cedula);
+        Assertions.assertThat(updatedCliente.getCedula()).isEqualTo(cedula);
     }
 
 

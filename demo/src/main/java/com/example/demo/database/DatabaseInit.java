@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.database;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -12,7 +12,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 
 import org.apache.poi.ss.usermodel.Row;
@@ -20,6 +19,12 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import com.example.demo.model.Administrador;
+import com.example.demo.model.Cliente;
+import com.example.demo.model.Mascota;
+import com.example.demo.model.Veterinario;
+import com.example.demo.model.Droga;
+import com.example.demo.model.Tratamiento;
 import com.example.demo.repository.AdministradorRepository;
 import com.example.demo.repository.ClienteRepository;
 import com.example.demo.repository.DrogaRepository;
@@ -58,65 +63,63 @@ public class DatabaseInit implements ApplicationRunner{
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        administradorRepository.save(new Administrador("123456", "Daniel Teran", "daniel_teran@example.com", "0000"));
+        administradorRepository.save(Administrador.builder().cedula("123456").nombre("Daniel Teran").correo("daniel_teran@example.com").password("0000").build());
 
         //Agregar clientes a la base de datos
+        clienteRepository.save(Cliente.builder().cedula("001").nombre("Ana Gómez").correo("ana.gomez@example.com").celular("3000000001").foto("https://randomuser.me/api/portraits/women/1.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("002").nombre("Carlos García").correo("carlos.garcia@example.com").celular("3000000002").foto("https://randomuser.me/api/portraits/men/2.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("003").nombre("Laura Fernández").correo("laura.fernandez@example.com").celular("3000000003").foto("https://randomuser.me/api/portraits/women/2.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("004").nombre("José Rodríguez").correo("jose.rodriguez@example.com").celular("3000000004").foto("https://randomuser.me/api/portraits/men/2.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("005").nombre("Isabel Sánchez").correo("isabel.sanchez@example.com").celular("3000000005").foto("https://randomuser.me/api/portraits/women/3.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("006").nombre("Luis Pérez").correo("luis.perez@example.com").celular("3000000006").foto("https://randomuser.me/api/portraits/men/3.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("007").nombre("Sofia Torres").correo("sofia.torres@example.com").celular("3000000007").foto("https://randomuser.me/api/portraits/women/4.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("008").nombre("Antonio López").correo("antonio.lopez@example.com").celular("3000000008").foto("https://randomuser.me/api/portraits/men/4.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("009").nombre("Carla Martínez").correo("carla.martinez@example.com").celular("3000000009").foto("https://randomuser.me/api/portraits/women/5.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("010").nombre("Francisco Gómez").correo("francisco.gomez@example.com").celular("3000000010").foto("https://randomuser.me/api/portraits/men/5.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("011").nombre("Raquel González").correo("raquel.gonzalez@example.com").celular("3000000011").foto("https://randomuser.me/api/portraits/women/6.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("012").nombre("Javier Fernández").correo("javier.fernandez@example.com").celular("3000000012").foto("https://randomuser.me/api/portraits/men/6.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("013").nombre("Marta Pérez").correo("marta.perez@example.com").celular("3000000013").foto("https://randomuser.me/api/portraits/women/7.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("014").nombre("Manuel Díaz").correo("manuel.diaz@example.com").celular("3000000014").foto("https://randomuser.me/api/portraits/men/7.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("015").nombre("Carmen López").correo("carmen.lopez@example.com").celular("3000000015").foto("https://randomuser.me/api/portraits/women/8.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("016").nombre("Carlos Morales").correo("carlos.morales@example.com").celular("3000000016").foto("https://randomuser.me/api/portraits/men/8.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("017").nombre("Beatriz Martínez").correo("beatriz.martinez@example.com").celular("3000000017").foto("https://randomuser.me/api/portraits/women/9.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("018").nombre("Fernando Romero").correo("fernando.romero@example.com").celular("3000000018").foto("https://randomuser.me/api/portraits/men/9.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("019").nombre("Elena Rodríguez").correo("elena.rodriguez@example.com").celular("3000000019").foto("https://randomuser.me/api/portraits/women/10.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("020").nombre("Sergio García").correo("sergio.garcia@example.com").celular("3000000020").foto("https://randomuser.me/api/portraits/men/10.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("021").nombre("Gabriela Fernández").correo("gabriela.fernandez@example.com").celular("3000000021").foto("https://randomuser.me/api/portraits/women/11.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("022").nombre("David Fernández").correo("david.fernandez@example.com").celular("3000000022").foto("https://randomuser.me/api/portraits/men/11.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("023").nombre("Victoria Pérez").correo("victoria.perez@example.com").celular("3000000023").foto("https://randomuser.me/api/portraits/women/12.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("024").nombre("Miguel Álvarez").correo("miguel.alvarez@example.com").celular("3000000024").foto("https://randomuser.me/api/portraits/men/12.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("025").nombre("Luz García").correo("luz.garcia@example.com").celular("3000000025").foto("https://randomuser.me/api/portraits/women/13.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("026").nombre("José Sánchez").correo("jose.sanchez@example.com").celular("3000000026").foto("https://randomuser.me/api/portraits/men/13.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("027").nombre("Valeria Ruiz").correo("valeria.ruiz@example.com").celular("3000000027").foto("https://randomuser.me/api/portraits/women/14.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("028").nombre("Arturo Pérez").correo("arturo.perez@example.com").celular("3000000028").foto("https://randomuser.me/api/portraits/men/14.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("029").nombre("Teresa López").correo("teresa.lopez@example.com").celular("3000000029").foto("https://randomuser.me/api/portraits/women/15.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("030").nombre("Andrés Gómez").correo("andres.gomez@example.com").celular("3000000030").foto("https://randomuser.me/api/portraits/men/15.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("031").nombre("Paola Ramírez").correo("paola.ramirez@example.com").celular("3000000031").foto("https://randomuser.me/api/portraits/women/16.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("032").nombre("Felipe Jiménez").correo("felipe.jimenez@example.com").celular("3000000032").foto("https://randomuser.me/api/portraits/men/16.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("033").nombre("Nancy Torres").correo("nancy.torres@example.com").celular("3000000033").foto("https://randomuser.me/api/portraits/women/17.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("034").nombre("Guillermo Rivera").correo("guillermo.rivera@example.com").celular("3000000034").foto("https://randomuser.me/api/portraits/men/17.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("035").nombre("Daniela Herrera").correo("daniela.herrera@example.com").celular("3000000035").foto("https://randomuser.me/api/portraits/women/18.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("036").nombre("Raul Vargas").correo("raul.vargas@example.com").celular("3000000036").foto("https://randomuser.me/api/portraits/men/18.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("037").nombre("Lucia Ortiz").correo("lucia.ortiz@example.com").celular("3000000037").foto("https://randomuser.me/api/portraits/women/19.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("038").nombre("Pablo Morales").correo("pablo.morales@example.com").celular("3000000038").foto("https://randomuser.me/api/portraits/men/19.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("039").nombre("Marina Flores").correo("marina.flores@example.com").celular("3000000039").foto("https://randomuser.me/api/portraits/women/20.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("040").nombre("Samuel Castillo").correo("samuel.castillo@example.com").celular("3000000040").foto("https://randomuser.me/api/portraits/men/20.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("041").nombre("Monica Reyes").correo("monica.reyes@example.com").celular("3000000041").foto("https://randomuser.me/api/portraits/women/21.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("042").nombre("Hector Martinez").correo("hector.martinez@example.com").celular("3000000042").foto("https://randomuser.me/api/portraits/men/21.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("043").nombre("Ana Campos").correo("ana.campos@example.com").celular("3000000043").foto("https://randomuser.me/api/portraits/women/22.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("044").nombre("Cristian Medina").correo("cristian.medina@example.com").celular("3000000044").foto("https://randomuser.me/api/portraits/men/22.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("045").nombre("Patricia Salazar").correo("patricia.salazar@example.com").celular("3000000045").foto("https://randomuser.me/api/portraits/women/23.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("046").nombre("Rodrigo Guzman").correo("rodrigo.guzman@example.com").celular("3000000046").foto("https://randomuser.me/api/portraits/men/23.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("047").nombre("Silvia Rios").correo("silvia.rios@example.com").celular("3000000047").foto("https://randomuser.me/api/portraits/women/24.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("048").nombre("Emilio Suarez").correo("emilio.suarez@example.com").celular("3000000048").foto("https://randomuser.me/api/portraits/men/24.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("049").nombre("Gloria Mendez").correo("gloria.mendez@example.com").celular("3000000049").foto("https://randomuser.me/api/portraits/women/25.jpg").build());
+        clienteRepository.save(Cliente.builder().cedula("050").nombre("Adrian Diaz").correo("adrian.diaz@example.com").celular("3000000050").foto("https://randomuser.me/api/portraits/men/25.jpg").build());
 
-        clienteRepository.save(new Cliente("001", "Ana Gómez", "ana.gomez@example.com", "3000000001", "https://randomuser.me/api/portraits/women/1.jpg"));
-        clienteRepository.save(new Cliente("002", "Pedro Martínez", "pedro.martinez@example.com", "3000000002", "https://randomuser.me/api/portraits/men/1.jpg"));
-        clienteRepository.save(new Cliente("003", "Laura Fernández", "laura.fernandez@example.com", "3000000003", "https://randomuser.me/api/portraits/women/2.jpg"));
-        clienteRepository.save(new Cliente("004", "José Rodríguez", "jose.rodriguez@example.com", "3000000004", "https://randomuser.me/api/portraits/men/2.jpg"));
-        clienteRepository.save(new Cliente("005", "Isabel Sánchez", "isabel.sanchez@example.com", "3000000005", "https://randomuser.me/api/portraits/women/3.jpg"));
-        clienteRepository.save(new Cliente("006", "Luis Pérez", "luis.perez@example.com", "3000000006", "https://randomuser.me/api/portraits/men/3.jpg"));
-        clienteRepository.save(new Cliente("007", "Sofia Torres", "sofia.torres@example.com", "3000000007", "https://randomuser.me/api/portraits/women/4.jpg"));
-        clienteRepository.save(new Cliente("008", "Antonio López", "antonio.lopez@example.com", "3000000008", "https://randomuser.me/api/portraits/men/4.jpg"));
-        clienteRepository.save(new Cliente("009", "Carla Martínez", "carla.martinez@example.com", "3000000009", "https://randomuser.me/api/portraits/women/5.jpg"));
-        clienteRepository.save(new Cliente("010", "Francisco Gómez", "francisco.gomez@example.com", "3000000010", "https://randomuser.me/api/portraits/men/5.jpg"));
-        clienteRepository.save(new Cliente("011", "Raquel González", "raquel.gonzalez@example.com", "3000000011", "https://randomuser.me/api/portraits/women/6.jpg"));
-        clienteRepository.save(new Cliente("012", "Javier Fernández", "javier.fernandez@example.com", "3000000012", "https://randomuser.me/api/portraits/men/6.jpg"));
-        clienteRepository.save(new Cliente("013", "Marta Pérez", "marta.perez@example.com", "3000000013", "https://randomuser.me/api/portraits/women/7.jpg"));
-        clienteRepository.save(new Cliente("014", "Manuel Díaz", "manuel.diaz@example.com", "3000000014", "https://randomuser.me/api/portraits/men/7.jpg"));
-        clienteRepository.save(new Cliente("015", "Carmen López", "carmen.lopez@example.com", "3000000015", "https://randomuser.me/api/portraits/women/8.jpg"));
-        clienteRepository.save(new Cliente("016", "Carlos Morales", "carlos.morales@example.com", "3000000016", "https://randomuser.me/api/portraits/men/8.jpg"));
-        clienteRepository.save(new Cliente("017", "Beatriz Martínez", "beatriz.martinez@example.com", "3000000017", "https://randomuser.me/api/portraits/women/9.jpg"));
-        clienteRepository.save(new Cliente("018", "Fernando Romero", "fernando.romero@example.com", "3000000018", "https://randomuser.me/api/portraits/men/9.jpg"));
-        clienteRepository.save(new Cliente("019", "Elena Rodríguez", "elena.rodriguez@example.com", "3000000019", "https://randomuser.me/api/portraits/women/10.jpg"));
-        clienteRepository.save(new Cliente("020", "Sergio García", "sergio.garcia@example.com", "3000000020", "https://randomuser.me/api/portraits/men/10.jpg"));
-        clienteRepository.save(new Cliente("021", "Gabriela Fernández", "gabriela.fernandez@example.com", "3000000021", "https://randomuser.me/api/portraits/women/11.jpg"));
-        clienteRepository.save(new Cliente("022", "David Fernández", "david.fernandez@example.com", "3000000022", "https://randomuser.me/api/portraits/men/11.jpg"));
-        clienteRepository.save(new Cliente("023", "Victoria Pérez", "victoria.perez@example.com", "3000000023", "https://randomuser.me/api/portraits/women/12.jpg"));
-        clienteRepository.save(new Cliente("024", "Miguel Álvarez", "miguel.alvarez@example.com", "3000000024", "https://randomuser.me/api/portraits/men/12.jpg"));
-        clienteRepository.save(new Cliente("025", "Luz García", "luz.garcia@example.com", "3000000025", "https://randomuser.me/api/portraits/women/13.jpg"));
-        clienteRepository.save(new Cliente("026", "José Sánchez", "jose.sanchez@example.com", "3000000026", "https://randomuser.me/api/portraits/men/13.jpg"));
-        clienteRepository.save(new Cliente("027", "Valeria Ruiz", "valeria.ruiz@example.com", "3000000027", "https://randomuser.me/api/portraits/women/14.jpg"));
-        clienteRepository.save(new Cliente("028", "Arturo Pérez", "arturo.perez@example.com", "3000000028", "https://randomuser.me/api/portraits/men/14.jpg"));
-        clienteRepository.save(new Cliente("029", "Teresa López", "teresa.lopez@example.com", "3000000029", "https://randomuser.me/api/portraits/women/15.jpg"));
-        clienteRepository.save(new Cliente("030", "Andrés Gómez", "andres.gomez@example.com", "3000000030", "https://randomuser.me/api/portraits/men/15.jpg"));
-        clienteRepository.save(new Cliente("031", "Paola Ramírez", "paola.ramirez@example.com", "3000000031", "https://randomuser.me/api/portraits/women/16.jpg"));
-        clienteRepository.save(new Cliente("032", "Felipe Jiménez", "felipe.jimenez@example.com", "3000000032", "https://randomuser.me/api/portraits/men/16.jpg"));
-        clienteRepository.save(new Cliente("033", "Nancy Torres", "nancy.torres@example.com", "3000000033", "https://randomuser.me/api/portraits/women/17.jpg"));
-        clienteRepository.save(new Cliente("034", "Héctor González", "hector.gonzalez@example.com", "3000000034", "https://randomuser.me/api/portraits/men/17.jpg"));
-        clienteRepository.save(new Cliente("035", "Sandra Gómez", "sandra.gomez@example.com", "3000000035", "https://randomuser.me/api/portraits/women/18.jpg"));
-        clienteRepository.save(new Cliente("036", "Luis Hernández", "luis.hernandez@example.com", "3000000036", "https://randomuser.me/api/portraits/men/18.jpg"));
-        clienteRepository.save(new Cliente("037", "Monica López", "monica.lopez@example.com", "3000000037", "https://randomuser.me/api/portraits/women/19.jpg"));
-        clienteRepository.save(new Cliente("038", "Ricardo Martínez", "ricardo.martinez@example.com", "3000000038", "https://randomuser.me/api/portraits/men/19.jpg"));
-        clienteRepository.save(new Cliente("039", "María González", "maria.gonzalez@example.com", "3000000039", "https://randomuser.me/api/portraits/women/20.jpg"));
-        clienteRepository.save(new Cliente("040", "Carlos Ramírez", "carlos.ramirez@example.com", "3000000040", "https://randomuser.me/api/portraits/men/20.jpg"));
-        clienteRepository.save(new Cliente("041", "Lucía García", "lucia.garcia@example.com", "3000000041", "https://randomuser.me/api/portraits/women/21.jpg"));
-        clienteRepository.save(new Cliente("042", "Santiago Torres", "santiago.torres@example.com", "3000000042", "https://randomuser.me/api/portraits/men/21.jpg"));
-        clienteRepository.save(new Cliente("043", "Catalina Álvarez", "catalina.alvarez@example.com", "3000000043", "https://randomuser.me/api/portraits/women/22.jpg"));
-        clienteRepository.save(new Cliente("044", "Guillermo Pérez", "guillermo.perez@example.com", "3000000044", "https://randomuser.me/api/portraits/men/22.jpg"));
-        clienteRepository.save(new Cliente("045", "Daniela Mendoza", "daniela.mendoza@example.com", "3000000045", "https://randomuser.me/api/portraits/women/23.jpg"));
-        clienteRepository.save(new Cliente("046", "Julio Gómez", "julio.gomez@example.com", "3000000046", "https://randomuser.me/api/portraits/men/23.jpg"));
-        clienteRepository.save(new Cliente("047", "Sara Rodríguez", "sara.rodriguez@example.com", "3000000047", "https://randomuser.me/api/portraits/women/24.jpg"));
-        clienteRepository.save(new Cliente("048", "Alfredo Jiménez", "alfredo.jimenez@example.com", "3000000048", "https://randomuser.me/api/portraits/men/24.jpg"));
-        clienteRepository.save(new Cliente("049", "Juliana Moreno", "juliana.moreno@example.com", "3000000049", "https://randomuser.me/api/portraits/women/25.jpg"));
-        clienteRepository.save(new Cliente("050", "Samuel Hernández", "samuel.hernandez@example.com", "3000000050", "https://randomuser.me/api/portraits/men/25.jpg"));
+
         
-
         // Agregar mascotas a la base de datos
-        
-       // Agregar mascotas a la base de datos
         mascotaRepository.save(new Mascota("Misu", "Persa", 3, 4.2, "Asma", "https://static.nationalgeographicla.com/files/styles/image_3200/public/nationalgeographic_1468962.jpg?w=1900&h=1400", true));
         mascotaRepository.save(new Mascota("Gatito", "Siamés", 2, 3.8, "Alergia", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7Rsfl6dIGPbojoNrUPdja0WjgGk8ESACRZg&s", false));
         mascotaRepository.save(new Mascota("Nube", "Maine Coon", 4, 5.5, "Obesidad", "https://static.nationalgeographic.es/files/styles/image_3200/public/75552.ngsversion.1422285553360.jpg?w=1900&h=1267", true));
