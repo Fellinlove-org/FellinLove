@@ -66,6 +66,8 @@ public class DatabaseInit implements ApplicationRunner{
         administradorRepository.save(Administrador.builder().cedula("123456").nombre("Daniel Teran").correo("daniel_teran@example.com").password("0000").build());
 
         //Agregar clientes a la base de datos
+        Cliente client = Cliente.builder().cedula("000").nombre("Daniel Teran").correo("daniel_teran@example.com").celular("3000000000").foto("https://randomuser.me/api/portraits/men/1.jpg").build();
+        clienteRepository.save(client);
         clienteRepository.save(Cliente.builder().cedula("001").nombre("Ana Gómez").correo("ana.gomez@example.com").celular("3000000001").foto("https://randomuser.me/api/portraits/women/1.jpg").build());
         clienteRepository.save(Cliente.builder().cedula("002").nombre("Carlos García").correo("carlos.garcia@example.com").celular("3000000002").foto("https://randomuser.me/api/portraits/men/2.jpg").build());
         clienteRepository.save(Cliente.builder().cedula("003").nombre("Laura Fernández").correo("laura.fernandez@example.com").celular("3000000003").foto("https://randomuser.me/api/portraits/women/2.jpg").build());

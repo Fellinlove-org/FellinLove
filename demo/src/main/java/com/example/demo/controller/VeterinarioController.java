@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.DTOs.VeterinarioDTO;
 import com.example.demo.model.Veterinario;
 import com.example.demo.service.TratamientoService;
 import com.example.demo.service.VeterinarioService;
@@ -35,7 +36,7 @@ public class VeterinarioController {
 
 
     @GetMapping("/login/{cedula}/{password}")
-    public ResponseEntity<String> login(@PathVariable("cedula") String cedula, @PathVariable("password") String password) {
+    public ResponseEntity login(@PathVariable("cedula") String cedula, @PathVariable("password") String password) {
         Optional<Veterinario> veterinario = veterinarioService.findByCedula(cedula);
         if (!veterinario.isPresent()) {
             return new ResponseEntity<>("Cedula o password incorrectos", HttpStatus.UNAUTHORIZED);
