@@ -5,12 +5,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.example.demo.DTOs.ClienteDTO;
 import com.example.demo.model.Cliente;
+import com.example.demo.repository.UserRepository;
+import com.example.demo.security.CustomUserDetailService;
+import com.example.demo.security.JWTGenerator;
 import com.example.demo.service.ClienteService;
+import com.example.demo.model.UserEntity;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,7 +31,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 
-
 @RequestMapping("/cliente")
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -30,6 +38,18 @@ public class ClienteController {
 
     @Autowired
     ClienteService clienteService;
+
+    @Autowired
+    private CustomUserDetailService customUserDetailService;
+
+    @Autowired
+    AuthenticationManager authenticationManager;
+
+    @Autowired
+    JWTGenerator jwtGenerator;
+
+    @Autowired
+    private UserRepository userRepository;
 
 
     //METODO PARA ENCONTRAR A UN CLIENTE POR SI ID
@@ -56,6 +76,21 @@ public class ClienteController {
     }
 
 
+     // http://localhost:8080/clientes/login
+    @PostMapping("/login")
+    public ResponseEntity<String> loginClienteEntity(@RequestBody ClienteDTO clienteDTO) {
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(clienteDTO.getCedula(), "123"));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        String token = jwtGenerator.generateToken(authentication);
+
+        return new ResponseEntity<>(token, HttpStatus.OK);
+    }
+
+
+
     //METODO PARA ENCONTRAR A TODOS LOS CLIENTES
     //url: http://localhost:8090/cliente/find/all
     @GetMapping("/find/all")
@@ -69,17 +104,22 @@ public class ClienteController {
     //METODO PARA AGREGAR A UN CLIENTE
     //url: http://localhost:8090/cliente/add
     @PostMapping("/add")
-    public ResponseEntity<Cliente> agregarCliente(@RequestBody Cliente cliente) {
+    
+    public ResponseEntity agregarCliente(@RequestBody Cliente cliente) {
 
-         if (clienteService.SearchById(cliente.getId()) != null) {
-
-            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
-            
-        }else{ 
-            Cliente saved = clienteService.add(cliente);
-            return new ResponseEntity<>(saved, HttpStatus.CREATED);
+        if (userRepository.existsByUsername(cliente.getCedula())) {
+            return new ResponseEntity<String>("Este cliente ya existe", HttpStatus.BAD_REQUEST);
         }
-        
+
+        UserEntity userEntity = customUserDetailService.ClienteToUser(cliente);
+        cliente.setUser(userEntity);
+        Cliente newCliente = clienteService.add(cliente);
+        if (newCliente == null) {
+            return new ResponseEntity<Cliente>(newCliente,HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<Cliente>(newCliente, HttpStatus.CREATED);
+
     }
 
 

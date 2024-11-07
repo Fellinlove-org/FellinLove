@@ -20,44 +20,34 @@ public class SecurityConfig {
 
     @Autowired
     private JwtAuthEntryPoint jwtAuthEntryPoint;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
-        /*
-         * Se recomienda desactivar CSRF cuando se la comunicación se están manejando
-         * páginas web
-         * donde la comunicación entre la página y el servidor es mediante peticiones
-         * HTTP
-         */
         http
                 .csrf(AbstractHttpConfigurer::disable)
-                /* H2 */
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()))
                 .sessionManagement(customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(requests -> requests
-                        /* H2 */
                         .requestMatchers("/h2/**").permitAll()
-                        .anyRequest().permitAll()
+                        .requestMatchers("/student/login").permitAll()
+                        .requestMatchers("/student/find/**").hasAuthority("TEACHER")
+                        .requestMatchers("/student/details").hasAuthority("STUDENT")
+                        .requestMatchers("/teacher/details").hasAuthority("TEACHER")
+                        .anyRequest().authenticated()
                 )
-                .exceptionHandling( exception -> exception.authenticationEntryPoint(jwtAuthEntryPoint));
+                .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthEntryPoint));
 
-                http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
     @Bean
-    PasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    /*
-     * Permite autenticar a los usuarios con usuario y contrasena
-     * Al autenticar devuelve un onjeto Authentication que posteriormente se puede usar a traves de SecurityContextHolder
-     * para obtener el usuario autenticado
-     */
     @Bean
-    public AuthenticationManager authenticationManager(
-            AuthenticationConfiguration authenticationConfiguration) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
@@ -65,6 +55,4 @@ public class SecurityConfig {
     public JWTAuthenticationFilter jwtAuthenticationFilter() {
         return new JWTAuthenticationFilter();
     }
-
-
 }

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Administrador;
-import com.example.demo.model.Veterinario;
 import com.example.demo.service.AdministradorService;
 
 @RequestMapping("/admin")
