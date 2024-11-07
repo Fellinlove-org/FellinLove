@@ -10,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Veterinario {
     
+    @OneToOne(cascade = CascadeType.ALL)
+    private UserEntity user;
+
     @Id
     @GeneratedValue
     private Long id;

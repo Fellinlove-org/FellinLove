@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 
 import java.io.InputStream;
@@ -22,14 +23,18 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.example.demo.model.Administrador;
 import com.example.demo.model.Cliente;
 import com.example.demo.model.Mascota;
+import com.example.demo.model.Role;
 import com.example.demo.model.Veterinario;
 import com.example.demo.model.Droga;
 import com.example.demo.model.Tratamiento;
+import com.example.demo.model.UserEntity;
 import com.example.demo.repository.AdministradorRepository;
 import com.example.demo.repository.ClienteRepository;
 import com.example.demo.repository.DrogaRepository;
 import com.example.demo.repository.MascotaRepository;
+import com.example.demo.repository.RoleRepository;
 import com.example.demo.repository.TratamientoRepository;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.VeterinarioRepository;
 
 import jakarta.transaction.Transactional;
@@ -60,64 +65,234 @@ public class DatabaseInit implements ApplicationRunner{
     TratamientoRepository tratamientoRepository;
 
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+
+    @Autowired
+    RoleRepository roleRepository;
+
+
+    @Autowired
+    UserRepository userRepository;
+
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        administradorRepository.save(Administrador.builder().cedula("123456").nombre("Daniel Teran").correo("daniel_teran@example.com").password("0000").build());
+
+        roleRepository.save(new Role("ADMIN"));
+        roleRepository.save(new Role("CLIENTE"));
+        roleRepository.save(new Role("VETERINARIO"));
+
+        Administrador adminSave;
+        Cliente clienteSave;
+        Veterinario veterinarioSave;
+        UserEntity userEntity;
+
+        adminSave = Administrador.builder().cedula("123456").nombre("Daniel Teran").correo("daniel_teran@example.com").password("0000").build();
+        userEntity = saveUserAdmin(adminSave);
+        adminSave.setUser(userEntity);
+        administradorRepository.save(adminSave);
 
         //Agregar clientes a la base de datos
-        Cliente client = Cliente.builder().cedula("000").nombre("Daniel Teran").correo("daniel_teran@example.com").celular("3000000000").foto("https://randomuser.me/api/portraits/men/1.jpg").build();
-        clienteRepository.save(client);
-        clienteRepository.save(Cliente.builder().cedula("001").nombre("Ana Gómez").correo("ana.gomez@example.com").celular("3000000001").foto("https://randomuser.me/api/portraits/women/1.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("002").nombre("Carlos García").correo("carlos.garcia@example.com").celular("3000000002").foto("https://randomuser.me/api/portraits/men/2.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("003").nombre("Laura Fernández").correo("laura.fernandez@example.com").celular("3000000003").foto("https://randomuser.me/api/portraits/women/2.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("004").nombre("José Rodríguez").correo("jose.rodriguez@example.com").celular("3000000004").foto("https://randomuser.me/api/portraits/men/2.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("005").nombre("Isabel Sánchez").correo("isabel.sanchez@example.com").celular("3000000005").foto("https://randomuser.me/api/portraits/women/3.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("006").nombre("Luis Pérez").correo("luis.perez@example.com").celular("3000000006").foto("https://randomuser.me/api/portraits/men/3.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("007").nombre("Sofia Torres").correo("sofia.torres@example.com").celular("3000000007").foto("https://randomuser.me/api/portraits/women/4.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("008").nombre("Antonio López").correo("antonio.lopez@example.com").celular("3000000008").foto("https://randomuser.me/api/portraits/men/4.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("009").nombre("Carla Martínez").correo("carla.martinez@example.com").celular("3000000009").foto("https://randomuser.me/api/portraits/women/5.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("010").nombre("Francisco Gómez").correo("francisco.gomez@example.com").celular("3000000010").foto("https://randomuser.me/api/portraits/men/5.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("011").nombre("Raquel González").correo("raquel.gonzalez@example.com").celular("3000000011").foto("https://randomuser.me/api/portraits/women/6.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("012").nombre("Javier Fernández").correo("javier.fernandez@example.com").celular("3000000012").foto("https://randomuser.me/api/portraits/men/6.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("013").nombre("Marta Pérez").correo("marta.perez@example.com").celular("3000000013").foto("https://randomuser.me/api/portraits/women/7.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("014").nombre("Manuel Díaz").correo("manuel.diaz@example.com").celular("3000000014").foto("https://randomuser.me/api/portraits/men/7.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("015").nombre("Carmen López").correo("carmen.lopez@example.com").celular("3000000015").foto("https://randomuser.me/api/portraits/women/8.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("016").nombre("Carlos Morales").correo("carlos.morales@example.com").celular("3000000016").foto("https://randomuser.me/api/portraits/men/8.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("017").nombre("Beatriz Martínez").correo("beatriz.martinez@example.com").celular("3000000017").foto("https://randomuser.me/api/portraits/women/9.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("018").nombre("Fernando Romero").correo("fernando.romero@example.com").celular("3000000018").foto("https://randomuser.me/api/portraits/men/9.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("019").nombre("Elena Rodríguez").correo("elena.rodriguez@example.com").celular("3000000019").foto("https://randomuser.me/api/portraits/women/10.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("020").nombre("Sergio García").correo("sergio.garcia@example.com").celular("3000000020").foto("https://randomuser.me/api/portraits/men/10.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("021").nombre("Gabriela Fernández").correo("gabriela.fernandez@example.com").celular("3000000021").foto("https://randomuser.me/api/portraits/women/11.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("022").nombre("David Fernández").correo("david.fernandez@example.com").celular("3000000022").foto("https://randomuser.me/api/portraits/men/11.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("023").nombre("Victoria Pérez").correo("victoria.perez@example.com").celular("3000000023").foto("https://randomuser.me/api/portraits/women/12.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("024").nombre("Miguel Álvarez").correo("miguel.alvarez@example.com").celular("3000000024").foto("https://randomuser.me/api/portraits/men/12.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("025").nombre("Luz García").correo("luz.garcia@example.com").celular("3000000025").foto("https://randomuser.me/api/portraits/women/13.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("026").nombre("José Sánchez").correo("jose.sanchez@example.com").celular("3000000026").foto("https://randomuser.me/api/portraits/men/13.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("027").nombre("Valeria Ruiz").correo("valeria.ruiz@example.com").celular("3000000027").foto("https://randomuser.me/api/portraits/women/14.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("028").nombre("Arturo Pérez").correo("arturo.perez@example.com").celular("3000000028").foto("https://randomuser.me/api/portraits/men/14.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("029").nombre("Teresa López").correo("teresa.lopez@example.com").celular("3000000029").foto("https://randomuser.me/api/portraits/women/15.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("030").nombre("Andrés Gómez").correo("andres.gomez@example.com").celular("3000000030").foto("https://randomuser.me/api/portraits/men/15.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("031").nombre("Paola Ramírez").correo("paola.ramirez@example.com").celular("3000000031").foto("https://randomuser.me/api/portraits/women/16.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("032").nombre("Felipe Jiménez").correo("felipe.jimenez@example.com").celular("3000000032").foto("https://randomuser.me/api/portraits/men/16.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("033").nombre("Nancy Torres").correo("nancy.torres@example.com").celular("3000000033").foto("https://randomuser.me/api/portraits/women/17.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("034").nombre("Guillermo Rivera").correo("guillermo.rivera@example.com").celular("3000000034").foto("https://randomuser.me/api/portraits/men/17.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("035").nombre("Daniela Herrera").correo("daniela.herrera@example.com").celular("3000000035").foto("https://randomuser.me/api/portraits/women/18.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("036").nombre("Raul Vargas").correo("raul.vargas@example.com").celular("3000000036").foto("https://randomuser.me/api/portraits/men/18.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("037").nombre("Lucia Ortiz").correo("lucia.ortiz@example.com").celular("3000000037").foto("https://randomuser.me/api/portraits/women/19.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("038").nombre("Pablo Morales").correo("pablo.morales@example.com").celular("3000000038").foto("https://randomuser.me/api/portraits/men/19.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("039").nombre("Marina Flores").correo("marina.flores@example.com").celular("3000000039").foto("https://randomuser.me/api/portraits/women/20.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("040").nombre("Samuel Castillo").correo("samuel.castillo@example.com").celular("3000000040").foto("https://randomuser.me/api/portraits/men/20.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("041").nombre("Monica Reyes").correo("monica.reyes@example.com").celular("3000000041").foto("https://randomuser.me/api/portraits/women/21.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("042").nombre("Hector Martinez").correo("hector.martinez@example.com").celular("3000000042").foto("https://randomuser.me/api/portraits/men/21.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("043").nombre("Ana Campos").correo("ana.campos@example.com").celular("3000000043").foto("https://randomuser.me/api/portraits/women/22.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("044").nombre("Cristian Medina").correo("cristian.medina@example.com").celular("3000000044").foto("https://randomuser.me/api/portraits/men/22.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("045").nombre("Patricia Salazar").correo("patricia.salazar@example.com").celular("3000000045").foto("https://randomuser.me/api/portraits/women/23.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("046").nombre("Rodrigo Guzman").correo("rodrigo.guzman@example.com").celular("3000000046").foto("https://randomuser.me/api/portraits/men/23.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("047").nombre("Silvia Rios").correo("silvia.rios@example.com").celular("3000000047").foto("https://randomuser.me/api/portraits/women/24.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("048").nombre("Emilio Suarez").correo("emilio.suarez@example.com").celular("3000000048").foto("https://randomuser.me/api/portraits/men/24.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("049").nombre("Gloria Mendez").correo("gloria.mendez@example.com").celular("3000000049").foto("https://randomuser.me/api/portraits/women/25.jpg").build());
-        clienteRepository.save(Cliente.builder().cedula("050").nombre("Adrian Diaz").correo("adrian.diaz@example.com").celular("3000000050").foto("https://randomuser.me/api/portraits/men/25.jpg").build());
+        clienteSave = Cliente.builder().cedula("001").nombre("Ana Gómez").correo("ana.gomez@example.com").celular("3000000001").foto("https://randomuser.me/api/portraits/women/1.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("002").nombre("Carlos García").correo("carlos.garcia@example.com").celular("3000000002").foto("https://randomuser.me/api/portraits/men/2.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("003").nombre("Laura Fernández").correo("laura.fernandez@example.com").celular("3000000003").foto("https://randomuser.me/api/portraits/women/2.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("004").nombre("José Rodríguez").correo("jose.rodriguez@example.com").celular("3000000004").foto("https://randomuser.me/api/portraits/men/2.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("005").nombre("Isabel Sánchez").correo("isabel.sanchez@example.com").celular("3000000005").foto("https://randomuser.me/api/portraits/women/3.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("006").nombre("Luis Pérez").correo("luis.perez@example.com").celular("3000000006").foto("https://randomuser.me/api/portraits/men/3.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("007").nombre("Sofia Torres").correo("sofia.torres@example.com").celular("3000000007").foto("https://randomuser.me/api/portraits/women/4.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("008").nombre("Antonio López").correo("antonio.lopez@example.com").celular("3000000008").foto("https://randomuser.me/api/portraits/men/4.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("009").nombre("Carla Martínez").correo("carla.martinez@example.com").celular("3000000009").foto("https://randomuser.me/api/portraits/women/5.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("010").nombre("Francisco Gómez").correo("francisco.gomez@example.com").celular("3000000010").foto("https://randomuser.me/api/portraits/men/5.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("011").nombre("Raquel González").correo("raquel.gonzalez@example.com").celular("3000000011").foto("https://randomuser.me/api/portraits/women/6.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("012").nombre("Javier Fernández").correo("javier.fernandez@example.com").celular("3000000012").foto("https://randomuser.me/api/portraits/men/6.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("013").nombre("Marta Pérez").correo("marta.perez@example.com").celular("3000000013").foto("https://randomuser.me/api/portraits/women/7.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("014").nombre("Manuel Díaz").correo("manuel.diaz@example.com").celular("3000000014").foto("https://randomuser.me/api/portraits/men/7.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("015").nombre("Carmen López").correo("carmen.lopez@example.com").celular("3000000015").foto("https://randomuser.me/api/portraits/women/8.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("016").nombre("Carlos Morales").correo("carlos.morales@example.com").celular("3000000016").foto("https://randomuser.me/api/portraits/men/8.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("017").nombre("Beatriz Martínez").correo("beatriz.martinez@example.com").celular("3000000017").foto("https://randomuser.me/api/portraits/women/9.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("018").nombre("Fernando Romero").correo("fernando.romero@example.com").celular("3000000018").foto("https://randomuser.me/api/portraits/men/9.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("019").nombre("Elena Rodríguez").correo("elena.rodriguez@example.com").celular("3000000019").foto("https://randomuser.me/api/portraits/women/10.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("020").nombre("Sergio García").correo("sergio.garcia@example.com").celular("3000000020").foto("https://randomuser.me/api/portraits/men/10.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("021").nombre("Gabriela Fernández").correo("gabriela.fernandez@example.com").celular("3000000021").foto("https://randomuser.me/api/portraits/women/11.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("022").nombre("David Fernández").correo("david.fernandez@example.com").celular("3000000022").foto("https://randomuser.me/api/portraits/men/11.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("023").nombre("Victoria Pérez").correo("victoria.perez@example.com").celular("3000000023").foto("https://randomuser.me/api/portraits/women/12.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("024").nombre("Miguel Álvarez").correo("miguel.alvarez@example.com").celular("3000000024").foto("https://randomuser.me/api/portraits/men/12.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("025").nombre("Luz García").correo("luz.garcia@example.com").celular("3000000025").foto("https://randomuser.me/api/portraits/women/13.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("026").nombre("José Sánchez").correo("jose.sanchez@example.com").celular("3000000026").foto("https://randomuser.me/api/portraits/men/13.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("027").nombre("Valeria Ruiz").correo("valeria.ruiz@example.com").celular("3000000027").foto("https://randomuser.me/api/portraits/women/14.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("028").nombre("Arturo Pérez").correo("arturo.perez@example.com").celular("3000000028").foto("https://randomuser.me/api/portraits/men/14.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("029").nombre("Teresa López").correo("teresa.lopez@example.com").celular("3000000029").foto("https://randomuser.me/api/portraits/women/15.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("030").nombre("Andrés Gómez").correo("andres.gomez@example.com").celular("3000000030").foto("https://randomuser.me/api/portraits/men/15.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("031").nombre("Paola Ramírez").correo("paola.ramirez@example.com").celular("3000000031").foto("https://randomuser.me/api/portraits/women/16.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("032").nombre("Felipe Jiménez").correo("felipe.jimenez@example.com").celular("3000000032").foto("https://randomuser.me/api/portraits/men/16.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("033").nombre("Nancy Torres").correo("nancy.torres@example.com").celular("3000000033").foto("https://randomuser.me/api/portraits/women/17.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("034").nombre("Guillermo Rivera").correo("guillermo.rivera@example.com").celular("3000000034").foto("https://randomuser.me/api/portraits/men/17.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("035").nombre("Daniela Herrera").correo("daniela.herrera@example.com").celular("3000000035").foto("https://randomuser.me/api/portraits/women/18.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("036").nombre("Raul Vargas").correo("raul.vargas@example.com").celular("3000000036").foto("https://randomuser.me/api/portraits/men/18.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("037").nombre("Lucia Ortiz").correo("lucia.ortiz@example.com").celular("3000000037").foto("https://randomuser.me/api/portraits/women/19.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("038").nombre("Pablo Morales").correo("pablo.morales@example.com").celular("3000000038").foto("https://randomuser.me/api/portraits/men/19.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("039").nombre("Marina Flores").correo("marina.flores@example.com").celular("3000000039").foto("https://randomuser.me/api/portraits/women/20.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("040").nombre("Samuel Castillo").correo("samuel.castillo@example.com").celular("3000000040").foto("https://randomuser.me/api/portraits/men/20.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("041").nombre("Monica Reyes").correo("monica.reyes@example.com").celular("3000000041").foto("https://randomuser.me/api/portraits/women/21.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("042").nombre("Hector Martinez").correo("hector.martinez@example.com").celular("3000000042").foto("https://randomuser.me/api/portraits/men/21.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("043").nombre("Ana Campos").correo("ana.campos@example.com").celular("3000000043").foto("https://randomuser.me/api/portraits/women/22.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("044").nombre("Cristian Medina").correo("cristian.medina@example.com").celular("3000000044").foto("https://randomuser.me/api/portraits/men/22.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("045").nombre("Patricia Salazar").correo("patricia.salazar@example.com").celular("3000000045").foto("https://randomuser.me/api/portraits/women/23.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("046").nombre("Rodrigo Guzman").correo("rodrigo.guzman@example.com").celular("3000000046").foto("https://randomuser.me/api/portraits/men/23.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("047").nombre("Silvia Rios").correo("silvia.rios@example.com").celular("3000000047").foto("https://randomuser.me/api/portraits/women/24.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("048").nombre("Emilio Suarez").correo("emilio.suarez@example.com").celular("3000000048").foto("https://randomuser.me/api/portraits/men/24.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("049").nombre("Gloria Mendez").correo("gloria.mendez@example.com").celular("3000000049").foto("https://randomuser.me/api/portraits/women/25.jpg").build();
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
+        clienteSave = Cliente.builder().cedula("050").nombre("Adrian Diaz").correo("adrian.diaz@example.com").celular("3000000050").foto("https://randomuser.me/api/portraits/men/25.jpg").build();
 
 
         
@@ -230,26 +405,83 @@ public class DatabaseInit implements ApplicationRunner{
 
  
         // Agregar veterinarios a la base de datos
-        veterinarioRepository.save(new Veterinario("2222", "Dr. Juan Pérez", "Medicina General", "juan.perez@mail.com", "0001", "https://images.stockcake.com/public/e/9/3/e9369a0d-c4d0-4688-851b-07edafc906ff_large/veterinarian-examining-rabbit-stockcake.jpg"));
-        veterinarioRepository.save(new Veterinario("3333", "Dra. Ana López", "Cirugía", "ana.lopez@mail.com", "0002", "https://images.stockcake.com/public/0/b/f/0bfe396f-1e8d-4232-a5c5-693ac3598e47_large/veterinarian-examining-parrot-stockcake.jpg"));
-        veterinarioRepository.save(new Veterinario("5555", "Dr. Carlos Fernández", "Dermatología", "carlos.fernandez@mail.com", "0003", "https://images.stockcake.com/public/2/4/a/24af6981-08bc-4281-8063-2c8578141a0d_large/veterinarian-caring-dog-stockcake.jpg"));
-        veterinarioRepository.save(new Veterinario("6666", "Dra. Marta González", "Oftalmología", "marta.gonzalez@mail.com", "0004", "https://images.stockcake.com/public/4/1/8/4187b99f-5eda-4342-a0c2-6673afac8a1e_large/vet-examining-dog-stockcake.jpg"));
-        veterinarioRepository.save(new Veterinario("7777", "Dr. Luis Martínez", "Oncología", "luis.martinez@mail.com", "0005", "https://images.stockcake.com/public/f/7/3/f737970f-6e10-4353-aa82-d1b9dc3b94a3_large/veterinarian-examining-kitten-stockcake.jpg"));
-        veterinarioRepository.save(new Veterinario("8888", "Dra. Clara Rivera", "Cardiología", "clara.rivera@mail.com", "0006", "https://images.stockcake.com/public/f/c/c/fccba0e9-a1d0-471d-aca3-3a99777233f8_large/puppy-vet-visit-stockcake.jpg"));
-        veterinarioRepository.save(new Veterinario("9999", "Dr. Miguel Torres", "Neurología", "miguel.torres@mail.com", "0007", "https://images.stockcake.com/public/1/4/c/14ca6ccf-cfe1-4438-bd99-d8e618ec3602_large/veterinarian-examining-parrot-stockcake.jpg"));
-        veterinarioRepository.save(new Veterinario("1010", "Dra. Patricia Morales", "Nutrición", "patricia.morales@mail.com", "0008", "https://images.stockcake.com/public/6/1/f/61fb54c5-0de2-42e0-85f2-a20c9a589684_large/veterinarian-examines-cat-stockcake.jpg"));
-        veterinarioRepository.save(new Veterinario("1111", "Dr. Javier Hernández", "Anestesiología", "javier.hernandez@mail.com", "0009", "https://images.stockcake.com/public/9/8/0/98004d06-d724-404c-bcc1-411a13d39b1d_large/veterinarian-examining-owl-stockcake.jpg"));
-        veterinarioRepository.save(new Veterinario("1212", "Dra. Sofía Romero", "Rehabilitación", "sofia.romero@mail.com", "0010", "https://images.stockcake.com/public/b/e/0/be000a37-483e-438c-853a-939929f13d89_large/vet-examining-dog-stockcake.jpg"));
-        veterinarioRepository.save(new Veterinario("1313", "Dr. Andrés Vega", "Medicina Felina", "andres.vega@mail.com", "0011", "https://images.stockcake.com/public/c/a/2/ca2c500a-d923-4d3f-a8cb-70ceb0bd3f76_large/veterinarian-examining-iguana-stockcake.jpg"));
-        veterinarioRepository.save(new Veterinario("1414", "Dra. Laura Fuentes", "Ortopedia", "laura.fuentes@mail.com", "0012", "https://images.stockcake.com/public/d/4/d/d4d0589c-746f-46e9-9e45-462ee737cc99_large/veterinarian-examining-kitten-stockcake.jpg"));
-        veterinarioRepository.save(new Veterinario("1515", "Dr. Diego Navarro", "Odontología", "diego.navarro@mail.com", "0013", "https://images.stockcake.com/public/4/b/4/4b4f006c-a1fd-4b77-89a6-7f44e7417eb5_large/veterinarian-with-ferret-stockcake.jpg"));
-        veterinarioRepository.save(new Veterinario("1616", "Dra. Gabriela Salinas", "Medicina Equina", "gabriela.salinas@mail.com", "0014", "https://images.stockcake.com/public/4/c/7/4c79c1df-36ec-4088-9db4-1fe420e91036_large/veterinarian-holding-hamster-stockcake.jpg"));
-        veterinarioRepository.save(new Veterinario("1717", "Dr. Pedro Vargas", "Toxicología", "pedro.vargas@mail.com", "0015", "https://images.stockcake.com/public/4/5/b/45bdd751-c59b-46e1-a234-a8955a39fdb3_large/veterinarian-examining-rabbit-stockcake.jpg"));
-        veterinarioRepository.save(new Veterinario("1818", "Dra. Valeria Medina", "Etología", "valeria.medina@mail.com", "0016", "https://images.stockcake.com/public/0/6/5/065f044e-fbdc-4d77-a176-e1c13f12246d_large/veterinarian-embraces-horse-stockcake.jpg"));
-        veterinarioRepository.save(new Veterinario("1919", "Dr. Sergio Ramírez", "Radiología", "sergio.ramirez@mail.com", "0017", "https://images.stockcake.com/public/7/b/a/7babc602-7afb-488f-8976-6eee8f485f40_large/veterinarian-holding-kitten-stockcake.jpg"));
-        veterinarioRepository.save(new Veterinario("2020", "Dra. Julia Ortiz", "Patología", "julia.ortiz@mail.com", "0018", "https://images.stockcake.com/public/2/0/6/20609582-d6ce-4426-8e70-de398a954c6f_large/veterinarian-examining-rabbit-stockcake.jpg"));
-        veterinarioRepository.save(new Veterinario("2121", "Dr. Mario Mendoza", "Parasitología", "mario.mendoza@mail.com", "0019", "https://images.stockcake.com/public/4/a/0/4a05e197-c914-40af-ae7f-e9a12eae4330_large/veterinarian-examining-dog-stockcake.jpg"));
-        veterinarioRepository.save(new Veterinario("2223", "Dra. Mariana Castillo", "Reproducción", "mariana.castillo@mail.com", "0020", "https://images.stockcake.com/public/6/7/6/67625ce5-d76e-4582-adf0-82f2f2e80fb3_large/veterinarian-examining-cat-stockcake.jpg"));
+        veterinarioSave = new Veterinario("2222", "Dr. Juan Pérez", "Medicina General", "juan.perez@mail.com", "0001", "https://images.stockcake.com/public/e/9/3/e9369a0d-c4d0-4688-851b-07edafc906ff_large/veterinarian-examining-rabbit-stockcake.jpg");
+        userEntity = saveUserVet(veterinarioSave);
+        veterinarioSave.setUser(userEntity);
+        veterinarioRepository.save(veterinarioSave);
+        veterinarioSave = new Veterinario("3333", "Dra. Ana López", "Cirugía", "ana.lopez@mail.com", "0002", "https://images.stockcake.com/public/0/b/f/0bfe396f-1e8d-4232-a5c5-693ac3598e47_large/veterinarian-examining-parrot-stockcake.jpg");
+        userEntity = saveUserVet(veterinarioSave);
+        veterinarioSave.setUser(userEntity);
+        veterinarioRepository.save(veterinarioSave);
+        veterinarioSave = new Veterinario("5555", "Dr. Carlos Fernández", "Dermatología", "carlos.fernandez@mail.com", "0003", "https://images.stockcake.com/public/2/4/a/24af6981-08bc-4281-8063-2c8578141a0d_large/veterinarian-caring-dog-stockcake.jpg");
+        userEntity = saveUserVet(veterinarioSave);
+        veterinarioSave.setUser(userEntity);
+        veterinarioRepository.save(veterinarioSave);
+        veterinarioSave = new Veterinario("6666", "Dra. Marta González", "Oftalmología", "marta.gonzalez@mail.com", "0004", "https://images.stockcake.com/public/4/1/8/4187b99f-5eda-4342-a0c2-6673afac8a1e_large/vet-examining-dog-stockcake.jpg");
+        userEntity = saveUserVet(veterinarioSave);
+        veterinarioSave.setUser(userEntity);
+        veterinarioRepository.save(veterinarioSave);
+        veterinarioSave = new Veterinario("7777", "Dr. Luis Martínez", "Oncología", "luis.martinez@mail.com", "0005", "https://images.stockcake.com/public/f/7/3/f737970f-6e10-4353-aa82-d1b9dc3b94a3_large/veterinarian-examining-kitten-stockcake.jpg");
+        userEntity = saveUserVet(veterinarioSave);
+        veterinarioSave.setUser(userEntity);
+        veterinarioRepository.save(veterinarioSave);
+        veterinarioSave = new Veterinario("8888", "Dra. Clara Rivera", "Cardiología", "clara.rivera@mail.com", "0006", "https://images.stockcake.com/public/f/c/c/fccba0e9-a1d0-471d-aca3-3a99777233f8_large/puppy-vet-visit-stockcake.jpg");
+        userEntity = saveUserVet(veterinarioSave);
+        veterinarioSave.setUser(userEntity);
+        veterinarioRepository.save(veterinarioSave);
+        veterinarioSave = new Veterinario("9999", "Dr. Miguel Torres", "Neurología", "miguel.torres@mail.com", "0007", "https://images.stockcake.com/public/1/4/c/14ca6ccf-cfe1-4438-bd99-d8e618ec3602_large/veterinarian-examining-parrot-stockcake.jpg");
+        userEntity = saveUserVet(veterinarioSave);
+        veterinarioSave.setUser(userEntity);
+        veterinarioRepository.save(veterinarioSave);
+        veterinarioSave = new Veterinario("1010", "Dra. Patricia Morales", "Nutrición", "patricia.morales@mail.com", "0008", "https://images.stockcake.com/public/6/1/f/61fb54c5-0de2-42e0-85f2-a20c9a589684_large/veterinarian-examines-cat-stockcake.jpg");
+        userEntity = saveUserVet(veterinarioSave);
+        veterinarioSave.setUser(userEntity);
+        veterinarioRepository.save(veterinarioSave);
+        veterinarioSave = new Veterinario("1111", "Dr. Javier Hernández", "Anestesiología", "javier.hernandez@mail.com", "0009", "https://images.stockcake.com/public/9/8/0/98004d06-d724-404c-bcc1-411a13d39b1d_large/veterinarian-examining-owl-stockcake.jpg");
+        userEntity = saveUserVet(veterinarioSave);
+        veterinarioSave.setUser(userEntity);
+        veterinarioRepository.save(veterinarioSave);
+        veterinarioSave = new Veterinario("1212", "Dra. Sofía Romero", "Rehabilitación", "sofia.romero@mail.com", "0010", "https://images.stockcake.com/public/b/e/0/be000a37-483e-438c-853a-939929f13d89_large/vet-examining-dog-stockcake.jpg");
+        userEntity = saveUserVet(veterinarioSave);
+        veterinarioSave.setUser(userEntity);
+        veterinarioRepository.save(veterinarioSave);
+        veterinarioSave = new Veterinario("1313", "Dr. Andrés Vega", "Medicina Felina", "andres.vega@mail.com", "0011", "https://images.stockcake.com/public/c/a/2/ca2c500a-d923-4d3f-a8cb-70ceb0bd3f76_large/veterinarian-examining-iguana-stockcake.jpg");
+        userEntity = saveUserVet(veterinarioSave);
+        veterinarioSave.setUser(userEntity);
+        veterinarioRepository.save(veterinarioSave);
+        veterinarioSave = new Veterinario("1414", "Dra. Laura Fuentes", "Ortopedia", "laura.fuentes@mail.com", "0012", "https://images.stockcake.com/public/d/4/d/d4d0589c-746f-46e9-9e45-462ee737cc99_large/veterinarian-examining-kitten-stockcake.jpg");
+        userEntity = saveUserVet(veterinarioSave);
+        veterinarioSave.setUser(userEntity);
+        veterinarioRepository.save(veterinarioSave);
+        veterinarioSave = new Veterinario("1515", "Dr. Diego Navarro", "Odontología", "diego.navarro@mail.com", "0013", "https://images.stockcake.com/public/4/b/4/4b4f006c-a1fd-4b77-89a6-7f44e7417eb5_large/veterinarian-with-ferret-stockcake.jpg");
+        userEntity = saveUserVet(veterinarioSave);
+        veterinarioSave.setUser(userEntity);
+        veterinarioRepository.save(veterinarioSave);
+        veterinarioSave = new Veterinario("1616", "Dra. Gabriela Salinas", "Medicina Equina", "gabriela.salinas@mail.com", "0014", "https://images.stockcake.com/public/4/c/7/4c79c1df-36ec-4088-9db4-1fe420e91036_large/veterinarian-holding-hamster-stockcake.jpg");
+        userEntity = saveUserVet(veterinarioSave);
+        veterinarioSave.setUser(userEntity);
+        veterinarioRepository.save(veterinarioSave);
+        veterinarioSave = new Veterinario("1717", "Dr. Pedro Vargas", "Toxicología", "pedro.vargas@mail.com", "0015", "https://images.stockcake.com/public/4/5/b/45bdd751-c59b-46e1-a234-a8955a39fdb3_large/veterinarian-examining-rabbit-stockcake.jpg");
+        userEntity = saveUserVet(veterinarioSave);
+        veterinarioSave.setUser(userEntity);
+        veterinarioRepository.save(veterinarioSave);
+        veterinarioSave = new Veterinario("1818", "Dra. Valeria Medina", "Etología", "valeria.medina@mail.com", "0016", "https://images.stockcake.com/public/0/6/5/065f044e-fbdc-4d77-a176-e1c13f12246d_large/veterinarian-embraces-horse-stockcake.jpg");
+        userEntity = saveUserVet(veterinarioSave);
+        veterinarioSave.setUser(userEntity);
+        veterinarioRepository.save(veterinarioSave);
+        veterinarioSave = new Veterinario("1919", "Dr. Sergio Ramírez", "Radiología", "sergio.ramirez@mail.com", "0017", "https://images.stockcake.com/public/7/b/a/7babc602-7afb-488f-8976-6eee8f485f40_large/veterinarian-holding-kitten-stockcake.jpg");
+        userEntity = saveUserVet(veterinarioSave);
+        veterinarioSave.setUser(userEntity);
+        veterinarioRepository.save(veterinarioSave);
+        veterinarioSave = new Veterinario("2020", "Dra. Julia Ortiz", "Patología", "julia.ortiz@mail.com", "0018", "https://images.stockcake.com/public/2/0/6/20609582-d6ce-4426-8e70-de398a954c6f_large/veterinarian-examining-rabbit-stockcake.jpg");
+        userEntity = saveUserVet(veterinarioSave);
+        veterinarioSave.setUser(userEntity);
+        veterinarioRepository.save(veterinarioSave);
+        veterinarioSave = new Veterinario("2121", "Dr. Mario Mendoza", "Parasitología", "mario.mendoza@mail.com", "0019", "https://images.stockcake.com/public/4/a/0/4a05e197-c914-40af-ae7f-e9a12eae4330_large/veterinarian-examining-dog-stockcake.jpg");
+        userEntity = saveUserVet(veterinarioSave);
+        veterinarioSave.setUser(userEntity);
+        veterinarioRepository.save(veterinarioSave);
+        veterinarioSave = new Veterinario("2223", "Dra. Mariana Castillo", "Reproducción", "mariana.castillo@mail.com", "0020", "https://images.stockcake.com/public/6/7/6/67625ce5-d76e-4582-adf0-82f2f2e80fb3_large/veterinarian-examining-cat-stockcake.jpg");
 
 
        
@@ -398,5 +630,32 @@ public class DatabaseInit implements ApplicationRunner{
         }
 
 
+    }
+
+    private UserEntity saveUserAdmin(Administrador administrador){
+        UserEntity userEntity = new UserEntity();
+        Role roles = roleRepository.findByName("ADMIN").get();
+        userEntity.setUsername(administrador.getCorreo());
+        userEntity.setPassword(passwordEncoder.encode(administrador.getPassword()));
+        userEntity.setRoles(List.of(roles));
+        return userRepository.save(userEntity);
+    }
+
+    private UserEntity saveUserCliente(Cliente cliente){
+        UserEntity userEntity = new UserEntity();
+        Role roles = roleRepository.findByName("CLIENTE").get();
+        userEntity.setUsername(cliente.getCorreo());
+        userEntity.setPassword(passwordEncoder.encode("123"));
+        userEntity.setRoles(List.of(roles));
+        return userRepository.save(userEntity);
+    }
+
+    private UserEntity saveUserVet(Veterinario veterinario){
+        UserEntity userEntity = new UserEntity();
+        Role roles = roleRepository.findByName("VETERINARIO").get();
+        userEntity.setUsername(veterinario.getCorreo());
+        userEntity.setPassword(passwordEncoder.encode(veterinario.getPassword()));
+        userEntity.setRoles(List.of(roles));
+        return userRepository.save(userEntity);
     }
 }

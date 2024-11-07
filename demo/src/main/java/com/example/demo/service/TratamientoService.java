@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.DTOs.TratamientoDTO;
 import com.example.demo.model.Tratamiento;
-import com.example.demo.model.TratamientoDTO;
 
 @Service
 public interface TratamientoService {

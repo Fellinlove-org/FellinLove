@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.demo.service.TratamientoService;
+import com.example.demo.DTOs.TratamientoDTO;
 import com.example.demo.model.Tratamiento;
-import com.example.demo.model.TratamientoDTO;
 
 @RequestMapping("/tratamiento")
 @RestController
