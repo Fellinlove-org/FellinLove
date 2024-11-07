@@ -29,10 +29,13 @@ public class SecurityConfig {
                 .sessionManagement(customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/h2/**").permitAll()
-                        .requestMatchers("/student/login").permitAll()
-                        .requestMatchers("/student/find/**").hasAuthority("TEACHER")
-                        .requestMatchers("/student/details").hasAuthority("STUDENT")
-                        .requestMatchers("/teacher/details").hasAuthority("TEACHER")
+                        .requestMatchers("/cliente/login").permitAll()
+                        .requestMatchers("/veterinario/login").permitAll()
+                        .requestMatchers("/admin/login").permitAll()
+                        .requestMatchers("/mascota/find/**").authenticated()
+                        .requestMatchers("/cliente/details").hasAuthority("CLIENTE")
+                        .requestMatchers("/veterinario/details").hasAuthority("VETERINARIO")
+                        .requestMatchers("/admin/details").hasAuthority("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthEntryPoint));

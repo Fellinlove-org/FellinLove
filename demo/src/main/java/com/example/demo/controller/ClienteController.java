@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.DTOs.ClienteDTO;
+import com.example.demo.DTOs.ClienteMapper;
+import com.example.demo.DTOs.VeterinarioDTO;
+import com.example.demo.DTOs.VeterinarioMapper;
 import com.example.demo.model.Cliente;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.security.CustomUserDetailService;
 import com.example.demo.security.JWTGenerator;
 import com.example.demo.service.ClienteService;
 import com.example.demo.model.UserEntity;
+import com.example.demo.model.Veterinario;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -100,6 +104,21 @@ public class ClienteController {
         return response;
     }
 
+    @GetMapping("/details")
+    public ResponseEntity<ClienteDTO> getDetails() {
+        
+        Cliente cliente = clienteService.findByCedula(
+            SecurityContextHolder.getContext().getAuthentication().getName()
+        );
+
+        ClienteDTO clienteDTO = ClienteMapper.INSTANCE.convert(cliente);
+
+        if( cliente == null ) {
+            return new ResponseEntity<ClienteDTO>(clienteDTO, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<ClienteDTO>(clienteDTO, HttpStatus.OK);
+    }
+
 
     //METODO PARA AGREGAR A UN CLIENTE
     //url: http://localhost:8090/cliente/add
@@ -125,7 +144,7 @@ public class ClienteController {
 
     //METODO PARA ACTUALIZAR UN CLIENTE
     //url: http://localhost:8090/cliente/update
-    @PutMapping("update")
+    @PutMapping("/update")
     public ResponseEntity<Cliente> update(@RequestBody Cliente cliente) {
         clienteService.update(cliente);
         return new ResponseEntity<>(cliente, HttpStatus.OK);
@@ -134,7 +153,7 @@ public class ClienteController {
 
     //METODO PARA BORRAR UN CLIENTE
     //url: http://localhost:8090/cliente/delete/1
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") Long id) {
         clienteService.deleteById(id);
         return new ResponseEntity<>("DELETED", HttpStatus.NO_CONTENT);

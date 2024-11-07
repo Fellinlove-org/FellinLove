@@ -293,7 +293,9 @@ public class DatabaseInit implements ApplicationRunner{
         clienteSave.setUser(userEntity);
         clienteRepository.save(clienteSave);
         clienteSave = Cliente.builder().cedula("050").nombre("Adrian Diaz").correo("adrian.diaz@example.com").celular("3000000050").foto("https://randomuser.me/api/portraits/men/25.jpg").build();
-
+        userEntity = saveUserCliente(clienteSave);
+        clienteSave.setUser(userEntity);
+        clienteRepository.save(clienteSave);
 
         
         // Agregar mascotas a la base de datos
@@ -482,7 +484,9 @@ public class DatabaseInit implements ApplicationRunner{
         veterinarioSave.setUser(userEntity);
         veterinarioRepository.save(veterinarioSave);
         veterinarioSave = new Veterinario("2223", "Dra. Mariana Castillo", "Reproducción", "mariana.castillo@mail.com", "0020", "https://images.stockcake.com/public/6/7/6/67625ce5-d76e-4582-adf0-82f2f2e80fb3_large/veterinarian-examining-cat-stockcake.jpg");
-
+        userEntity = saveUserVet(veterinarioSave);
+        veterinarioSave.setUser(userEntity);
+        veterinarioRepository.save(veterinarioSave);
 
        
         // Asociar mascotas con cliente
@@ -635,7 +639,7 @@ public class DatabaseInit implements ApplicationRunner{
     private UserEntity saveUserAdmin(Administrador administrador){
         UserEntity userEntity = new UserEntity();
         Role roles = roleRepository.findByName("ADMIN").get();
-        userEntity.setUsername(administrador.getCorreo());
+        userEntity.setUsername(administrador.getCedula());
         userEntity.setPassword(passwordEncoder.encode(administrador.getPassword()));
         userEntity.setRoles(List.of(roles));
         return userRepository.save(userEntity);
@@ -644,7 +648,7 @@ public class DatabaseInit implements ApplicationRunner{
     private UserEntity saveUserCliente(Cliente cliente){
         UserEntity userEntity = new UserEntity();
         Role roles = roleRepository.findByName("CLIENTE").get();
-        userEntity.setUsername(cliente.getCorreo());
+        userEntity.setUsername(cliente.getCedula());
         userEntity.setPassword(passwordEncoder.encode("123"));
         userEntity.setRoles(List.of(roles));
         return userRepository.save(userEntity);
@@ -653,7 +657,7 @@ public class DatabaseInit implements ApplicationRunner{
     private UserEntity saveUserVet(Veterinario veterinario){
         UserEntity userEntity = new UserEntity();
         Role roles = roleRepository.findByName("VETERINARIO").get();
-        userEntity.setUsername(veterinario.getCorreo());
+        userEntity.setUsername(veterinario.getCedula());
         userEntity.setPassword(passwordEncoder.encode(veterinario.getPassword()));
         userEntity.setRoles(List.of(roles));
         return userRepository.save(userEntity);

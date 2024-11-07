@@ -15,7 +15,7 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JWTGenerator {
 
-    public static final Long EXPIRATION_TIME = 864000000L;
+    public static final Long EXPIRATION_TIME = 90000000L;
 
     private static final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 

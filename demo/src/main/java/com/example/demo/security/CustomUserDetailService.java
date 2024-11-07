@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.model.Administrador;
 import com.example.demo.model.Cliente;
 import com.example.demo.model.Role;
 import com.example.demo.model.UserEntity;
@@ -38,8 +39,11 @@ public class CustomUserDetailService implements UserDetailsService {
         UserEntity userDB = userRepository.findByUsername(username).orElseThrow(
                 () -> new UsernameNotFoundException("User not found"));
 
-        UserDetails userDetails = new User(userDB.getUsername(), userDB.getPassword(),
-                mapToGrantedAuthorities(userDB.getRoles()));
+        UserDetails userDetails = new User(
+            userDB.getUsername(), 
+            userDB.getPassword(),
+            mapToGrantedAuthorities(userDB.getRoles()));
+
         return userDetails;
     }
 
@@ -64,6 +68,17 @@ public class CustomUserDetailService implements UserDetailsService {
         user.setPassword(passwordEncoder.encode(vet.getPassword()));
 
         Role roles = roleRepository.findByName("VETERINARIO").get();
+        user.setRoles(List.of(roles));
+
+        return user;
+    }
+
+    public UserEntity AdminToUser(Administrador admin) {
+        UserEntity user = new UserEntity();
+        user.setUsername(String.valueOf(admin.getCedula()));
+        user.setPassword(passwordEncoder.encode(admin.getPassword()));
+
+        Role roles = roleRepository.findByName("ADMIN").get();
         user.setRoles(List.of(roles));
 
         return user;

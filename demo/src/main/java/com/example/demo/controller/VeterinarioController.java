@@ -23,7 +23,6 @@ import com.example.demo.security.JWTGenerator;
 import com.example.demo.service.TratamientoService;
 import com.example.demo.service.VeterinarioService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 import com.example.demo.model.UserEntity;
 
@@ -33,6 +32,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -80,6 +80,9 @@ public class VeterinarioController {
 
      @PostMapping("/login")
     public ResponseEntity loginVeterinarioEntity(@RequestBody VeterinarioDTO veterinarioDTO) {
+
+        System.out.println("VETERINARIO DTO: " + veterinarioDTO);
+
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(veterinarioDTO.getCedula(), veterinarioDTO.getPassword()));
 
@@ -90,6 +93,20 @@ public class VeterinarioController {
         return new ResponseEntity<String>(token, HttpStatus.OK);
     }
 
+    @GetMapping("/details")
+    public ResponseEntity<VeterinarioDTO> getDetails() {
+        
+        Veterinario veterinario = veterinarioService.findByCedula(
+            SecurityContextHolder.getContext().getAuthentication().getName()
+        ).get();
+
+        VeterinarioDTO veterinarioDTO = VeterinarioMapper.INSTANCE.convert(veterinario);
+
+        if( veterinario == null ) {
+            return new ResponseEntity<VeterinarioDTO>(veterinarioDTO, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<VeterinarioDTO>(veterinarioDTO, HttpStatus.OK);
+    }
 
     //METODO PARA ENCONTRAR A TODOS LOS VETERINARIOS
     //url: http://localhost:8090/veterinario/find/all
