@@ -1,0 +1,15 @@
+package com.example.demo.DTOs;
+
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
+
+import com.example.demo.model.Veterinario;
+@Mapper
+public interface VeterinarioMapper {
+    VeterinarioMapper INSTANCE = Mappers.getMapper(VeterinarioMapper.class);  
+
+    /*LOSIMPORTNTE */
+
+    VeterinarioDTO convert(Veterinario veterinario);
+    
+} 

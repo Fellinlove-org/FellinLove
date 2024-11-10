@@ -7,10 +7,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.DTOs.TratamientoDTO;
 import com.example.demo.model.Droga;
 import com.example.demo.model.Mascota;
 import com.example.demo.model.Tratamiento;
-import com.example.demo.model.TratamientoDTO;
 import com.example.demo.model.Veterinario;
 import com.example.demo.repository.DrogaRepository;
 import com.example.demo.repository.MascotaRepository;
