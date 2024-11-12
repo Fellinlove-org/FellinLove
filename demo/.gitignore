@@ -39,3 +39,5 @@ fellinlove.mv.db
 fellinlove.trace.db
 testdb.mv.db
 testdb.trace.db
+../fellinlove.mv.db
+../fellinlove.trace.db
