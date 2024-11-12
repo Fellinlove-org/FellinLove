@@ -8,4 +8,5 @@ public class VeterinarioDTO {
     private String cedula;
     private String nombre;
     private String password;
+    private String foto;
 }

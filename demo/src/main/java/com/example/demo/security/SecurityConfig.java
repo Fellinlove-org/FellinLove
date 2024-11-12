@@ -39,6 +39,7 @@ public class SecurityConfig {
                         .requestMatchers("/tratamiento/count").hasAuthority("ADMIN")
                         .requestMatchers("/mascota/count/active").hasAuthority("ADMIN")
                         .requestMatchers("/drogas/escasas").hasAuthority("ADMIN")
+                        .requestMatchers("/veterinario/best").hasAuthority("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthEntryPoint));

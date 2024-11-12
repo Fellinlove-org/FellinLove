@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -34,6 +35,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.function.EntityResponse;
 
 
 
@@ -108,6 +110,18 @@ public class VeterinarioController {
         return new ResponseEntity<VeterinarioDTO>(veterinarioDTO, HttpStatus.OK);
     }
 
+    @GetMapping("/best")
+    public ResponseEntity<VeterinarioDTO> getEmpleadoMes(){
+        Veterinario vet = veterinarioService.getEmpleadoMes();
+
+        VeterinarioDTO veterinarioDTO = VeterinarioMapper.INSTANCE.convert(vet);
+
+        if(vet == null){
+            return new ResponseEntity<VeterinarioDTO>(veterinarioDTO, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<VeterinarioDTO>(veterinarioDTO, HttpStatus.OK);
+    }
+
     //METODO PARA ENCONTRAR A TODOS LOS VETERINARIOS
     //url: http://localhost:8090/veterinario/find/all
     @GetMapping("/find/all")
@@ -157,6 +171,7 @@ public class VeterinarioController {
     }
 
 
+    
    
 
 
