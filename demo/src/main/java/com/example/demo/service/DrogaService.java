@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import java.util.Collection;
 
 import java.util.List;
 import com.example.demo.model.Droga;
@@ -21,4 +20,6 @@ public interface DrogaService {
     public Double getGananciasTotales();
 
     public List<Object[]> getTopTratamientos();
+
+    public List<Droga> findDrogasParaCompra();
 }

@@ -61,4 +61,9 @@ public class DrogaController {
     public List<Object[]> getTopTratamientos() {
         return drogaService.getTopTratamientos();
     }
+
+    @GetMapping("/escasas")
+    public List<Droga> findDrogasParaCompra() {
+        return drogaService.findDrogasParaCompra();
+    }
 }

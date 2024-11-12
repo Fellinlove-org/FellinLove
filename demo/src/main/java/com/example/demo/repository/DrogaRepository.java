@@ -11,7 +11,7 @@ import com.example.demo.model.Droga;
 @Repository
 public interface DrogaRepository extends JpaRepository<Droga, Long> {
     
-    @Query(value = "SELECT * FROM DROGA WHERE UNIDADES_DISPONIBLES < 3", nativeQuery = true)
+    @Query(value = "SELECT * FROM DROGA WHERE UNIDADES_DISPONIBLES < 3 ORDER BY UNIDADES_DISPONIBLES ASC LIMIT 5;", nativeQuery = true)
     List<Droga> findDrogasParaCompra();
 
     @Query("SELECT SUM(d.precioVenta * d.unidadesVendidas) FROM Droga d")

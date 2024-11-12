@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.example.demo.service.AdministradorService;
 import com.example.demo.service.TratamientoService;
+import com.example.demo.DTOs.AdministradorDTO;
+import com.example.demo.DTOs.ClienteDTO;
+import com.example.demo.DTOs.ClienteMapper;
 import com.example.demo.DTOs.TratamientoDTO;
+import com.example.demo.model.Administrador;
+import com.example.demo.DTOs.AdministradorMapper;
+import com.example.demo.model.Cliente;
 import com.example.demo.model.Tratamiento;
 
 @RequestMapping("/tratamiento")
@@ -26,6 +34,10 @@ public class TratamientoController {
     
     @Autowired
     TratamientoService tratamientoService;
+
+    @Autowired
+    AdministradorService administradorService;
+
 
     // METODO PARA ENCONTRAR TODOS LOS TRATAMIENTOS
     // url: http://localhost:8090/tratamiento/find/all
@@ -49,6 +61,7 @@ public class TratamientoController {
 
     @GetMapping("/count")
     public Integer countTratamiento() {
+
         return tratamientoService.countTratamiento();
     }
 

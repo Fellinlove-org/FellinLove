@@ -56,6 +56,11 @@ public class DrogaServiceImpl implements DrogaService{
     public List<Object[]> getTopTratamientos() {
         return drogaRepository.findTopByUnidadesVendidas();
     }
+
+    @Override
+    public List<Droga> findDrogasParaCompra() {
+        return drogaRepository.findDrogasParaCompra();
+    }
     
 
 
