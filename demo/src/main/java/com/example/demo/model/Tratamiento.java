@@ -1,85 +1,66 @@
+
 package com.example.demo.model;
+
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-
-import java.time.LocalDate;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Tratamiento {
-    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
-    
-    private String nombre;
-    private LocalDate fecha;
 
-   
+    private int cantidad;
+
+    @JsonIgnore
     @ManyToOne
-    private Mascota mascota;
-    @ManyToOne
+    @JoinColumn(name = "veterinario_id")
     private Veterinario veterinario;
+
+    @JsonIgnore
     @ManyToOne
+    @JoinColumn(name = "mascota_id")
+    private Mascota mascota;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "droga_id")
     private Droga droga;
 
+    private Date fechaConsulta;
 
 
-    public Tratamiento(Long id, String nombre, LocalDate fecha) {
+    public Tratamiento(Veterinario veterinario, Mascota mascota, Droga droga, Date fechaConsulta, int cantidad) {
+        this.veterinario = veterinario;
+        this.mascota = mascota;
+        this.droga = droga;
+        this.fechaConsulta = fechaConsulta;
+        this.cantidad = cantidad;
+    }
+
+    public Tratamiento(Long id, Veterinario veterinario, Mascota mascota, Droga droga, Date fechaConsulta, int cantidad) {
         this.id = id;
-        this.nombre = nombre;
-        this.fecha = fecha;
+        this.veterinario = veterinario;
+        this.mascota = mascota;
+        this.droga = droga;
+        this.fechaConsulta = fechaConsulta;
+        this.cantidad = cantidad;
     }
-    
-
-    // Constructor con parámetros para asociar mascota, veterinario y droga
-    public Tratamiento(String nombre, LocalDate fecha, Mascota mascota, Veterinario veterinario, Droga droga) {
-    this.nombre = nombre;
-    this.fecha = fecha;
-    this.mascota = mascota;
-    this.veterinario = veterinario;
-    this.droga = droga;
-}
-
-    public Tratamiento(String nombre, LocalDate fecha) {
-        this.nombre = nombre;
-        this.fecha = fecha;
+   
+    public Tratamiento(Date fechaConsulta) {
+        this.fechaConsulta = fechaConsulta;
     }
-
-  
-
-    // Constructor, getters y setters
-    public Tratamiento() {}
-    
-
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-
- 
 }

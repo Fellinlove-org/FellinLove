@@ -1,8 +1,6 @@
 package com.example.demo.service;
 
-import java.util.Collection;
-import java.util.Optional;
-
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +14,11 @@ public class ClienteServiceImpl implements ClienteService{
     private ClienteRepository clienteRepository;
 
     @Override
-    public Optional<Cliente> SearchById(Long id) {
-        return clienteRepository.findById(id);
-
+    public Cliente SearchById(Long id) {
+        return clienteRepository.findById(id).orElse(null);
     }
     @Override
-    public Collection<Cliente> SearchAll() {
+    public List<Cliente> SearchAll() {
 
         return clienteRepository.findAll();
         
@@ -37,12 +34,12 @@ public class ClienteServiceImpl implements ClienteService{
         
     }
     @Override
-    public void add(Cliente cliente) {
-        clienteRepository.save(cliente);
+    public Cliente add(Cliente cliente) {
+        return clienteRepository.save(cliente);
     }
     @Override
-    public Optional<Cliente> findByCedula(String cedula) {
-        return clienteRepository.findByCedula(cedula);
+    public Cliente findByCedula(String cedula) {
+        return clienteRepository.findByCedula(cedula).orElse(null);
     }
     
 

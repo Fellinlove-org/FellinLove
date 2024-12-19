@@ -1,14 +1,13 @@
 package com.example.demo.service;
 
-import java.util.Collection;
-import java.util.Optional;
 
+import java.util.List;
 import com.example.demo.model.Droga;
 
 public interface DrogaService {
-    public Optional <Droga> SearchById(Long id);
+    public Droga SearchById(Long id);
 
-    public Collection <Droga> SearchAll();
+    public List <Droga> SearchAll();
 
     public void add(Droga droga);
 
@@ -16,5 +15,11 @@ public interface DrogaService {
 
     public void delete(Long id);
 
+    public Double getVentasTotales();
 
+    public Double getGananciasTotales();
+
+    public List<Object[]> getTopTratamientos();
+
+    public List<Droga> findDrogasParaCompra();
 }

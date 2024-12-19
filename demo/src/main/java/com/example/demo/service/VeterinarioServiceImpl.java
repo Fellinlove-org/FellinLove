@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class VeterinarioServiceImpl implements VeterinarioService {
     VeterinarioRepository veterinarioRepository;
 
     @Override
-    public Collection<Veterinario> SearchAll() {
+    public List<Veterinario> SearchAll() {
 
         return veterinarioRepository.findAll();
     }
@@ -45,9 +45,12 @@ public class VeterinarioServiceImpl implements VeterinarioService {
     }
 
     @Override
-    public void add(Veterinario veterinario) {
-
-        veterinarioRepository.save(veterinario);
+    public Veterinario add(Veterinario veterinario) {
+        return veterinarioRepository.save(veterinario);
     }
-    
+
+    @Override
+    public Veterinario getEmpleadoMes() {
+        return veterinarioRepository.getEmpleadoMes();
+    }
 }

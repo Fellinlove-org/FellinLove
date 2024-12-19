@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,12 @@ public class DrogaServiceImpl implements DrogaService{
      private DrogaRepository drogaRepository;
 
     @Override
-    public Optional<Droga> SearchById(Long id) {
-        return drogaRepository.findById(id);
+    public Droga SearchById(Long id) {
+        return drogaRepository.findById(id).get();
     }
 
     @Override
-    public Collection<Droga> SearchAll() {
+    public List<Droga> SearchAll() {
         return drogaRepository.findAll();
     }
 
@@ -39,6 +40,26 @@ public class DrogaServiceImpl implements DrogaService{
     @Override
     public void delete(Long id) {
         drogaRepository.deleteById(id);
+    }
+
+    @Override
+    public Double getVentasTotales() {
+        return drogaRepository.getVentasTotales();
+    }
+
+    @Override
+    public Double getGananciasTotales() {
+        return drogaRepository.getGananciasTotales();
+    }
+
+    @Override
+    public List<Object[]> getTopTratamientos() {
+        return drogaRepository.findTopByUnidadesVendidas();
+    }
+
+    @Override
+    public List<Droga> findDrogasParaCompra() {
+        return drogaRepository.findDrogasParaCompra();
     }
     
 
